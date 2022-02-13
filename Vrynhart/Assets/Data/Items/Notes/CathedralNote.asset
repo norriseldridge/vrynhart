@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e051b45d7824a7ab47f8bd79607439, type: 3}
+  m_Name: CathedralNote
+  m_EditorClassIdentifier: 
+  Id: cathedral_note
+  ItemType: 4
+  Sprite: {fileID: 21300000, guid: d3a155ca78f5e442f9aaf0ac9e7d214f, type: 3}
+  Name: Old Cathedral Note
+  Unique: 1
+  Cost: 0
+  ShortDescription: A note found outside the Old Cathedral. Based on the wear of
+    its parchment, it must be very old.
+  Description: 'It reads:
+
+    <i><b>Do not enter!</b>
+
+
+    What is done cannot
+    be undone. Do not dwell on the good Lord''s sins. It is best to let the past
+    die.
+
+
+    And when you cannot kill it, bury it, and lock it away...</i>'
+  UseRange: 1
+  ClothingAnimator: {fileID: 0}

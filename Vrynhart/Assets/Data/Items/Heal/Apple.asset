@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e051b45d7824a7ab47f8bd79607439, type: 3}
+  m_Name: Apple
+  m_EditorClassIdentifier: 
+  Id: apple
+  ItemType: 1
+  Sprite: {fileID: 7293598183456022363, guid: 33897e28867074398ae75fa9ce708d88, type: 3}
+  Name: Red Apple
+  Unique: 0
+  Cost: 1
+  ShortDescription: Consume to restore <color="#f00">1 HP</color>.
+  Description: This staple of the Vyrnhart region is well-known to you. As any hunter
+    worth his salt knows, an apple a day keeps the bloodletter away...
+  UseRange: 0
+  ClothingAnimator: {fileID: 0}

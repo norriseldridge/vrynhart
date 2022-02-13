@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e051b45d7824a7ab47f8bd79607439, type: 3}
+  m_Name: HunterHat
+  m_EditorClassIdentifier: 
+  Id: hunter_hat
+  ItemType: 3
+  Sprite: {fileID: -3055733210372388718, guid: 01f39ea79a93448e9aca5e781a6dfb76, type: 3}
+  Name: Hunter's Hat
+  Unique: 1
+  Cost: 0
+  ShortDescription: This well worn hat is familiar to you.
+  Description: This hat does not possess any special qualities but it belongs to
+    you, that's what makes it special.
+  UseRange: 1
+  ClothingAnimator: {fileID: 9100000, guid: ea43a366fa564441b8cbfb3509addebd, type: 2}

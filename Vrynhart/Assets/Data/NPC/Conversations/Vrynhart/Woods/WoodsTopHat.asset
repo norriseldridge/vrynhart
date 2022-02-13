@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331cbcd362e744359886a3cd987b0850, type: 3}
+  m_Name: WoodsTopHat
+  m_EditorClassIdentifier: 
+  PersistantFlagId: ira_woods
+  ConversationName: Ira
+  Dialogue:
+  - Ha! Greetings Hunter! Looking for a means into Vrynhart Castle are ye?
+  - Well, I'll tell you what I told your Hunter friend, Draven.
+  - There is another way into the Castle through the sewers.
+  - Just take this path west and follow it over the river. The sewers are just past
+    it.
+  - Have fun! Ha!
