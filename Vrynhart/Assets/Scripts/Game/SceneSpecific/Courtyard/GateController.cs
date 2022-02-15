@@ -8,6 +8,12 @@ public class GateController : MonoBehaviour
     string _uid;
 
     [SerializeField]
+    AudioClip _sfx;
+
+    [SerializeField]
+    float _volume;
+
+    [SerializeField]
     Transform _gate;
 
     [SerializeField]
@@ -28,6 +34,7 @@ public class GateController : MonoBehaviour
 
     void OnGateOpen(GateOpenEvent e)
     {
+        MessageBroker.Default.Publish(new AudioEvent(_sfx, _volume));
         StartCoroutine(OpenGateAnimation());
     }
 
