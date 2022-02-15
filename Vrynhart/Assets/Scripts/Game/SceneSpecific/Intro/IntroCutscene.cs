@@ -16,12 +16,6 @@ public class IntroCutscene : MonoBehaviour
     AudioSource[] _carriageSfx;
 
     [SerializeField]
-    AudioSource _nyah;
-
-    [SerializeField]
-    AudioSource _wind;
-
-    [SerializeField]
     Transform[] _fogs;
 
     [SerializeField]
@@ -42,9 +36,16 @@ public class IntroCutscene : MonoBehaviour
     [SerializeField]
     AudioClip _theme;
 
+    [SerializeField]
+    AudioSource _wind;
+
+    [SerializeField]
+    AudioClip _nya;
+
     void Start()
     {
         _title.enabled = false;
+        _wind.volume = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);
         StartCoroutine(PlayCutScene());
     }
 
@@ -152,7 +153,7 @@ public class IntroCutscene : MonoBehaviour
 
     IEnumerator CarriageRunsOut()
     {
-        _nyah.Play();
+        MessageBroker.Default.Publish(new AudioEvent(_nya, 0.3f));
         var carriageSpeed = 2.5f;
         var sfxSpeed = 0.35f;
         while (_carriage.transform.position.x > -12)
@@ -206,10 +207,13 @@ public class IntroCutscene : MonoBehaviour
 
     IEnumerator PrintStory()
     {
+        var charDelay = 0.135f;
+        var maxDelay = 5.5f;
         foreach (var line in _introStory.Dialogue)
         {
             _storyText.text = line;
-            yield return new WaitForSeconds(_storyText.text.Length * 0.135f);
+            var delay = Mathf.Clamp(_storyText.text.Length * charDelay, 0, maxDelay);
+            yield return new WaitForSeconds(delay);
             _storyText.text = "";
             yield return new WaitForSeconds(0.5f);
         }

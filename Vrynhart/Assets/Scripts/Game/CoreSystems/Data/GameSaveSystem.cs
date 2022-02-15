@@ -24,7 +24,7 @@ public static class GameSaveSystem
             Name = name,
             Inventory = new Inventory(new Dictionary<string, int>()
             {
-                { "coin", 20 },
+                { "coin", 15 },
                 { "hunter_set", 1 },
                 { "hunter_hat", 1 }
             }),

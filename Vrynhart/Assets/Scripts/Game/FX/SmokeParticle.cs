@@ -45,7 +45,7 @@ public class SmokeParticle : MonoBehaviour
             transform.SetPositionAndRotation(
                 new Vector3(_x + Mathf.Sin(Time.time * _swaySpeed + _rand) * _currentSway,
                     transform.position.y + _riseSpeed * Time.deltaTime),
-                Quaternion.Euler(0, Time.time, 0));
+                Quaternion.Euler(0, 0, Time.time));
             transform.localScale += _scaleSpeed * Time.deltaTime * Vector3.one;
 
             var color = _renderer.color;

@@ -2161,14 +2161,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 541816737}
     m_Modifications:
-    - target: {fileID: 2942346169149798370, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
-      propertyPath: _music
-      value: 
-      objectReference: {fileID: 8300000, guid: f24a6b2308ae6417dbc5c0b09cae22ee, type: 3}
-    - target: {fileID: 2942346169149798370, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
-      propertyPath: _volume
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 2942346169149798371, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2215,7 +2207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2942346169149798397, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
       propertyPath: m_Name
-      value: LevelMusicController
+      value: LevelSoundController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
@@ -2281,7 +2273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 708305254696536812, guid: fe5ddc9026bb247dfb161dbc59c0374b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe5ddc9026bb247dfb161dbc59c0374b, type: 3}
@@ -2290,6 +2282,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 708305254294761057, guid: fe5ddc9026bb247dfb161dbc59c0374b, type: 3}
   m_PrefabInstance: {fileID: 1542778379}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1542778381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 708305254294761063, guid: fe5ddc9026bb247dfb161dbc59c0374b, type: 3}
+  m_PrefabInstance: {fileID: 1542778379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1542778382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542778381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb219b23cdf4b314f94a27bca3cc8012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1579035691
 PrefabInstance:
   m_ObjectHideFlags: 0

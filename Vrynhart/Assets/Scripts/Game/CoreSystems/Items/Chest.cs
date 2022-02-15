@@ -25,6 +25,7 @@ public class Chest : MonoBehaviour
     Sprite _close;
 
     bool _wasCollected;
+    ChestCollector _collector;
 
     void Start()
     {
@@ -58,11 +59,35 @@ public class Chest : MonoBehaviour
         if (_wasCollected)
             return;
 
-        var player = collision.GetComponent<PlayerController>();
-        if (player)
+        var controller = collision.GetComponent<ChestCollector>();
+        if (controller)
+        {
+            _collector = controller;
+            MessageBroker.Default.Publish(new EnterPromptEvent());
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (_wasCollected)
+            return;
+
+        var controller = collision.GetComponent<ChestCollector>();
+        if (controller)
+        {
+            _collector = null;
+            MessageBroker.Default.Publish(new ExitPromptEvent());
+        }
+    }
+
+    void Update()
+    {
+        if (_collector != null && _collector.RequestedCollect)
         {
             GameSaveSystem.CacheGame(_uid);
             MessageBroker.Default.Publish(new ItemPickUpEvent(_itemId, _count));
+            MessageBroker.Default.Publish(new ExitPromptEvent());
+            _collector = null;
             _wasCollected = true;
         }
     }
