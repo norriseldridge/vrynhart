@@ -10932,8 +10932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf62bf6813954d79b5c2339d8d26f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextLevel: EndOfDemo
-  _startingPointIdentifier: 
+  _nextLevel: Vh_MainHall2
+  _startingPointIdentifier: main_hall
   _requiresPrompt: 1
   _sfx: {fileID: 8300000, guid: 600badd0394714c57ab23b36f60fbc34, type: 3}
   _volume: 0.6
