@@ -20,7 +20,11 @@ public class Tile : MonoBehaviour
     [SerializeField]
     float _maxPitch = 1;
 
-    public bool IsFloor => _isFloor;
+    public bool IsFloor
+    {
+        get => _isFloor;
+        set => _isFloor = value;
+    }
 
     public void PlayStepSound()
     {
