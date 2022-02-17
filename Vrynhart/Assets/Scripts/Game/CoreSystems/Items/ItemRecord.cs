@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Blood/Item")]
+[CreateAssetMenu(menuName = "Vrynhart/Item")]
 public class ItemRecord : ScriptableObject
 {
     public string Id;

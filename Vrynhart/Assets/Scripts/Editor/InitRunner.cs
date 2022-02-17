@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class InitRunner
 {
-    const string MenuPath = "Blood/InitRunner/Load Init";
+    const string MenuPath = "Vrynhart/InitRunner/Load Init";
     const string InitRunnerSetting = "LoadInit";
 
     static bool IsEnabled

@@ -15,7 +15,7 @@ public class SaveDataEditor : EditorWindow
     bool inventory;
     bool clothes;
 
-    [MenuItem("Blood/Save Data Editor")]
+    [MenuItem("Vrynhart/Save Data Editor")]
     static void Init()
     {
         // Get existing open window or if none, make a new one:

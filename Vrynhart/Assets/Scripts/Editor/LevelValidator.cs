@@ -7,13 +7,13 @@ using UnityEditor;
 
 public static class LevelValidator
 {
-    const string LevelsPath = "Assets/Scenes/Levels/";
+    
 
-    [MenuItem("Blood/Level/Validate All")]
+    [MenuItem("Vrynhart/Level/Validate All")]
     public static void ValidateAll()
     {
         var valid = true;
-        var levels = Directory.EnumerateFiles(LevelsPath).Where(f => !f.Contains("meta") && !f.Contains("Template"));
+        var levels = Directory.EnumerateFiles(Constants.Editor.LevelsPath).Where(f => !f.Contains("meta") && !f.Contains("Template"));
         foreach (var level in levels)
             valid &= ValidateLevel(level);
 
@@ -49,7 +49,7 @@ public static class LevelValidator
         foreach (var mapping in levelPointsMapping)
         {
             var startingPointIds = mapping.Value.Distinct();
-            var scene = Path.Combine(LevelsPath, $"{mapping.Key}.unity");
+            var scene = Path.Combine(Constants.Editor.LevelsPath, $"{mapping.Key}.unity");
             UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
             var startingPoints = Object.FindObjectsOfType<StartingPoint>();
             var names = new List<string>();

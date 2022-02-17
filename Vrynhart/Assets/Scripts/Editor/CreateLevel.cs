@@ -6,7 +6,7 @@ public static class CreateLevel
 {
     const string TEMPLATE = "Assets/Scenes/Levels/Template.unity";
 
-    [MenuItem("Blood/Level/Create", priority = 50)]
+    [MenuItem("Vrynhart/Level/Create", priority = 50)]
     public static void Create()
     {
         string file = EditorUtility.SaveFilePanelInProject("Create Level",

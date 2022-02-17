@@ -17,13 +17,13 @@ public static class Builder
 
     static string Hash = null;
 
-    [MenuItem("Blood/Build/Windows", priority = 100)]
+    [MenuItem("Vrynhart/Build/Windows", priority = 100)]
     public static void BuildWindows() => Build(BuildTarget.StandaloneWindows64);
 
-    [MenuItem("Blood/Build/Mac", priority = 101)]
+    [MenuItem("Vrynhart/Build/Mac", priority = 101)]
     public static void BuildMac() => Build(BuildTarget.StandaloneOSX);
 
-    [MenuItem("Blood/Build/All", priority = 150)]
+    [MenuItem("Vrynhart/Build/All", priority = 150)]
     public static void BuildAll()
     {
         Hash = $"{DateTime.Now.Ticks}";

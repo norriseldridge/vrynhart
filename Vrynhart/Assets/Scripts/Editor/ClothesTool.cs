@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +16,7 @@ public class ClothesTool : EditorWindow
     Sprite selectedSprite;
     string filenameNoExtension;
 
-    [MenuItem("Blood/Clothes Creator")]
+    [MenuItem("Vrynhart/Clothes Creator")]
     static void Init()
     {
         // Get existing open window or if none, make a new one:
