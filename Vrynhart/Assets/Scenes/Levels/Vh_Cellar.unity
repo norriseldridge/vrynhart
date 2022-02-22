@@ -12308,7 +12308,7 @@ MonoBehaviour:
   - {fileID: 1371829717}
   - {fileID: 1957792051}
   - {fileID: 1169113704}
-  _bossName: Skeleton
+  _bossName: Cellar Colossus
   _data:
     Hp: 30
     MaxHp: 30
