@@ -14,6 +14,8 @@ public class EnemyView : MonoBehaviour
     Animator _animator;
     EnemyVisualState _state = EnemyVisualState.Idle;
 
+    public bool Flipped => _renderer.flipX;
+
     void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();

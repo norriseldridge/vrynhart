@@ -30,18 +30,50 @@ public class DemonJump : EnemyLogic
     [SerializeField]
     Vector2 _walkPitch;
 
-
     Tile _currentTarget = null;
     int _turnDelay;
+    int _phase = 0;
 
     public override void DoLogic()
     {
         ++_turnDelay;
+
+        if (EnemyController.Health > 20)
+            _phase = 0;
+        else if (EnemyController.Health > 10)
+            _phase = 1;
+        else
+            _phase = 2;
+
+        switch (_phase)
+        {
+            case 0:
+                Phase0();
+                break;
+
+            case 1:
+                Phase1();
+                break;
+
+            case 2:
+            default:
+                Phase2();
+                break;
+        }
+    }
+
+    void Phase0()
+    {
         switch (_turnDelay)
         {
             case 1: // pick a new tile (the one the player is at)
                 _currentTarget = _tileMap.GetTileAt(_player.transform.position);
                 _jumpIndicator.position = _currentTarget.transform.position;
+                break;
+
+            case 2:
+            case 4:
+            case 6:
                 break;
 
             case 3: // wait, jump
@@ -50,6 +82,54 @@ public class DemonJump : EnemyLogic
                 break;
 
             case 7: // start the process over again
+            default:
+                _turnDelay = 0;
+                break;
+        }
+    }
+
+    void Phase1()
+    {
+        switch (_turnDelay)
+        {
+            case 1: // pick a new tile (the one the player is at)
+                _currentTarget = _tileMap.GetTileAt(_player.transform.position);
+                _jumpIndicator.position = _currentTarget.transform.position;
+                break;
+
+            case 2:
+            case 4:
+            case 6:
+                break;
+
+            case 3: // wait, jump
+                DoJump();
+                break;
+
+            case 5: // start the process over again
+            default:
+                _turnDelay = 0;
+                break;
+        }
+    }
+
+    void Phase2()
+    {
+        switch (_turnDelay)
+        {
+            case 1: // pick a new tile (the one the player is at)
+                _currentTarget = _tileMap.GetTileAt(_player.transform.position);
+                _jumpIndicator.position = _currentTarget.transform.position;
+                break;
+
+            case 2: // jump
+            case 3: // jump
+            case 4: // jump
+                DoJump();
+                break;
+
+            case 5: // start the process over again
+            default:
                 _turnDelay = 0;
                 break;
         }

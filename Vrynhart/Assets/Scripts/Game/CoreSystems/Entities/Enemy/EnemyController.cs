@@ -131,7 +131,12 @@ public class EnemyController : MonoBehaviour
             // play visuals
             MessageBroker.Default.Publish(new AudioEvent(_die, _dieVolume));
             if (_deathSource != null)
-                Instantiate(_deathSource, transform.position, Quaternion.Euler(0, 0, 0));
+            {
+                var death = Instantiate(_deathSource, transform.position, Quaternion.Euler(0, 0, 0));
+                var renderer = death.GetComponentInChildren<SpriteRenderer>();
+                if (renderer)
+                    renderer.flipX = _view.Flipped;
+            }
             Destroy(gameObject);
         }
         else
