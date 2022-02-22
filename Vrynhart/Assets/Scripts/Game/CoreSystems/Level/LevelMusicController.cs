@@ -1,7 +1,7 @@
 using UnityEngine;
 using UniRx;
 
-public class LevelMusicController : MonoBehaviour
+public class LevelMusicController : PostLevelInitialize
 {
     [SerializeField]
     AudioClip _music;
@@ -9,7 +9,7 @@ public class LevelMusicController : MonoBehaviour
     [SerializeField]
     float _volume = 1;
 
-    void Start()
+    public override void Initialize()
     {
         MessageBroker.Default.Publish(new MusicEvent(_music, _volume));
 

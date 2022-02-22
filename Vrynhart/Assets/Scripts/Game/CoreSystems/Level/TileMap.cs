@@ -25,7 +25,7 @@ public class TileMap : MonoBehaviour
             .AddTo(this);
     }
 
-    Tile GetTileAt(Vector3 position) =>
+    public Tile GetTileAt(Vector3 position) =>
         _tiles.Find(t => Vector2.Distance(t.transform.position, position) < 1);
 
     void OnTileMove(TileMoveEvent e)

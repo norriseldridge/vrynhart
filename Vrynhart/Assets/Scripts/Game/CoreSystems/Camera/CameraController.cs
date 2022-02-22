@@ -1,9 +1,11 @@
 using UnityEngine;
 using UniRx;
 
-[RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
+    [SerializeField]
+    Camera _camera;
+
     [SerializeField]
     Transform _target;
 
@@ -20,8 +22,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        var camera = GetComponent<Camera>();
-        var verticalSize = camera.orthographicSize * 2.0f;
+        var verticalSize = _camera.orthographicSize * 2.0f;
         var horizontalSize = verticalSize * Screen.width / Screen.height;
         _cameraSize = new Vector2(horizontalSize, verticalSize);
     }

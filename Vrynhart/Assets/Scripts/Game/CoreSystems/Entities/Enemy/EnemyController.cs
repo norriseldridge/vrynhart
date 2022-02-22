@@ -44,6 +44,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float _dieVolume;
 
+    public EnemyView EnemyView => _view;
+    public TileMover TileMover => _mover;
     public bool IsDead => _health <= 0;
     public int Health => _health;
     public List<KillItem> KillItems => _killItems;
