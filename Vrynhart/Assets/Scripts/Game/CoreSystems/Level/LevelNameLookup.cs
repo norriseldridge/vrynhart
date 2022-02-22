@@ -11,6 +11,7 @@ public static class LevelNameLookup
         { "Vh_Courtyard", $"{Vrynhart} Courtyard" },
         { "Vh_Tower", $"{Vrynhart} Watchtower" },
         { "Vh_MainHall", $"{Vrynhart} Grand Hall" },
+        { "Vh_MainHall2", $"{Vrynhart}'s North Hall" },
         { "Vh_Cellar", $"{Vrynhart} Cellars" },
         { "Dungeon", $"{Vrynhart} Dungeon" }
     };

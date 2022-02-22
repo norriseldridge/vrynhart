@@ -8,6 +8,9 @@ public class SkeletonSkullExplosition : MonoBehaviour
     List<Rigidbody2D> _rbs;
 
     [SerializeField]
+    List<Dissolver> _dissolvers;
+
+    [SerializeField]
     Vector2 _force;
 
     [SerializeField]
@@ -21,6 +24,9 @@ public class SkeletonSkullExplosition : MonoBehaviour
             rb.AddForce(new Vector2(Random.Range(-_force.x, _force.x), Random.Range(_force.y * 0.7f, _force.y)), ForceMode2D.Impulse);
             rb.AddTorque(torque, ForceMode2D.Impulse);
         }
+
+        foreach (var dissolver in _dissolvers)
+            dissolver.Dissolve();
 
         StartCoroutine(Kill());
     }

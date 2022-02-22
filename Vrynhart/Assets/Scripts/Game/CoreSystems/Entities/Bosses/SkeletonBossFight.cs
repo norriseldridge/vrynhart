@@ -22,6 +22,12 @@ public class SkeletonBossFight : MonoBehaviour
 
     [Header("Boss")]
     [SerializeField]
+    string _bossName;
+
+    [SerializeField]
+    BossUI.BossDisplayData _data;
+
+    [SerializeField]
     GameObject _boss;
 
     [SerializeField]
@@ -113,9 +119,14 @@ public class SkeletonBossFight : MonoBehaviour
             enabled = false;
             EndFight();
         }
+        else
+        {
+            _data.Hp = _spawns.Count(s => !s.Destroyed) * 10;
+            MessageBroker.Default.Publish(new BossUI.BossDisplayData() { Hp = _data.Hp, MaxHp = _data.MaxHp });
+        }
     }
 
-    void StartFight()
+    async void StartFight()
     {
         _levelMonsters = FindObjectsOfType<EnemyController>().Length;
         _boss.gameObject.SetActive(true);
@@ -126,6 +137,8 @@ public class SkeletonBossFight : MonoBehaviour
 
         MessageBroker.Default.Publish(new MusicEvent(_bossMusic, _volume));
         StartCoroutine(FadeInLight());
+
+        await BossUI.Show(_bossName, new BossUI.BossDisplayData() { Hp = _data.Hp, MaxHp = _data.MaxHp });
 
         MessageBroker.Default.Receive<TurnProgressionEvent>()
             .Subscribe(_ =>
@@ -175,6 +188,8 @@ public class SkeletonBossFight : MonoBehaviour
 
     void EndFight()
     {
+        BossUI.Close();
+
         // enable the tiles again so you can leave
         foreach (var tile in _tilesToEnableAtEnd)
             tile.enabled = true;

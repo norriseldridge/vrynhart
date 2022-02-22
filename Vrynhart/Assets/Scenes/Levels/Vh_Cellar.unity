@@ -4559,6 +4559,18 @@ PrefabInstance:
       propertyPath: _deathSource
       value: 
       objectReference: {fileID: 503766346038633342, guid: 2060ee03f179d452d81083cf5115e0e3, type: 3}
+    - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
+      propertyPath: _killItems.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
+      propertyPath: _killItems.Array.data[0].Damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
+      propertyPath: _killItems.Array.data[0].ItemId
+      value: holy_water
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
 --- !u!4 &322070002 stripped
@@ -7172,6 +7184,7 @@ GameObject:
   - component: {fileID: 509706530}
   - component: {fileID: 509706529}
   - component: {fileID: 509706528}
+  - component: {fileID: 509706527}
   m_Layer: 0
   m_Name: GiantSkeleton_Skull_1
   m_TagString: Untagged
@@ -7193,6 +7206,21 @@ Transform:
   m_Father: {fileID: 1986217398}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &509706527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509706525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cefdb9619cf6845cca5d8f5653020c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 254234b3e7d7349efb35de71dee773fe, type: 2}
+  _fadePoints: {x: -0.25, y: 1}
+  _fadeSpeed: 1
 --- !u!50 &509706528
 Rigidbody2D:
   serializedVersion: 4
@@ -7244,7 +7272,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 254234b3e7d7349efb35de71dee773fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12280,10 +12308,14 @@ MonoBehaviour:
   - {fileID: 1371829717}
   - {fileID: 1957792051}
   - {fileID: 1169113704}
+  _bossName: Skeleton
+  _data:
+    Hp: 30
+    MaxHp: 30
   _boss: {fileID: 1030480991}
   _bossDeath: {fileID: 1986217399}
-  _bossDeathSfx: {fileID: 8300000, guid: 54dc6c344fa654c23a973d4849b348e2, type: 3}
-  _bossDeathVolume: 0.9
+  _bossDeathSfx: {fileID: 8300000, guid: 56830e905c0fa47478a7c403046c4f3d, type: 3}
+  _bossDeathVolume: 1
   _bossDeathPitch: 1
   _source: {fileID: 3812991514640315652, guid: 0f6e6f8a5febb474e9a259beaaa9770e, type: 3}
   _spawns:
@@ -24613,6 +24645,7 @@ GameObject:
   - component: {fileID: 1663791894}
   - component: {fileID: 1663791893}
   - component: {fileID: 1663791896}
+  - component: {fileID: 1663791895}
   m_Layer: 0
   m_Name: GiantSkeleton_Skull_0
   m_TagString: Untagged
@@ -24664,7 +24697,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 254234b3e7d7349efb35de71dee773fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24696,6 +24729,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1663791895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663791891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cefdb9619cf6845cca5d8f5653020c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 254234b3e7d7349efb35de71dee773fe, type: 2}
+  _fadePoints: {x: -0.25, y: 1}
+  _fadeSpeed: 1
 --- !u!50 &1663791896
 Rigidbody2D:
   serializedVersion: 4
@@ -24850,6 +24898,18 @@ PrefabInstance:
       propertyPath: _deathSource
       value: 
       objectReference: {fileID: 503766346038633342, guid: 2060ee03f179d452d81083cf5115e0e3, type: 3}
+    - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
+      propertyPath: _killItems.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
+      propertyPath: _killItems.Array.data[0].Damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
+      propertyPath: _killItems.Array.data[0].ItemId
+      value: holy_water
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
 --- !u!4 &1675570705 stripped
@@ -29906,7 +29966,10 @@ MonoBehaviour:
   _rbs:
   - {fileID: 1663791896}
   - {fileID: 509706528}
-  _force: {x: 1, y: 3}
+  _dissolvers:
+  - {fileID: 1663791895}
+  - {fileID: 509706527}
+  _force: {x: 0.1, y: 1}
   _torque: 3
 --- !u!1001 &2002531054
 PrefabInstance:
@@ -31789,6 +31852,18 @@ PrefabInstance:
       propertyPath: _deathSource
       value: 
       objectReference: {fileID: 503766346038633342, guid: 2060ee03f179d452d81083cf5115e0e3, type: 3}
+    - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
+      propertyPath: _killItems.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
+      propertyPath: _killItems.Array.data[0].Damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
+      propertyPath: _killItems.Array.data[0].ItemId
+      value: holy_water
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
 --- !u!4 &1317401282900609480 stripped
