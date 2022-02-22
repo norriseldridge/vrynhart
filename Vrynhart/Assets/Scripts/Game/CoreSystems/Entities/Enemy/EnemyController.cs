@@ -6,6 +6,13 @@ using System.Linq;
 [RequireComponent(typeof(TileMover))]
 public class EnemyController : MonoBehaviour
 {
+    [System.Serializable]
+    public class KillItem
+    {
+        public string ItemId;
+        public int Damage;
+    }
+
     [SerializeField]
     EnemyView _view;
 
@@ -14,7 +21,19 @@ public class EnemyController : MonoBehaviour
 
     [Header("Kill")]
     [SerializeField]
-    string _killItemId;
+    List<KillItem> _killItems;
+
+    [SerializeField]
+    int _health;
+
+    [SerializeField]
+    AudioClip[] _hit;
+
+    [SerializeField]
+    float _hitVolume;
+
+    [SerializeField]
+    Vector2 _hitPitchRange;
 
     [SerializeField]
     GameObject _deathSource;
@@ -25,7 +44,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float _dieVolume;
 
-    public string KillItemId => _killItemId;
+    public bool IsDead => _health <= 0;
+    public int Health => _health;
+    public List<KillItem> KillItems => _killItems;
 
     TileMover _mover;
     List<Vector3> _takenPositions = new List<Vector3>();
@@ -47,6 +68,9 @@ public class EnemyController : MonoBehaviour
     void OnTurnProgression(TurnProgressionEvent e)
     {
         if (!enabled)
+            return;
+
+        if (!gameObject.activeSelf)
             return;
 
         if (_logic.Count == 0)
@@ -87,13 +111,31 @@ public class EnemyController : MonoBehaviour
         _view.SetState(_mover.IsMoving ? EnemyVisualState.Run : EnemyVisualState.Idle);
     }
 
-    public void Kill()
+    public void DealDamage(string itemId)
     {
-        MessageBroker.Default.Publish(new EnemyDiedEvent(this));
+        var item = KillItems.Where(i => i.ItemId == itemId).FirstOrDefault();
+        if (item != null)
+            DealDamage(item.Damage);
+    }
 
-        // play visuals
-        MessageBroker.Default.Publish(new AudioEvent(_die, _dieVolume));
-        Instantiate(_deathSource, transform.position, Quaternion.Euler(0, 0, 0));
-        Destroy(gameObject);
+    public void DealDamage(int damage)
+    {
+        _health -= damage;
+        MessageBroker.Default.Publish(new EnemyTakeDamageEvent(this, damage));
+        if (_health <= 0)
+        {
+            MessageBroker.Default.Publish(new EnemyDiedEvent(this));
+
+            // play visuals
+            MessageBroker.Default.Publish(new AudioEvent(_die, _dieVolume));
+            if (_deathSource != null)
+                Instantiate(_deathSource, transform.position, Quaternion.Euler(0, 0, 0));
+            Destroy(gameObject);
+        }
+        else
+        {
+            if (_hit.Length > 0)
+                MessageBroker.Default.Publish(new AudioEvent(_hit[Random.Range(0, _hit.Length)], _hitVolume, _hitPitchRange.x, _hitPitchRange.y));
+        }
     }
 }

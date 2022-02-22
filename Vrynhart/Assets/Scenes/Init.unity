@@ -208,6 +208,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c98abd28ca5e74f3bbcbbf6cb8f50efb, type: 2}
   - {fileID: 11400000, guid: cd7a23560a8d24fce87ceba1a6426b4d, type: 2}
   - {fileID: 11400000, guid: d340494a06cc74296809e3bb23f75acb, type: 2}
+  - {fileID: 11400000, guid: 3a291589746f34f96babae28fb8b5b42, type: 2}
+  - {fileID: 11400000, guid: e457509b83b134a2498b8cbac6761eec, type: 2}
 --- !u!4 &855528572
 Transform:
   m_ObjectHideFlags: 0
@@ -608,7 +610,6 @@ MonoBehaviour:
   _musicSource: {fileID: 1773328354}
   _ambientSource: {fileID: 1773328356}
   _poolSize: 16
-  _maxHearingDistance: 8
 --- !u!82 &1773328356
 AudioSource:
   m_ObjectHideFlags: 0

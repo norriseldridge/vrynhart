@@ -62,8 +62,7 @@ public static class GameSaveSystem
         if (directories.Length > 0)
         {
             var lastPlayed = directories.First();
-            _currentSaveFile = lastPlayed;
-            LoadGame();
+            LoadGame(lastPlayed);
         }
     }
 

@@ -7,6 +7,10 @@ public class TileMover : MonoBehaviour
 {
     const float Speed = 2.5f;
 
+    [SerializeField]
+    bool _playStepSounds;
+
+    public bool ShouldPlayStepSounds => _playStepSounds;
     public bool IsMoving { get; private set; } = false;
 
 #if UNITY_EDITOR

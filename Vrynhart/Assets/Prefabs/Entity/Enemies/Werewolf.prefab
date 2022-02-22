@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7dfda7c6338434eb39709c5402790917, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3137255}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.627451}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a882468e7f56410c88f77d4715d575d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playStepSounds: 0
 --- !u!114 &6055558315529690578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +161,7 @@ MonoBehaviour:
   - {fileID: 6055558315529690605}
   - {fileID: 6055558315529690604}
   _killItemId: 
+  _health: 1
   _deathSource: {fileID: 0}
   _die: {fileID: 0}
   _dieVolume: 0

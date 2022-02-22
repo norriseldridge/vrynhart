@@ -1,9 +1,8 @@
-using System.Collections;
 using UnityEngine;
 using UniRx;
 
 [RequireComponent(typeof(Collider2D))]
-public class Warp : MonoBehaviour
+public class Warp : RequiresPrompt
 {
     [SerializeField]
     GameObject _destination;
@@ -11,16 +10,53 @@ public class Warp : MonoBehaviour
     [SerializeField]
     bool _transition;
 
-    async void OnTriggerEnter2D(Collider2D collision)
+    [SerializeField]
+    bool _requiresPrompt;
+
+    WarpUser _user;
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         var user = collision.GetComponent<WarpUser>();
         if (user == null)
             return;
 
+        _user = user;
+
+        if (_requiresPrompt)
+            base.OnTriggerEnter2D(collision);
+        else
+            DoWarp();
+    }
+
+    protected override void OnTriggerExit2D(Collider2D collision)
+    {
+        if (_requiresPrompt)
+            base.OnTriggerExit2D(collision);
+
+        var user = collision.GetComponent<WarpUser>();
+        if (user == null)
+            return;
+
+        _user = null;
+    }
+
+    void Update()
+    {
+        if (_user != null && PromptUser != null && PromptUser.AcceptedPrompt)
+            DoWarp();
+    }
+
+    async void DoWarp()
+    {
         if (_transition)
             await TransitionController.TriggerTransitionAsTask();
 
-        user.SetPosition(_destination.transform.position);
+        if (_user != null)
+        {
+            _user.SetPosition(_destination.transform.position);
+            _user = null;
+        }
 
         if (_transition)
             MessageBroker.Default.Publish(new TransitionEvent(TransitionType.End));

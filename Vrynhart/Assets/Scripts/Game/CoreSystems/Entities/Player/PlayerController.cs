@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UniRx;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -86,6 +86,8 @@ public class PlayerController : MonoBehaviour
             .Where(alive => !alive)
             .Subscribe(_ => OnDied())
             .AddTo(this);
+
+        _itemTarget.transform.SetParent(null);
     }
 
     void PopulateWithSaveData(SaveData saveData)
@@ -133,6 +135,9 @@ public class PlayerController : MonoBehaviour
 
     void ToggleQuickSelectItem()
     {
+        if (_quickItems.Count == 0)
+            return;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             _quickSelectIndex++;
@@ -190,6 +195,10 @@ public class PlayerController : MonoBehaviour
                 momentum.y = 0;
             }
 
+            // update the player view to match the input even if we don't move
+            if (Mathf.Abs(momentum.x) > 0)
+                _view.SetDirection(momentum.x < 0 ? PlayerFacing.Left : PlayerFacing.Right);
+
             var target = _mover.GetPositionInDirection(momentum);
             if (_momentum != momentum && _tileMap.IsFloorAt(target))
             {
@@ -206,9 +215,6 @@ public class PlayerController : MonoBehaviour
     // event handling
     void OnTurnProgression(TurnProgressionEvent e)
     {
-        if (Mathf.Abs(_momentum.x) > 0)
-            _view.SetDirection(_momentum.x < 0 ? PlayerFacing.Left : PlayerFacing.Right);
-
         if (_momentum.magnitude > 0)
         {
             _mover.TryMove(_momentum);
@@ -227,7 +233,6 @@ public class PlayerController : MonoBehaviour
     {
         if (_quickSelectIndex >= 0 && _quickSelectIndex < QuickItems.Count)
             _equippedItem = ItemsLookup.GetItem(QuickItems[_quickSelectIndex]);
-        Debug.Log($"Equipped change: {e.Item.Name} {_equippedItem.Name}");
     }
 
     void OnDied()

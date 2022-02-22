@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 2500793077124954048}
   - component: {fileID: 6643202143610023466}
   - component: {fileID: 7369813377598583411}
+  - component: {fileID: 252439148833680102}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -586,6 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a882468e7f56410c88f77d4715d575d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playStepSounds: 1
 --- !u!114 &4499292848529493321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +648,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32026b9e044f64ce7b3aa1e0cd0f1360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &252439148833680102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7802794167521487472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236b504afe9c94c308b0aa18c526094d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7802794167581576587
@@ -921,7 +935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.3
   m_LightVolumeOpacity: 0
@@ -935,7 +949,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.3
-  m_PointLightOuterRadius: 1.5
+  m_PointLightOuterRadius: 2.5
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -1183,7 +1197,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7dfda7c6338434eb39709c5402790917, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3137255}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.627451}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

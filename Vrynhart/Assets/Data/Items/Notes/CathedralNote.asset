@@ -18,8 +18,8 @@ MonoBehaviour:
   Name: Old Cathedral Note
   Unique: 1
   Cost: 0
-  ShortDescription: A note found outside the Old Cathedral. Based on the wear of
-    its parchment, it must be very old.
+  ShortDescription: A note found outside the Old Cathedral, its parchment is weathered
+    and worn.
   Description: 'It reads:
 
     <i><b>Do not enter!</b>

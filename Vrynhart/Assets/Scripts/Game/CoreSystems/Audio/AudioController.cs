@@ -58,8 +58,13 @@ public class AudioController : MonoBehaviour
 
     public static float CalculateVolume(Vector2 position)
     {
-        var camera = FindObjectOfType<Camera>();
-        var dist = Vector2.Distance(camera.transform.position, position);
+        Transform listener;
+        var player = FindObjectOfType<PlayerController>();
+        if (player != null)
+            listener = player.transform;
+        else
+            listener = FindObjectOfType<Camera>().transform;
+        var dist = Vector2.Distance(listener.position, position);
         var distMult = 1 - Mathf.Clamp(dist / MaxHearingDistance, 0, 1);
         return distMult;
     }

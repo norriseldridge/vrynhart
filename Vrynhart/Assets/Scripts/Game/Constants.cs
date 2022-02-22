@@ -11,6 +11,7 @@ public static class Constants
         public const string StartingScene = "StartingTown";
         public const string PauseScene = "Pause";
         public const string ShopScene = "Shop";
+        public const string BossUIScene = "BossUI";
     }
 
     public static class Prefs

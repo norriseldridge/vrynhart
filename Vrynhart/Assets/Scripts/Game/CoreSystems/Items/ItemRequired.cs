@@ -42,12 +42,18 @@ public class ItemRequired : PostLevelInitialize
             m.enabled = hasItem;
 
         foreach (var go in _haveItemActiveGameObjects)
-            go.SetActive(hasItem);
+        {
+            if (go != null)
+                go.SetActive(hasItem);
+        }
 
         foreach (var m in _noItemActive)
             m.enabled = !hasItem;
 
         foreach (var go in _noItemActiveGameObjects)
-            go.SetActive(!hasItem);
+        {
+            if (go != null)
+                go.SetActive(!hasItem);
+        }
     }
 }

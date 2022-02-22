@@ -15,4 +15,4 @@ MonoBehaviour:
   PersistantFlagId: 
   ConversationName: Vrynhart Castle
   Dialogue:
-  - '* The gate won''t budge.'
+  - '* The gate is locked by some contraption.'

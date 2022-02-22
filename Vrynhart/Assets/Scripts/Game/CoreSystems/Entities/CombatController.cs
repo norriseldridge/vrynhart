@@ -1,5 +1,6 @@
 using UnityEngine;
 using UniRx;
+using System.Linq;
 
 public class CombatController : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class CombatController : MonoBehaviour
                 if (TryUseItemOnEnemy(player, e.Item, enemy))
                 {
                     player.Inventory.RemoveItem(e.Item.Id);
-                    enemy.Kill();
+                    enemy.DealDamage(e.Item.Id);
                 }
             }
         }
@@ -80,7 +81,7 @@ public class CombatController : MonoBehaviour
         if (item != null && player.Inventory.GetCount(item.Id) > 0)
         {
             // and this item is the one used to kill this enemy
-            if (enemy.KillItemId == item.Id)
+            if (enemy.KillItems.Any(i => i.ItemId == item.Id))
             {
                 return true;
             }

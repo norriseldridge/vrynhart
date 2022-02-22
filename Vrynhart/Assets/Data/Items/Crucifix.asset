@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e051b45d7824a7ab47f8bd79607439, type: 3}
+  m_Name: Crucifix
+  m_EditorClassIdentifier: 
+  Id: crucifix
+  ItemType: 1
+  Sprite: {fileID: 21300000, guid: 9b0cd2760036841dd97f187de27297ad, type: 3}
+  Name: Crucifix
+  Unique: 0
+  Cost: 3
+  ShortDescription: Can be used to combat <color="#f00">hellspawn</color>.
+  Description: The crucifix is a sacred symbol that carries a devine power. The mere
+    sight of it strikes fear into even the most foul of Hell's abominations.
+  UseRange: 3
+  ClothingAnimator: {fileID: 0}

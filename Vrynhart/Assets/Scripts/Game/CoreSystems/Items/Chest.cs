@@ -51,7 +51,8 @@ public class Chest : MonoBehaviour
             }
         }
 
-        _renderer.sprite = _wasCollected ? _open : _close;
+        if (_renderer != null)
+            _renderer.sprite = _wasCollected ? _open : _close;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
