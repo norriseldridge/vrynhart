@@ -195,8 +195,13 @@ MonoBehaviour:
   - {fileID: 2537760808036248985}
   _killItems:
   - ItemId: wood_stake
+    Damage: 2
+  - ItemId: rusty_dagger
     Damage: 1
-  _health: 1
+  _health: 2
+  _hit: []
+  _hitVolume: 0
+  _hitPitchRange: {x: 0, y: 0}
   _deathSource: {fileID: 8752323734748333651, guid: 65d173641789141c6bd7afac5c9ed5dd, type: 3}
   _die: {fileID: 8300000, guid: e114b3bebcd424411ae23ffa9122804f, type: 3}
   _dieVolume: 0.6

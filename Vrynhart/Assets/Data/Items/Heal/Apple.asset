@@ -18,6 +18,7 @@ MonoBehaviour:
   Name: Red Apple
   Unique: 0
   Cost: 1
+  PurchaseQuantity: 1
   ShortDescription: Consume to restore <color="#f00">1 HP</color>.
   Description: This staple of the Vyrnhart region is well-known to you. As any hunter
     worth his salt knows, an apple a day keeps the bloodletter away...

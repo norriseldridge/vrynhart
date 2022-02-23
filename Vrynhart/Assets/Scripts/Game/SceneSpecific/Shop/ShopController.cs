@@ -48,7 +48,7 @@ public class ShopController : MonoBehaviour
         if (_player.Inventory.GetCount("coin") >= item.Cost)
         {
             _player.Inventory.RemoveItem("coin", item.Cost);
-            _player.Inventory.AddItem(item.Id);
+            _player.Inventory.AddItem(item.Id, item.PurchaseQuantity);
             MessageBroker.Default.Publish(new AudioEvent(_purchaseSfx, _volume));
             return true;
         }
@@ -79,7 +79,7 @@ public class ShopController : MonoBehaviour
             }
 
             var listing = Instantiate(_source, _container);
-            listing.PopulateWithItem(item);
+            listing.Initialize(_player, item);
             listing.AddOnBuyCallback(AttemptPurchase);
         }
     }

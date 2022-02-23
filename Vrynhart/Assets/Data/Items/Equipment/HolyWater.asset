@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e051b45d7824a7ab47f8bd79607439, type: 3}
-  m_Name: WoodenStake
+  m_Name: HolyWater
   m_EditorClassIdentifier: Assembly-CSharp::ItemsLookup/ItemRecord
-  Id: wood_stake
+  Id: holy_water
   ItemType: 1
-  Sprite: {fileID: 21300000, guid: e5f3cd007b19f4af8a039a38d2b3896f, type: 3}
-  Name: Wooden Stake
+  Sprite: {fileID: 21300000, guid: 4a06b95a786424989b2616c65a227538, type: 3}
+  Name: Holy Water
   Unique: 0
-  Cost: 2
-  ShortDescription: Can be used to combat <color="#f00">beasts of the night</color>.
-  Description: Perhaps but a simple cut of wood, but when face to face with foul
-    <i>beasts of the night</i>, it can be the difference between life and death.
-  UseRange: 1
+  Cost: 1
+  PurchaseQuantity: 1
+  ShortDescription: Effective against <color="#f00">undead monsters</color>.
+  Description: This blessed water is best used against the armies of the undead.
+    <i>And perhaps something more...</i>
+  UseRange: 2
+  ShowUseIndicator: 1
   ClothingAnimator: {fileID: 0}

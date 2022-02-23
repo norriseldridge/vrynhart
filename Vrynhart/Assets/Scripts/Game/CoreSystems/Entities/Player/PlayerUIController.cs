@@ -13,11 +13,19 @@ public class ItemDisplayRecord
 
 public class PlayerUIController : PostLevelInitialize
 {
+    const float MaxOil = 120.0f;
+
     [SerializeField]
     Image _healthFill;
 
     [SerializeField]
     Image _slowHealthFill;
+
+    [SerializeField]
+    Image _oilFill;
+
+    [SerializeField]
+    GameObject _oilFillContainer;
 
     [SerializeField]
     GameObject _actionPrompt;
@@ -42,6 +50,7 @@ public class PlayerUIController : PostLevelInitialize
     {
         _actionPrompt.SetActive(false);
         _itemPickUpText.text = "";
+        _oilFill.fillAmount = 0;
 
         MessageBroker.Default.Receive<HealthChangeEvent>()
             .Subscribe(OnHealthChange)
@@ -132,6 +141,22 @@ public class PlayerUIController : PostLevelInitialize
         {
             _equippedItemCountText.text = _inventory.GetCount(_equippedItem.Id).ToString();
         }
+
+        HandleLantern();
+    }
+
+    void HandleLantern()
+    {
+        if (_equippedItem != null && _equippedItem.Id == "lantern")
+        {
+            _oilFillContainer.SetActive(true);
+            _oilFill.fillAmount = _inventory.GetCount("oil") / MaxOil;
+        }
+        else
+        {
+            _oilFillContainer.SetActive(false);
+            _oilFill.fillAmount = 0;
+        }
     }
 
     void OnEquippedItemChanged(PlayerEquippedItemChangeEvent e) =>
@@ -151,5 +176,7 @@ public class PlayerUIController : PostLevelInitialize
             _equippedItemImage.enabled = false;
             _equippedItemCountText.text = "";
         }
+
+        HandleLantern();
     }
 }

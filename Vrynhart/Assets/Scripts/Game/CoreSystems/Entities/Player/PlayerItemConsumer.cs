@@ -5,6 +5,7 @@ using UniRx;
 public class PlayerItemConsumer : MonoBehaviour
 {
     PlayerController _player;
+    float _oilTimer = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,23 @@ public class PlayerItemConsumer : MonoBehaviour
             .Where(IsItemUseable)
             .Subscribe(e => UseItem(e.Item))
             .AddTo(this);
+    }
+
+    void Update()
+    {
+        if (_player.EquippedItem != null && _player.EquippedItem.Id == "lantern")
+        {
+            // consume oil
+            if (_player.Inventory.GetCount("oil") > 0)
+            {
+                _oilTimer -= Time.deltaTime;
+                if (_oilTimer <= 0)
+                {
+                    _player.Inventory.RemoveItem("oil");
+                    _oilTimer = 1.0f;
+                }
+            }
+        }
     }
 
     bool IsItemUseable(UseItemEvent e)

@@ -35,7 +35,7 @@ public class LightFlicker : MonoBehaviour
         if (_nextFlicker <= 0)
         {
             _nextFlicker = Random.Range(_flickerDelay.x, _flickerDelay.y);
-            _light.intensity = _intensity * (1 - _range);
+            _light.intensity *= 0.9f;
         }
     }
 }

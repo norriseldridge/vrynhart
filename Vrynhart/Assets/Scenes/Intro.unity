@@ -2980,7 +2980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878657636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.18, y: -0.3, z: 0}
+  m_LocalPosition: {x: 14, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 902378284}
@@ -7603,12 +7603,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 93cefc33c96584c5ebb75df171c3b483, type: 3}
-    m_FontSize: 28
+    m_Font: {fileID: 12800000, guid: e62a3d3b0fc27479f98e9f84013ba451, type: 3}
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 48
+    m_MaxSize: 64
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -8079,6 +8079,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 878657637}
     m_Modifications:
+    - target: {fileID: 2704902984799687808, guid: f2af2d01885d747e9b114113a827418a, type: 3}
+      propertyPath: m_Intensity
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704902984799687808, guid: f2af2d01885d747e9b114113a827418a, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704902984799687808, guid: f2af2d01885d747e9b114113a827418a, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704902984799687808, guid: f2af2d01885d747e9b114113a827418a, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8509217824182110842, guid: f2af2d01885d747e9b114113a827418a, type: 3}
       propertyPath: m_Name
       value: Carriage

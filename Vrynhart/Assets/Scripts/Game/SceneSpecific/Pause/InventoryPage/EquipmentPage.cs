@@ -33,6 +33,7 @@ public class EquipmentPage : PausePage
         var ownedItems = inventory.GetOwnedItems();
         var filteredSortedList = ownedItems
             .Where(oi => oi.item.ItemType == ItemType.Equippable)
+            .OrderBy(oi => oi.item.Unique)
             .OrderBy(oi => oi.item.Name);
         foreach (var ownedItem in filteredSortedList)
         {

@@ -5,6 +5,18 @@ public class Spikes : Tile
 {
     [Header("Spike")]
     [SerializeField]
+    AudioClip _warningSound;
+
+    [SerializeField]
+    float _warningVolume;
+
+    [SerializeField]
+    AudioClip _fireSound;
+
+    [SerializeField]
+    float _fireVolume;
+
+    [SerializeField]
     int _turnDelay;
 
     [SerializeField]
@@ -42,6 +54,11 @@ public class Spikes : Tile
             _active = !_active;
             UpdateVisuals();
         }
+        else if (_currentDelay == _turnDelay - 1)
+        {
+            if (!_active)
+                MessageBroker.Default.Publish(new AudioEvent(_warningSound, _warningVolume, position: transform.position));
+        }
 
         if (_active)
             MessageBroker.Default.Publish(new EnvironmentalDamageEvent(transform.position, _damage));
@@ -49,6 +66,9 @@ public class Spikes : Tile
 
     void UpdateVisuals()
     {
+        if (_active)
+            MessageBroker.Default.Publish(new AudioEvent(_fireSound, _fireVolume, position: transform.position));
+
         _animator.Play(_active ? _activeAnimation : _inactiveAnimation);
     }
 }

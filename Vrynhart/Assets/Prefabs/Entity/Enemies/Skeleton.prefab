@@ -163,10 +163,15 @@ MonoBehaviour:
   - {fileID: 3812991514640315673}
   _killItems:
   - ItemId: holy_water
-    Damage: 1
+    Damage: 3
   - ItemId: crucifix
+    Damage: 3
+  - ItemId: rusty_dagger
     Damage: 1
-  _health: 1
+  _health: 3
+  _hit: []
+  _hitVolume: 0
+  _hitPitchRange: {x: 0, y: 0}
   _deathSource: {fileID: 9216649199970056206, guid: 7f1666603156042cabfac35c754b1c2f, type: 3}
   _die: {fileID: 8300000, guid: f46b5bebd48d24ecaad72026aad1d440, type: 3}
   _dieVolume: 0.6

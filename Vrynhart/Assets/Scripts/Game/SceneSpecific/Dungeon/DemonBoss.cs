@@ -43,7 +43,7 @@ public class DemonBoss : MonoBehaviour
 
             MessageBroker.Default.Publish(new MusicEvent(_music));
             MessageBroker.Default.Publish(new AudioEvent(_screech, _screechVolume));
-            MessageBroker.Default.Publish(new CameraShakeEvent(0.5f, 0.1f, 8));
+            MessageBroker.Default.Publish(new CameraShakeEvent(0.5f, 0.05f, 36));
 
             // set up enemy controller listening
             MessageBroker.Default.Receive<EnemyTakeDamageEvent>()

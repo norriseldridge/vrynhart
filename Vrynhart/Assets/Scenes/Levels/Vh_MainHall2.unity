@@ -18560,7 +18560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7949263940215757045, guid: f6a720370732b47aa9e31632de63a4f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7949263940215757045, guid: f6a720370732b47aa9e31632de63a4f7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23051,10 +23051,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7802794167794792758, guid: c07642542dedc484096d7417c96e689d, type: 3}
-      propertyPath: m_Intensity
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07642542dedc484096d7417c96e689d, type: 3}
 --- !u!4 &1157719477 stripped
@@ -24162,6 +24158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolfman (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2537760808036248965, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2537760808036248984, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -24217,6 +24217,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2537760808036248984, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
   m_PrefabInstance: {fileID: 1224673850}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1224673852 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2537760808036248986, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
+  m_PrefabInstance: {fileID: 1224673850}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3c65f979dc04951b124ac97a49a990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1231934901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33868,6 +33879,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolfman (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2537760808036248965, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2537760808036248984, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -33923,6 +33938,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2537760808036248984, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
   m_PrefabInstance: {fileID: 1748644791}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1748644793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2537760808036248986, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
+  m_PrefabInstance: {fileID: 1748644791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3c65f979dc04951b124ac97a49a990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1750501258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38829,7 +38855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013091792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 27, z: 0}
+  m_LocalPosition: {x: 4, y: 32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 134024768}
@@ -38849,6 +38875,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemies:
   - {fileID: 916755130}
+  - {fileID: 1748644793}
+  - {fileID: 1224673852}
   _triggerSound: {fileID: 0}
   _volume: 1
 --- !u!61 &2013091795
@@ -38875,7 +38903,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 1}
+  m_Size: {x: 5, y: 11}
   m_EdgeRadius: 0
 --- !u!1001 &2013438950
 PrefabInstance:

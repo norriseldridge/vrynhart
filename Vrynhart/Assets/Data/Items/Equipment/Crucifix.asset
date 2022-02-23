@@ -18,8 +18,10 @@ MonoBehaviour:
   Name: Crucifix
   Unique: 0
   Cost: 3
-  ShortDescription: Can be used to combat <color="#f00">hellspawn</color>.
+  PurchaseQuantity: 1
+  ShortDescription: Effective against <color="#f00">hellspawn</color>.
   Description: The crucifix is a sacred symbol that carries a devine power. The mere
     sight of it strikes fear into even the most foul of Hell's abominations.
   UseRange: 3
+  ShowUseIndicator: 1
   ClothingAnimator: {fileID: 0}

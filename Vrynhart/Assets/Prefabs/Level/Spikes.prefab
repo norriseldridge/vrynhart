@@ -50,6 +50,10 @@ MonoBehaviour:
   _volume: 0.15
   _minPitch: 0.8
   _maxPitch: 1.1
+  _warningSound: {fileID: 8300000, guid: 6acb2668d002b41b28c390fc1f574c20, type: 3}
+  _warningVolume: 0.1
+  _fireSound: {fileID: 8300000, guid: cb6b267532e6049709515b1210d30aab, type: 3}
+  _fireVolume: 0.2
   _turnDelay: 3
   _currentDelay: 0
   _damage: 1

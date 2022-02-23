@@ -26,9 +26,10 @@ public static class GameSaveSystem
             {
                 { "coin", 15 },
                 { "hunter_set", 1 },
-                { "hunter_hat", 1 }
+                { "hunter_hat", 1 },
+                { "lantern", 1 }
             }),
-            QuickItems = new List<string>(),
+            QuickItems = new List<string>() { "lantern" },
             QuickSelectIndex = 0,
             ViewData = new PlayerViewData()
             {

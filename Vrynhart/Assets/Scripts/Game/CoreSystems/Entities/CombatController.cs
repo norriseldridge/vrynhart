@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System.Linq;
@@ -5,6 +6,7 @@ using System.Linq;
 public class CombatController : MonoBehaviour
 {
     bool _shouldResolve = false;
+    Queue<UseItemEvent> _itemEvents = new Queue<UseItemEvent>();
     void Start()
     {
         MessageBroker.Default.Receive<TileMoveCompleteEvent>()
@@ -26,19 +28,7 @@ public class CombatController : MonoBehaviour
         if (Vector2.Distance(e.CastPosition, e.TargetPosition) > e.Item.UseRange)
             return;
 
-        var player = FindObjectOfType<PlayerController>();
-        var enemies = FindObjectsOfType<EnemyController>();
-        foreach (var enemy in enemies)
-        {
-            if (Vector2.Distance(e.TargetPosition, enemy.transform.position) < 1.0f)
-            {
-                if (TryUseItemOnEnemy(player, e.Item, enemy))
-                {
-                    player.Inventory.RemoveItem(e.Item.Id);
-                    enemy.DealDamage(e.Item.Id);
-                }
-            }
-        }
+        _itemEvents.Enqueue(e);
     }
 
     void OnEnvironmentalDamageEvent(EnvironmentalDamageEvent e)
@@ -55,7 +45,7 @@ public class CombatController : MonoBehaviour
 
     void Update()
     {
-        if (!_shouldResolve)
+        if (!_shouldResolve && _itemEvents.Count == 0)
             return;
         _shouldResolve = false;
 
@@ -69,6 +59,23 @@ public class CombatController : MonoBehaviour
                 if (InCombatRange(player.transform, enemy.transform))
                     player.Health.TakeDamage(1);
             }
+
+            while (_itemEvents.Count > 0)
+            {
+                var e = _itemEvents.Dequeue();
+
+                foreach (var enemy in enemies)
+                {
+                    if (Vector2.Distance(e.TargetPosition, enemy.transform.position) < 1.0f)
+                    {
+                        if (TryUseItemOnEnemy(player, e.Item, enemy))
+                        {
+                            player.Inventory.RemoveItem(e.Item.Id);
+                            enemy.DealDamage(e.Item.Id);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -77,6 +84,10 @@ public class CombatController : MonoBehaviour
 
     bool TryUseItemOnEnemy(PlayerController player, ItemRecord item, EnemyController enemy)
     {
+        // can use items on a dead enemy
+        if (enemy.Health <= 0)
+            return false;
+
         // if we even have the item
         if (item != null && player.Inventory.GetCount(item.Id) > 0)
         {

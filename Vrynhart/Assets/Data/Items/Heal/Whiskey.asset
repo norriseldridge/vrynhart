@@ -18,6 +18,7 @@ MonoBehaviour:
   Name: Whiskey
   Unique: 0
   Cost: 2
+  PurchaseQuantity: 1
   ShortDescription: Consume to restore <color="#f00">2 HP</color>.
   Description: Alcohol is a fine way to treat wounds and kill bacteria. Plus, a little
     liquid courage never hurt.

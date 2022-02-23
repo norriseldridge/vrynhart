@@ -18,6 +18,7 @@ MonoBehaviour:
   Name: Morpheus' Hat
   Unique: 1
   Cost: 10
+  PurchaseQuantity: 1
   ShortDescription: This hat used to belong to the old hunter, <color="#4d1f32">Morpheus</color>.
   Description: It's said that Morpheus was an experienced traveller with many bounties
     claimed throughout his career. But in the end, death comes for us all.

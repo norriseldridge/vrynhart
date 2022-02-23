@@ -2,12 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UniRx;
+using UnityEngine.Experimental.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     PlayerView _view;
+
+    [SerializeField]
+    Light2D _lanternLight;
 
     [SerializeField]
     Health _health;
@@ -123,6 +127,7 @@ public class PlayerController : MonoBehaviour
 
         HandlePause();
         ToggleQuickSelectItem();
+        HandleLantern();
         HandleUseEquippedItem();
         HandleMove();
     }
@@ -149,9 +154,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void HandleLantern()
+    {
+        var hasOil = _inventory.GetCount("oil") > 0;
+        _lanternLight.enabled = hasOil && EquippedItem != null && EquippedItem.Id == "lantern";
+    }
+
     void HandleUseEquippedItem()
     {
-        if (EquippedItem == null || PauseController.IsPaused)
+        if (EquippedItem == null || !EquippedItem.ShowUseIndicator || PauseController.IsPaused)
         {
             _itemTarget.Hide();
             return;

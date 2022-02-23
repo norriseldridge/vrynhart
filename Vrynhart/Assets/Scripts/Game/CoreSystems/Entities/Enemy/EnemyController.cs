@@ -50,6 +50,7 @@ public class EnemyController : MonoBehaviour
     public int Health => _health;
     public List<KillItem> KillItems => _killItems;
 
+    float _hitTimer = 0;
     TileMover _mover;
     List<Vector3> _takenPositions = new List<Vector3>();
 
@@ -110,6 +111,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        _hitTimer -= Time.deltaTime;
         _view.SetState(_mover.IsMoving ? EnemyVisualState.Run : EnemyVisualState.Idle);
     }
 
@@ -141,8 +143,12 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            if (_hitTimer > 0)
+                return;
+
             if (_hit.Length > 0)
                 MessageBroker.Default.Publish(new AudioEvent(_hit[Random.Range(0, _hit.Length)], _hitVolume, _hitPitchRange.x, _hitPitchRange.y));
+            _hitTimer = 0.25f;
         }
     }
 }

@@ -4,15 +4,15 @@ using UniRx;
 [RequireComponent(typeof(Collider2D))]
 public class RequiresPrompt : MonoBehaviour
 {
-    public PromptUser PromptUser => _user;
-    PromptUser _user;
+    public PromptUser PromptUser => _promptUser;
+    PromptUser _promptUser;
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         var user = collision.GetComponent<PromptUser>();
         if (user)
         {
-            _user = user;
+            _promptUser = user;
             MessageBroker.Default.Publish(new EnterPromptEvent());
         }
     }
@@ -22,7 +22,7 @@ public class RequiresPrompt : MonoBehaviour
         var user = collision.GetComponent<PromptUser>();
         if (user)
         {
-            _user = null;
+            _promptUser = null;
             MessageBroker.Default.Publish(new ExitPromptEvent());
         }
     }

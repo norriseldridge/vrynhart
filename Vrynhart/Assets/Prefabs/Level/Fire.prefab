@@ -313,6 +313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 77530994640121560}
-  _range: 0.5
+  _range: 0.1
   _speed: 0.3
   _flickerDelay: {x: 0.1, y: 0.4}
