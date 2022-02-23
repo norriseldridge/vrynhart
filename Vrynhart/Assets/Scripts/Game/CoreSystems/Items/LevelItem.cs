@@ -15,6 +15,8 @@ public class LevelItem : MonoBehaviour
     [Range(0, 1)]
     float _appearancePercent = 1;
 
+    public string ItemId => _itemId;
+
     void Start()
     {
         if (Application.isPlaying)

@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _potentialItemDrops:
   - {fileID: 2819796281874858642, guid: 405b478db1c4e454a961e7db5091160c, type: 3}
-  _dropPercentage: 0.6
+  - {fileID: 4620547750720667741, guid: 50ce87c8609f14daba759218bfd31b4c, type: 3}
 --- !u!1 &3812991515678412089
 GameObject:
   m_ObjectHideFlags: 0

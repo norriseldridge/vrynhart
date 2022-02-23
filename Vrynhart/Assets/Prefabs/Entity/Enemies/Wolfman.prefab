@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 2537760808036248986}
   - component: {fileID: 2537760808036248990}
   - component: {fileID: 2537760808036248985}
+  - component: {fileID: 3164983898307002732}
   m_Layer: 0
   m_Name: Wolfman
   m_TagString: Untagged
@@ -231,6 +232,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4393191d01ae47c9bd72cdce1054ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3164983898307002732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537760808036248965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4cb15bd5525445408f7378e9db99423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _potentialItemDrops:
+  - {fileID: 5142508931299728778, guid: 732af688ac0784b36a4388143b606ab3, type: 3}
+  - {fileID: 2819796281874858642, guid: 405b478db1c4e454a961e7db5091160c, type: 3}
 --- !u!1 &4571888246162722937
 GameObject:
   m_ObjectHideFlags: 0

@@ -340,4 +340,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _potentialItemDrops:
   - {fileID: 2819796281874858642, guid: 405b478db1c4e454a961e7db5091160c, type: 3}
-  _dropPercentage: 0.5
+  - {fileID: 5142508931299728778, guid: 732af688ac0784b36a4388143b606ab3, type: 3}
