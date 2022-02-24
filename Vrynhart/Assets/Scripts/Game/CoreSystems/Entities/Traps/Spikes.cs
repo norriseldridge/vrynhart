@@ -56,8 +56,9 @@ public class Spikes : Tile
         }
         else if (_currentDelay == _turnDelay - 1)
         {
-            if (!_active)
-                MessageBroker.Default.Publish(new AudioEvent(_warningSound, _warningVolume, position: transform.position));
+            MessageBroker.Default.Publish(new AudioEvent(_warningSound,
+                _active ? _warningVolume : _warningVolume * 0.6f,
+                position: transform.position));
         }
 
         if (_active)

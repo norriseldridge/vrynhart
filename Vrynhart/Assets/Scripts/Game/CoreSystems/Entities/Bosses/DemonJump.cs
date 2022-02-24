@@ -34,6 +34,11 @@ public class DemonJump : EnemyLogic
     int _turnDelay;
     int _phase = 0;
 
+    void OnDestroy()
+    {
+        Destroy(_jumpIndicator.gameObject);
+    }
+
     public override void DoLogic()
     {
         ++_turnDelay;

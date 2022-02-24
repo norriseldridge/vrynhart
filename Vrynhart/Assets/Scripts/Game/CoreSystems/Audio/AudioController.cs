@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UniRx;
 
@@ -17,6 +18,7 @@ public class AudioController : MonoBehaviour
     int _poolSize = 16;
     Queue<AudioSource> _pool;
 
+    List<AudioEvent> _events = new List<AudioEvent>();
     float _fadeSpeed = 0.5f;
     float _musicVolume;
     float _sfxVolume;
@@ -56,6 +58,42 @@ public class AudioController : MonoBehaviour
             .AddTo(this);
     }
 
+    void Update()
+    {
+        // filter
+        var filtered = new List<AudioEvent>();
+        foreach (var e in _events.OrderByDescending(e => e.Position.HasValue ? CalculateVolume(e.Position.Value) : 1))
+        {
+            if (!filtered.Any(f => f.Clip == e.Clip))
+                filtered.Add(e);
+        }
+        _events.Clear();
+
+        // play the list
+        while (filtered.Count > 0)
+        {
+            var e = filtered[0];
+            filtered.RemoveAt(0);
+
+            if (_pool.Count < _poolSize)
+            {
+                _pool.Enqueue(gameObject.AddComponent<AudioSource>());
+            }
+
+            var next = _pool.Dequeue();
+
+            float distMult = 1;
+            if (e.Position.HasValue)
+            {
+                distMult = CalculateVolume(e.Position.Value);
+            }
+            next.volume = _sfxVolume * e.Volume * distMult;
+            next.pitch = Random.Range(e.PitchRange.x, e.PitchRange.y);
+            next.PlayOneShot(e.Clip);
+            _pool.Enqueue(next);
+        }
+    }
+
     public static float CalculateVolume(Vector2 position)
     {
         Transform listener;
@@ -74,22 +112,7 @@ public class AudioController : MonoBehaviour
         if (e.Clip == null)
             return;
 
-        if (_pool.Count < _poolSize)
-        {
-            _pool.Enqueue(gameObject.AddComponent<AudioSource>());
-        }
-
-        var next = _pool.Dequeue();
-
-        float distMult = 1;
-        if (e.Position.HasValue)
-        {
-            distMult = CalculateVolume(e.Position.Value);
-        }
-        next.volume = _sfxVolume * e.Volume * distMult;
-        next.pitch = Random.Range(e.PitchRange.x, e.PitchRange.y);
-        next.PlayOneShot(e.Clip);
-        _pool.Enqueue(next);
+        _events.Add(e);
     }
 
     void OnAmbientAudioEvent(AmbientAudioEvent e)

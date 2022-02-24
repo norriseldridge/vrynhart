@@ -4786,8 +4786,8 @@ MonoBehaviour:
   _enemies:
   - {fileID: 1700200070}
   - {fileID: 317948271}
-  _triggerSound: {fileID: 0}
-  _volume: 1
+  _triggerSound: {fileID: 8300000, guid: 84541e50e4e404dd0ac3f770873a4374, type: 3}
+  _volume: 0.5
 --- !u!61 &332604326
 BoxCollider2D:
   m_ObjectHideFlags: 0
