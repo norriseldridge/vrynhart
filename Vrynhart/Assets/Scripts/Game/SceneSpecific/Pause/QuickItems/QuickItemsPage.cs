@@ -63,6 +63,13 @@ public class QuickItemsPage : PausePage
 
     void OnQuickSelectSlotClicked(QuickSelectSlotClickedEvent e)
     {
+        // if we click the same slot again
+        if (_selectedSlotIndex == e.Index && _equipmentDisplay.activeSelf)
+        {
+            _equipmentDisplay.SetActive(false);
+            return;
+        }
+
         _selectedSlotIndex = e.Index;
 
         // filter the currently displayed equipment
