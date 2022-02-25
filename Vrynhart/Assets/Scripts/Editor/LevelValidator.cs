@@ -7,15 +7,18 @@ using UnityEditor;
 
 public static class LevelValidator
 {
-    
-
     [MenuItem("Vrynhart/Level/Validate All")]
     public static void ValidateAll()
     {
+        var current = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
         var valid = true;
         var levels = Directory.EnumerateFiles(Constants.Editor.LevelsPath).Where(f => !f.Contains("meta") && !f.Contains("Template"));
         foreach (var level in levels)
             valid &= ValidateLevel(level);
+
+        if (!string.IsNullOrEmpty(current))
+            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Path.Combine(Constants.Editor.LevelsPath, $"{current}.unity"));
 
         if (valid)
             Debug.Log("Validation complete! Looks good.");

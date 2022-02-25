@@ -12,7 +12,16 @@ public class Dissolver : MonoBehaviour
     [SerializeField]
     float _fadeSpeed;
 
+    [SerializeField]
+    bool _playOnStart = false;
+
     float _current;
+
+    void Start()
+    {
+        if (_playOnStart)
+            Dissolve();
+    }
 
     public void Dissolve() => StartCoroutine(DoDissolve());
 

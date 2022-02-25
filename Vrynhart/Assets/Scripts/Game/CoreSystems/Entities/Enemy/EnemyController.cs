@@ -143,6 +143,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            _view.TakeHit();
             if (_hitTimer > 0)
                 return;
 

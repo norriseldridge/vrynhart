@@ -41,6 +41,15 @@ public class CombatController : MonoBehaviour
                 health.TakeDamage(e.Damage);
             }
         }
+
+        var enemies = FindObjectsOfType<EnemyController>();
+        foreach (var enemy in enemies)
+        {
+            if (Vector2.Distance(e.Position, enemy.transform.position) < 1.0f)
+            {
+                enemy.DealDamage(e.Damage);
+            }
+        }
     }
 
     void Update()

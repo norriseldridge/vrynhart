@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UniRx;
 
@@ -9,7 +11,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     Transform _target;
 
-    CameraBounds _bounds;
+    List<CameraBounds> _bounds = new List<CameraBounds>();
     Vector2 _cameraSize;
     Vector3 _offset = new Vector3(0, 0, -10);
 
@@ -32,8 +34,9 @@ public class CameraController : MonoBehaviour
     {
         if (_target == null) return;
 
-        if (_bounds != null)
-            transform.position = _bounds.Limit(_target.position + _offset, _cameraSize);
+        var bounds = _bounds.FirstOrDefault();
+        if (bounds != null)
+            transform.position = bounds.Limit(_target.position + _offset, _cameraSize);
         else
             transform.position = _target.position + _offset;
     }
@@ -49,11 +52,10 @@ public class CameraController : MonoBehaviour
     void OnCameraBoundsChanged(CameraBoundsChangeEvent e)
     {
         if (e.Entering)
-            _bounds = e.Bounds;
+            _bounds.Add(e.Bounds);
         else
         {
-            if (_bounds == e.Bounds)
-                _bounds = null;
+            _bounds.Remove(e.Bounds);
         }
     }
 }

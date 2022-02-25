@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum EnemyVisualState
@@ -36,6 +37,23 @@ public class EnemyView : MonoBehaviour
 
             var stateName = _state.ToString();
             _animator.Play(stateName);
+        }
+    }
+
+    public void TakeHit()
+    {
+        StartCoroutine(FlashColor(Color.red));
+    }
+
+    IEnumerator FlashColor(Color target)
+    {
+        var color = _renderer.color;
+        for (var i = 0; i < 3; ++i)
+        {
+            _renderer.color = target;
+            yield return new WaitForSeconds(0.1f);
+            _renderer.color = color;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

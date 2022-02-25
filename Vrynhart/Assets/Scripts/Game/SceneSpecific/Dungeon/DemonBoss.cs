@@ -4,6 +4,9 @@ using UniRx;
 public class DemonBoss : MonoBehaviour
 {
     [SerializeField]
+    string _uid;
+
+    [SerializeField]
     string _bossName;
 
     [SerializeField]
@@ -30,6 +33,21 @@ public class DemonBoss : MonoBehaviour
     bool _triggered = false;
     int _startingHealth;
     float _currentGruntDelay;
+
+    void Start()
+    {
+        var saveData = GameSaveSystem.GetCachedSaveData();
+        if (saveData.CompletedFlags.Contains(_uid))
+        {
+            Destroy(_boss.gameObject);
+            Destroy(gameObject);
+
+            // close the eyes
+            var eyes = FindObjectsOfType<DemonicEyeController>();
+            foreach (var eye in eyes)
+                eye.Close();
+        }
+    }
 
     async void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,6 +79,9 @@ public class DemonBoss : MonoBehaviour
 
                     // close the ui
                     BossUI.Close();
+
+                    // save the win
+                    GameSaveSystem.CacheGame(_uid);
 
                     // close the eyes
                     var eyes = FindObjectsOfType<DemonicEyeController>();

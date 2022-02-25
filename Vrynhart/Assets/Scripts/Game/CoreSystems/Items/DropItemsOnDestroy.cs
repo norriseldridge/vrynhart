@@ -13,6 +13,9 @@ public class DropItemsOnDestroy : MonoBehaviour
         if (_potentialItemDrops.Count > 0)
         {
             var player = FindObjectOfType<PlayerController>();
+            if (player == null)
+                return;
+
             var inventory = player.Inventory;
             CalculateDropItem(inventory);
         }

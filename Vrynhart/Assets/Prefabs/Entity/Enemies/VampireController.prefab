@@ -203,9 +203,10 @@ MonoBehaviour:
   - ItemId: rusty_dagger
     Damage: 1
   _health: 3
-  _hit: []
-  _hitVolume: 0
-  _hitPitchRange: {x: 0, y: 0}
+  _hit:
+  - {fileID: 8300000, guid: 7a5cd42058a194b50839e0d42152d443, type: 3}
+  _hitVolume: 0.3
+  _hitPitchRange: {x: 0.9, y: 1}
   _deathSource: {fileID: 9216649199970056206, guid: 7f1666603156042cabfac35c754b1c2f, type: 3}
   _die: {fileID: 8300000, guid: 1d7f5425d809f49ffbce3dc1be3d901c, type: 3}
   _dieVolume: 0.6
