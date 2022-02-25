@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5306720788049376542}
   - component: {fileID: 5306720788049376543}
   - component: {fileID: 8657108682322031978}
+  - component: {fileID: 3401359622858061174}
   m_Layer: 0
   m_Name: SlugController
   m_TagString: Untagged
@@ -71,12 +72,13 @@ MonoBehaviour:
   - ItemId: wood_stake
     Damage: 2
   _health: 2
-  _hit: []
-  _hitVolume: 0
-  _hitPitchRange: {x: 0, y: 0}
+  _hit:
+  - {fileID: 8300000, guid: f107a67666d1646708933bf583a07e5c, type: 3}
+  _hitVolume: 0.2
+  _hitPitchRange: {x: 0.8, y: 0.95}
   _deathSource: {fileID: 8165796458131693979, guid: 8236f0713ecf942658c2bf10f74c5618, type: 3}
-  _die: {fileID: 0}
-  _dieVolume: 0
+  _die: {fileID: 8300000, guid: f107a67666d1646708933bf583a07e5c, type: 3}
+  _dieVolume: 0.6
 --- !u!114 &8657108682322031978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +92,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
+--- !u!114 &3401359622858061174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306720788049376541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4cb15bd5525445408f7378e9db99423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _potentialItemDrops:
+  - {fileID: 5142508931299728778, guid: 732af688ac0784b36a4388143b606ab3, type: 3}
+  - {fileID: 4620547750720667741, guid: 50ce87c8609f14daba759218bfd31b4c, type: 3}
+  - {fileID: 1460878493654205340, guid: 32c17d4994ad84017b7c679d2a889489, type: 3}
 --- !u!1 &5306720788129021670
 GameObject:
   m_ObjectHideFlags: 0
