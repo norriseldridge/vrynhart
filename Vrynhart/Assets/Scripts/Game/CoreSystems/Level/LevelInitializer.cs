@@ -28,7 +28,9 @@ public class LevelInitializer : MonoBehaviour
         mover.enabled = false;
         player.Initialize(saveData);
 
-        mover.ObserveEveryValueChanged(m => m.IsMoving)
+        // once the player has moved for the first time, enable the exiters
+        // this is to prevent weird level loading behavior flipping back and forth between scenes
+        mover.IsMoving
             .ObserveOnMainThread()
             .Where(moving => moving)
             .Take(1)

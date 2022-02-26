@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UniRx;
-using System.Linq;
 
 public class MoveToward : EnemyLogic
 {
@@ -45,16 +45,7 @@ public class MoveToward : EnemyLogic
                 if (nextNode != null)
                 {
                     if (EnemyController.MoveToward(nextNode.transform.position))
-                    {
-                        await MessageBroker.Default.Receive<TileMoveCompleteEvent>()
-                            .Where(e =>
-                            {
-                                if (this == null)
-                                    return true;
-                                return e.Mover.transform == transform;
-                            })
-                            .Take(1);
-                    }
+                        await EnemyController.TileMover.IsMoving.Where(v => v == false).Take(1);
                 }
             }
         }

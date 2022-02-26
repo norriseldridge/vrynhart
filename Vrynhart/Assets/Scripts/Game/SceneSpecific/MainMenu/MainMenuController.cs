@@ -107,8 +107,8 @@ public class MainMenuController : MonoBehaviour
         if (name.Length == 0)
             return;
 
-        GameSaveSystem.CreateSaveFile(name);
         await TransitionController.TriggerTransitionAsTask();
+        GameSaveSystem.CreateSaveFile(name);
         SceneManager.LoadSceneAsync("Intro")
             .completed += (s) => {
                 MessageBroker.Default.Publish(new TransitionEvent(TransitionType.End));

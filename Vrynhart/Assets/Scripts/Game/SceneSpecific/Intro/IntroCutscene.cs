@@ -31,6 +31,9 @@ public class IntroCutscene : MonoBehaviour
     Text _storyText;
 
     [SerializeField]
+    Image _textFader;
+
+    [SerializeField]
     SimpleConversation _introStory;
 
     [SerializeField]
@@ -45,7 +48,7 @@ public class IntroCutscene : MonoBehaviour
     void Start()
     {
         _title.enabled = false;
-        _wind.volume = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);
+        _wind.volume = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f) * 0.7f;
         StartCoroutine(PlayCutScene());
     }
 
@@ -56,6 +59,8 @@ public class IntroCutscene : MonoBehaviour
 
         // play the theme
         MessageBroker.Default.Publish(new MusicEvent(_theme));
+
+        yield return new WaitForSeconds(3.0f); // let the music play for a bit first / give transition time
 
         yield return PrintStory();
         StartCoroutine(ZoomOutCamera());
@@ -207,16 +212,31 @@ public class IntroCutscene : MonoBehaviour
 
     IEnumerator PrintStory()
     {
-        var charDelay = 0.135f;
+        var charDelay = 0.14f;
         var maxDelay = 5.5f;
         foreach (var line in _introStory.Dialogue)
         {
             _storyText.text = line;
             var delay = Mathf.Clamp(_storyText.text.Length * charDelay, 0, maxDelay);
+            StartCoroutine(FadeInText());
             yield return new WaitForSeconds(delay);
             _storyText.text = "";
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
+    }
+
+    IEnumerator FadeInText()
+    {
+        var color = new Color(0, 0, 0, 1);
+        for (var i = 0.0f; i < 0.25f; i += Time.deltaTime)
+        {
+            color.a -= 2 * Time.deltaTime;
+            _textFader.color = color;
+            yield return null;
+        }
+
+        color.a = 0;
+        _textFader.color = color;
     }
 
     IEnumerator FadeToBlack()

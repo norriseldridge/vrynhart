@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 7949263940215757046}
   - component: {fileID: 1457150397385945757}
   - component: {fileID: -6983226602028258197}
+  - component: {fileID: -6211330924657604258}
   m_Layer: 0
   m_Name: VampireController
   m_TagString: Untagged
@@ -251,6 +252,22 @@ MonoBehaviour:
   _potentialItemDrops:
   - {fileID: 2819796281874858642, guid: 405b478db1c4e454a961e7db5091160c, type: 3}
   - {fileID: 5142508931299728778, guid: 732af688ac0784b36a4388143b606ab3, type: 3}
+--- !u!114 &-6211330924657604258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949263940215757043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805799e656e8f476c86874a55d893646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clips:
+  - {fileID: 8300000, guid: 3e90b268a916f4d4fb065b94278192b9, type: 3}
+  _delay: {x: 2, y: 4}
+  _volume: 0.2
 --- !u!1 &8839354376816794754
 GameObject:
   m_ObjectHideFlags: 0

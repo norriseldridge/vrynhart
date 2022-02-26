@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         _hitTimer -= Time.deltaTime;
-        _view.SetState(_mover.IsMoving ? EnemyVisualState.Run : EnemyVisualState.Idle);
+        _view.SetState(_mover.IsMoving.Value ? EnemyVisualState.Run : EnemyVisualState.Idle);
     }
 
     public void DealDamage(string itemId)

@@ -19,7 +19,7 @@ public class AudioController : MonoBehaviour
     Queue<AudioSource> _pool;
 
     List<AudioEvent> _events = new List<AudioEvent>();
-    float _fadeSpeed = 0.5f;
+    float _fadeSpeed = 0.45f;
     float _musicVolume;
     float _sfxVolume;
     float _currentMusicVolume = 1.0f;

@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleMove()
     {
-        if (!_mover.enabled || _mover.IsMoving)
+        if (!_mover.enabled || _mover.IsMoving.Value)
             return;
 
         var momentum = Vector2.zero;
@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             momentum.x = 1;
 
-        if (!_mover.IsMoving && momentum.magnitude > 0)
+        if (!_mover.IsMoving.Value && momentum.magnitude > 0)
         {
             // if we're trying to move diagonal, move sideways
             if (Mathf.Abs(momentum.x) > 0 && Mathf.Abs(momentum.y) > 0)
@@ -226,7 +226,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // update the animation
-        _view.SetState(_mover.IsMoving ? PlayerState.Run : PlayerState.Idle);
+        _view.SetState(_mover.IsMoving.Value ? PlayerState.Run : PlayerState.Idle);
     }
 
     // event handling

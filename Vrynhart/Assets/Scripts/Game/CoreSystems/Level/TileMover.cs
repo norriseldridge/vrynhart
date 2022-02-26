@@ -11,7 +11,8 @@ public class TileMover : MonoBehaviour
     bool _playStepSounds;
 
     public bool ShouldPlayStepSounds => _playStepSounds;
-    public bool IsMoving { get; private set; } = false;
+    public IReactiveProperty<bool> IsMoving => _isMoving;
+    ReactiveProperty<bool> _isMoving = new ReactiveProperty<bool>(false);
 
 #if UNITY_EDITOR
     void Update()
@@ -37,7 +38,7 @@ public class TileMover : MonoBehaviour
 
     public void TryMove(Vector2 direction)
     {
-        if (IsMoving)
+        if (_isMoving.Value)
             return;
 
         MessageBroker.Default.Publish(new TileMoveEvent(this, direction));
@@ -45,7 +46,7 @@ public class TileMover : MonoBehaviour
 
     public void MoveTo(Vector3 destination)
     {
-        if (IsMoving)
+        if (_isMoving.Value)
             return;
 
         StartCoroutine(TweenTo(destination));
@@ -53,7 +54,7 @@ public class TileMover : MonoBehaviour
 
     IEnumerator TweenTo(Vector3 destination)
     {
-        IsMoving = true;
+        _isMoving.Value = true;
 
         while (Vector2.Distance(transform.position, destination) > float.Epsilon)
         {
@@ -62,7 +63,7 @@ public class TileMover : MonoBehaviour
         }
 
         transform.position = destination;
-        IsMoving = false;
+        _isMoving.Value = false;
 
         MessageBroker.Default.Publish(new TileMoveCompleteEvent(this));
     }

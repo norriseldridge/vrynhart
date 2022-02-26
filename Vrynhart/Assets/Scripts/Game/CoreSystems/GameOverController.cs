@@ -9,7 +9,7 @@ public class GameOverController : MonoBehaviour
         GameSaveSystem.LoadGame(); // reload from last save
     }
 
-    public async void OnPressQuit()
+    public void OnPressQuit()
     {
         SceneManager.LoadSceneAsync(Constants.Game.MainMenuScene);
     }

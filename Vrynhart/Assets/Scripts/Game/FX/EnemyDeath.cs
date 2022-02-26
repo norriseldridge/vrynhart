@@ -20,7 +20,7 @@ public class EnemyDeath : MonoBehaviour
         for (var i = 0.0f; i < _duration; i += Time.deltaTime)
         {
             if (_light != null)
-                _light.intensity -= Time.deltaTime;
+                _light.intensity = (_duration - i) / _duration;
             yield return null;
         }
         Destroy(gameObject);
