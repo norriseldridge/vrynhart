@@ -45,8 +45,6 @@ public class DemonJump : EnemyLogic
 
         if (EnemyController.Health > 20)
             _phase = 0;
-        else if (EnemyController.Health > 10)
-            _phase = 1;
         else
             _phase = 2;
 
@@ -57,12 +55,8 @@ public class DemonJump : EnemyLogic
                 break;
 
             case 1:
-                Phase1();
-                break;
-
-            case 2:
             default:
-                Phase2();
+                Phase1();
                 break;
         }
     }
@@ -94,31 +88,6 @@ public class DemonJump : EnemyLogic
     }
 
     void Phase1()
-    {
-        switch (_turnDelay)
-        {
-            case 1: // pick a new tile (the one the player is at)
-                _currentTarget = _tileMap.GetTileAt(_player.transform.position);
-                _jumpIndicator.position = _currentTarget.transform.position;
-                break;
-
-            case 2:
-            case 4:
-            case 6:
-                break;
-
-            case 3: // wait, jump
-                DoJump();
-                break;
-
-            case 5: // start the process over again
-            default:
-                _turnDelay = 0;
-                break;
-        }
-    }
-
-    void Phase2()
     {
         switch (_turnDelay)
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UniRx;
+using System.Collections.Generic;
 
 public enum PlayerState
 {
@@ -37,6 +38,8 @@ public class PlayerView : MonoBehaviour
     PlayerState _state = PlayerState.Idle;
     PlayerFacing _facing = PlayerFacing.Right;
 
+    List<Material> _materials;
+
     void Awake()
     {
         MessageBroker.Default.Receive<PlayerViewDataEvent>()
@@ -53,6 +56,11 @@ public class PlayerView : MonoBehaviour
     void Start()
     {
         _animators = GetComponentsInChildren<Animator>();
+
+        var renderers = GetComponentsInChildren<SpriteRenderer>();
+        _materials = new List<Material>();
+        foreach (var renderer in renderers)
+            _materials.Add(renderer.material);
     }
 
     void OnViewDataChanged(PlayerViewDataEvent viewDataEvent) => UpdateView(viewDataEvent.ViewData);
@@ -115,5 +123,11 @@ public class PlayerView : MonoBehaviour
             var flip = _facing != PlayerFacing.Right;
             transform.localScale = new Vector3(flip ? -1 : 1, 1);
         }
+    }
+
+    public void SetIFrameState(bool hasIFrames)
+    {
+        foreach (var mat in _materials)
+            mat.SetColor("_Tint", hasIFrames ? Color.red : Color.white);
     }
 }

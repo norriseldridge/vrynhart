@@ -5149,7 +5149,7 @@ MonoBehaviour:
   _uid: demon_boss
   _bossName: Morpheus
   _boss: {fileID: 1465228103}
-  _music: {fileID: 8300000, guid: da8cd647778cb40889497ea26f5f7ffe, type: 3}
+  _music: {fileID: 8300000, guid: 22af87aa6323546f8989b0c0d7aa9176, type: 3}
   _screech: {fileID: 8300000, guid: 5675a7795b11c41bf929d2fe5919988c, type: 3}
   _screechVolume: 1
   _fightGrunts:

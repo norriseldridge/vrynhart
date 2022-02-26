@@ -67,6 +67,7 @@ public class MainMenuController : MonoBehaviour
         }
 
         MessageBroker.Default.Publish(new MusicEvent(_music));
+        MessageBroker.Default.Publish(new AmbientAudioEvent(null));
     }
 
     void OnSetMusicValue(float value)

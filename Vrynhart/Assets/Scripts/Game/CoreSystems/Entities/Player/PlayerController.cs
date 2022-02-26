@@ -125,11 +125,17 @@ public class PlayerController : MonoBehaviour
 
         // TODO accept controller input?
 
+        HandleIFrames();
         HandlePause();
         ToggleQuickSelectItem();
         HandleLantern();
         HandleUseEquippedItem();
         HandleMove();
+    }
+
+    void HandleIFrames()
+    {
+        _view.SetIFrameState(_health.HasActiveIFrames);
     }
 
     void HandlePause()

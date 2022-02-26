@@ -21491,7 +21491,7 @@ MonoBehaviour:
   - {fileID: 1971776057}
   _spawnTurnDelay: 4
   _maxSpawns: 5
-  _bossMusic: {fileID: 8300000, guid: e4c422e4bab2b4189b996e0d7c9160cc, type: 3}
+  _bossMusic: {fileID: 8300000, guid: de4c2201604184abb872a76de982ce61, type: 3}
   _volume: 0.7
 --- !u!1001 &855567080
 PrefabInstance:
@@ -28594,6 +28594,8 @@ MonoBehaviour:
   _destination: {fileID: 558694281}
   _transition: 1
   _requiresPrompt: 1
+  _sfx: {fileID: 0}
+  _volume: 0
 --- !u!61 &1059996178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35992,7 +35994,7 @@ PrefabInstance:
     - target: {fileID: 2942346169149798370, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
       propertyPath: _music
       value: 
-      objectReference: {fileID: 8300000, guid: 197da7105442546f7b2a6eaab8ac96a1, type: 3}
+      objectReference: {fileID: 8300000, guid: 004f7cf9bef664baa9c7ed139f518f71, type: 3}
     - target: {fileID: 2942346169149798370, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
       propertyPath: _volume
       value: 0.4
@@ -54662,6 +54664,8 @@ MonoBehaviour:
   _destination: {fileID: 2056643644}
   _transition: 1
   _requiresPrompt: 1
+  _sfx: {fileID: 0}
+  _volume: 0
 --- !u!61 &2092620283
 BoxCollider2D:
   m_ObjectHideFlags: 0

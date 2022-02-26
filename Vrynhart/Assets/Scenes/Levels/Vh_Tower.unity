@@ -14132,7 +14132,7 @@ PrefabInstance:
     - target: {fileID: 2942346169149798370, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
       propertyPath: _music
       value: 
-      objectReference: {fileID: 8300000, guid: 197da7105442546f7b2a6eaab8ac96a1, type: 3}
+      objectReference: {fileID: 8300000, guid: 345c4859b2a8244cf8d786dfa5350c1b, type: 3}
     - target: {fileID: 2942346169149798370, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
       propertyPath: _volume
       value: 0.5
