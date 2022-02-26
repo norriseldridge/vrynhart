@@ -13,6 +13,12 @@ public class Warp : RequiresPrompt
     [SerializeField]
     bool _requiresPrompt;
 
+    [SerializeField]
+    AudioClip _sfx;
+
+    [SerializeField]
+    float _volume;
+
     WarpUser _user;
 
     protected override void OnTriggerEnter2D(Collider2D collision)
@@ -49,6 +55,9 @@ public class Warp : RequiresPrompt
 
     async void DoWarp()
     {
+        if (_sfx)
+            MessageBroker.Default.Publish(new AudioEvent(_sfx, _volume));
+
         if (_transition)
             await TransitionController.TriggerTransitionAsTask();
 

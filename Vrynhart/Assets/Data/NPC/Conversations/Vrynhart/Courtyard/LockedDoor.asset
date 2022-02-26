@@ -15,4 +15,4 @@ MonoBehaviour:
   PersistantFlagId: 
   ConversationName: Locked Door
   Dialogue:
-  - '* The door won''t budge.'
+  - '* Door is locked.'
