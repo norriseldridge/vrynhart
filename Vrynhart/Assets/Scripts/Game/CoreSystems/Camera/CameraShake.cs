@@ -19,10 +19,13 @@ public class CameraShake : MonoBehaviour
 
     IEnumerator Shake(float shakeTime, float intensity, float speed)
     {
+        var offset = new Vector3(1, 1, transform.localPosition.z);
         var pos = transform.localPosition;
         for (var i = 0.0f; i < shakeTime; i += Time.deltaTime)
         {
-            transform.localPosition = intensity * Mathf.Sin(Time.time * speed) * Vector3.one;
+            var o = intensity * Mathf.Sin(Time.time * speed);
+            offset.x = offset.y = o;
+            transform.localPosition = offset;
             yield return null;
         }
 
