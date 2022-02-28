@@ -5149,7 +5149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uid: demon_boss
-  _bossName: Morpheus
+  _bossName: Old Hunter Laidyr
   _boss: {fileID: 1465228103}
   _music: {fileID: 8300000, guid: 22af87aa6323546f8989b0c0d7aa9176, type: 3}
   _screech: {fileID: 8300000, guid: 5675a7795b11c41bf929d2fe5919988c, type: 3}

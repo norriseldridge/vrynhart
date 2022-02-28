@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e051b45d7824a7ab47f8bd79607439, type: 3}
-  m_Name: MorpheusHat
+  m_Name: LaidyrSet
   m_EditorClassIdentifier: 
-  Id: morpheus_hat
-  ItemType: 3
-  Sprite: {fileID: 932891947475668859, guid: df8718284d3624be6b74b990fba6e4cf, type: 3}
-  Name: Morpheus' Hat
+  Id: morpheus_set
+  ItemType: 2
+  Sprite: {fileID: -5161314127959926139, guid: 0202c7d54916a4681bae78823e3653f5, type: 3}
+  Name: Laidyr's Coat
   Unique: 1
-  Cost: 10
+  Cost: 20
   PurchaseQuantity: 1
-  ShortDescription: This hat used to belong to the old hunter, <color="#4d1f32">Morpheus</color>.
-  Description: It's said that Morpheus was an experienced traveller with many bounties
+  ShortDescription: This coat used to belong to the old hunter, <color="#8DC2A4">Laidyr</color>.
+  Description: It's said that Laidyr was an experienced traveller with many bounties
     claimed throughout his career. But in the end, death comes for us all.
   UseRange: 1
-  ClothingAnimator: {fileID: 9100000, guid: f24b0b7182e6647a5a6019d9b01bab1c, type: 2}
+  ShowUseIndicator: 1
+  ClothingAnimator: {fileID: 9100000, guid: d6b64c1f3c5bf4811b1a95a96fde0769, type: 2}
