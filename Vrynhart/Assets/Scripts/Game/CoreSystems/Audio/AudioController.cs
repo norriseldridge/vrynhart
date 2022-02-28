@@ -60,12 +60,35 @@ public class AudioController : MonoBehaviour
 
     void Update()
     {
+        if (_events.Count == 0)
+            return;
+
+        var listener = GetListener();
+        if (listener == null)
+            return;
+
         // filter
         var filtered = new List<AudioEvent>();
         foreach (var e in _events.OrderBy(e => e.Priority))
         {
-            filtered.Add(e);
+            var existing = filtered.FirstOrDefault(f => f.Clip == e.Clip);
+            if (existing == null)
+                filtered.Add(e);
+            else
+            {
+                if (e.Position != null)
+                {
+                    if (Vector2.Distance(listener.position, e.Position.Value) < Vector2.Distance(listener.position, existing.Position.Value))
+                    {
+                        filtered.Remove(existing);
+                        filtered.Add(e);
+                    }
+                }
+            }
         }
+
+        Debug.Log($"[AudioController] Events in queue: {_events.Count}  Post filter: {filtered.Count}");
+
         _events.Clear();
 
         // play the list
@@ -81,8 +104,10 @@ public class AudioController : MonoBehaviour
 
             // get the first not playing source
             var next = _pool.FirstOrDefault(s => !s.isPlaying);
+
+            // or just the next in the list
             if (next == null)
-                return; // no more sources available
+                next = _pool.FirstOrDefault();
 
             float distMult = 1;
             if (e.Position.HasValue)
@@ -98,15 +123,28 @@ public class AudioController : MonoBehaviour
 
     public static float CalculateVolume(Vector2 position)
     {
-        Transform listener;
+        var listener = GetListener();
+        if (listener == null)
+            return 0;
+
+        var dist = Vector2.Distance(listener.position, position);
+        var distMult = 1 - Mathf.Clamp(dist / MaxHearingDistance, 0, 1);
+        return distMult;
+    }
+
+    static Transform GetListener()
+    {
+        Transform listener = null;
         var player = FindObjectOfType<PlayerController>();
         if (player != null)
             listener = player.transform;
         else
-            listener = FindObjectOfType<Camera>().transform;
-        var dist = Vector2.Distance(listener.position, position);
-        var distMult = 1 - Mathf.Clamp(dist / MaxHearingDistance, 0, 1);
-        return distMult;
+        {
+            var camera = FindObjectOfType<Camera>();
+            if (camera != null)
+                listener = camera.transform;
+        }
+        return listener;
     }
 
     void OnAudioEvent(AudioEvent e)

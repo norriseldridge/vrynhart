@@ -13,6 +13,6 @@ public class AudioEvent
         Volume = volume;
         PitchRange = new Vector2(lowestPitch, highestPitch);
         Position = position;
-        Priority = 0;
+        Priority = priority;
     }
 }
