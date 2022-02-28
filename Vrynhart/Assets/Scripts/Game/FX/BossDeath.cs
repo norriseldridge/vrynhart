@@ -27,9 +27,20 @@ public class BossDeath : MonoBehaviour
 
     void Start()
     {
-        MessageBroker.Default.Publish(new AudioEvent(_sfx, _volume));
+        MessageBroker.Default.Publish(new AudioEvent(_sfx, _volume, priority: 10));
         _dissolver.Dissolve();
-        StartCoroutine(FadeInLight());
+        StartCoroutine(Play());
+    }
+
+    protected virtual void Cleanup()
+    {
+        Destroy(gameObject);
+    }
+
+    IEnumerator Play()
+    {
+        yield return FadeInLight();
+        Cleanup();
     }
 
     IEnumerator FadeInLight()

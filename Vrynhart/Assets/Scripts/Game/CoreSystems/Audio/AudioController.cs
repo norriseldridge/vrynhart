@@ -16,10 +16,10 @@ public class AudioController : MonoBehaviour
 
     [SerializeField]
     int _poolSize = 16;
-    Queue<AudioSource> _pool;
+    List<AudioSource> _pool;
 
     List<AudioEvent> _events = new List<AudioEvent>();
-    float _fadeSpeed = 0.45f;
+    float _fadeSpeed = 0.55f;
     float _musicVolume;
     float _sfxVolume;
     float _currentMusicVolume = 1.0f;
@@ -35,7 +35,7 @@ public class AudioController : MonoBehaviour
         _musicVolume = PlayerPrefs.GetFloat(Constants.Prefs.MusicVolume, 1.0f);
         _sfxVolume = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);
 
-        _pool = new Queue<AudioSource>();
+        _pool = new List<AudioSource>();
         MessageBroker.Default.Receive<AudioEvent>()
             .Subscribe(OnAudioEvent)
             .AddTo(this);
@@ -62,10 +62,9 @@ public class AudioController : MonoBehaviour
     {
         // filter
         var filtered = new List<AudioEvent>();
-        foreach (var e in _events.OrderByDescending(e => e.Position.HasValue ? CalculateVolume(e.Position.Value) : 1))
+        foreach (var e in _events.OrderBy(e => e.Priority))
         {
-            if (!filtered.Any(f => f.Clip == e.Clip))
-                filtered.Add(e);
+            filtered.Add(e);
         }
         _events.Clear();
 
@@ -77,10 +76,13 @@ public class AudioController : MonoBehaviour
 
             if (_pool.Count < _poolSize)
             {
-                _pool.Enqueue(gameObject.AddComponent<AudioSource>());
+                _pool.Add(gameObject.AddComponent<AudioSource>());
             }
 
-            var next = _pool.Dequeue();
+            // get the first not playing source
+            var next = _pool.FirstOrDefault(s => !s.isPlaying);
+            if (next == null)
+                return; // no more sources available
 
             float distMult = 1;
             if (e.Position.HasValue)
@@ -90,7 +92,7 @@ public class AudioController : MonoBehaviour
             next.volume = _sfxVolume * e.Volume * distMult;
             next.pitch = Random.Range(e.PitchRange.x, e.PitchRange.y);
             next.PlayOneShot(e.Clip);
-            _pool.Enqueue(next);
+            _pool.Add(next);
         }
     }
 
@@ -139,7 +141,7 @@ public class AudioController : MonoBehaviour
             return;
 
         _currentMusicVolume = e.Volume;
-        if (_musicSource.isPlaying)
+        if (_musicSource.isPlaying && e.ShouldFade)
         {
             StartCoroutine(FadeOutThenPlay(_musicSource, e.Clip, _musicVolume, _currentMusicVolume));
         }
@@ -159,13 +161,16 @@ public class AudioController : MonoBehaviour
             yield return null;
         }
 
-        source.clip = clip;
-        source.Play();
-
-        while (source.volume < maxVolume * currentVolume)
+        if (clip != null)
         {
-            source.volume += _fadeSpeed * Time.deltaTime;
-            yield return null;
+            source.clip = clip;
+            source.Play();
+
+            while (source.volume < maxVolume * currentVolume)
+            {
+                source.volume += _fadeSpeed * Time.deltaTime;
+                yield return null;
+            }
         }
     }
 }

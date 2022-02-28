@@ -13,16 +13,44 @@ public class CameraController : MonoBehaviour
 
     List<CameraBounds> _bounds = new List<CameraBounds>();
     Vector2 _cameraSize;
-    Vector3 _offset = new Vector3(0, 0, -10);
+    Vector3 _offset = new Vector3(0, 0, 0);
+    float _originalCameraSize;
+
+    IReactiveProperty<CameraBounds> _currentBounds = new ReactiveProperty<CameraBounds>();
 
     void Awake()
     {
         MessageBroker.Default.Receive<CameraBoundsChangeEvent>()
             .Subscribe(OnCameraBoundsChanged)
             .AddTo(this);
+
+        _currentBounds.Subscribe(OnBoundsChange).AddTo(this);
     }
 
     void Start()
+    {
+        _originalCameraSize = _camera.orthographicSize;
+        UpdateCameraSize();
+    }
+
+    void OnBoundsChange(CameraBounds bounds)
+    {
+        if (bounds == null)
+            return;
+
+        if (bounds.HasCameraSizeOverride)
+        {
+            _camera.orthographicSize = bounds.CameraSizeOverride;
+        }
+        else
+        {
+            _camera.orthographicSize = _originalCameraSize;
+        }
+
+        UpdateCameraSize();
+    }
+
+    void UpdateCameraSize()
     {
         var verticalSize = _camera.orthographicSize * 2.0f;
         var horizontalSize = verticalSize * Screen.width / Screen.height;
@@ -34,9 +62,12 @@ public class CameraController : MonoBehaviour
     {
         if (_target == null) return;
 
-        var bounds = _bounds.FirstOrDefault();
-        if (bounds != null)
-            transform.position = bounds.Limit(_target.position + _offset, _cameraSize);
+        _currentBounds.Value = _bounds.LastOrDefault();
+        if (_currentBounds.Value != null)
+        {
+            var offset = _currentBounds.Value.HasOffsetOverride ? _currentBounds.Value.transform.position + _currentBounds.Value.OffsetOverride : _target.position + _offset;
+            transform.position = _currentBounds.Value.Limit(offset, _cameraSize);
+        }
         else
             transform.position = _target.position + _offset;
     }

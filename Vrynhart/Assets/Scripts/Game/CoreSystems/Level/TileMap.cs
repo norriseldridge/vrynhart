@@ -16,7 +16,7 @@ public class TileMap : MonoBehaviour
 
         MessageBroker.Default.Receive<TileMoveCompleteEvent>()
             .Subscribe(e => {
-                if (e.Mover.ShouldPlayStepSounds)
+                if (e.Mover != null && e.Mover.ShouldPlayStepSounds)
                 {
                     var tile = GetTileAt(e.Mover.transform.position);
                     tile.PlayStepSound();

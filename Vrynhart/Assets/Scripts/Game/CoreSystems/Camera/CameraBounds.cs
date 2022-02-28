@@ -6,6 +6,18 @@ public class CameraBounds : MonoBehaviour
 {
     BoxCollider2D _collider;
 
+    [SerializeField]
+    Vector3 _offsetOverride;
+
+    [SerializeField]
+    float _cameraSizeOverride;
+
+    public bool HasOffsetOverride => _offsetOverride != Vector3.zero;
+    public Vector3 OffsetOverride => _offsetOverride;
+
+    public bool HasCameraSizeOverride => _cameraSizeOverride != 0;
+    public float CameraSizeOverride => _cameraSizeOverride;
+
     void Start()
     {
         _collider = GetComponent<BoxCollider2D>();

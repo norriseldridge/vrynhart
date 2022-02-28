@@ -2077,6 +2077,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258ca10223bbc44f5b37a2aefeb70b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetOverride: {x: 0, y: 0, z: 0}
+  _cameraSizeOverride: 0
 --- !u!61 &89661100
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5738,6 +5740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258ca10223bbc44f5b37a2aefeb70b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetOverride: {x: 0, y: 0, z: 0}
+  _cameraSizeOverride: 0
 --- !u!61 &268446232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5998,6 +6002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258ca10223bbc44f5b37a2aefeb70b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetOverride: {x: 0, y: 0, z: 0}
+  _cameraSizeOverride: 0
 --- !u!61 &282439473
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19340,6 +19346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258ca10223bbc44f5b37a2aefeb70b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetOverride: {x: 0, y: 0, z: 0}
+  _cameraSizeOverride: 0
 --- !u!61 &946304358
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24304,6 +24312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258ca10223bbc44f5b37a2aefeb70b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetOverride: {x: 0, y: 0, z: 0}
+  _cameraSizeOverride: 0
 --- !u!61 &1211174306
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28247,7 +28257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388708491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1994730868}
@@ -30458,6 +30468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258ca10223bbc44f5b37a2aefeb70b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetOverride: {x: 0, y: 0, z: 0}
+  _cameraSizeOverride: 0
 --- !u!61 &1520340687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35370,6 +35382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258ca10223bbc44f5b37a2aefeb70b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetOverride: {x: 0, y: 0, z: 0}
+  _cameraSizeOverride: 0
 --- !u!61 &1812548707
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35564,6 +35578,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258ca10223bbc44f5b37a2aefeb70b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetOverride: {x: 0, y: 0, z: 0}
+  _cameraSizeOverride: 0
 --- !u!61 &1820907904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39294,7 +39310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994730862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1388708493}

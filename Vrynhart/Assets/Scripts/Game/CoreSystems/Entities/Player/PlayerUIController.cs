@@ -16,10 +16,7 @@ public class PlayerUIController : PostLevelInitialize
     const float MaxOil = 120.0f;
 
     [SerializeField]
-    Image _healthFill;
-
-    [SerializeField]
-    Image _slowHealthFill;
+    Text _healthText;
 
     [SerializeField]
     Image _oilFill;
@@ -57,7 +54,7 @@ public class PlayerUIController : PostLevelInitialize
             .AddTo(this);
 
         MessageBroker.Default.Receive<PlayerDiedEvent>()
-            .Subscribe(_ => StartCoroutine(TweenFill(0)))
+            .Subscribe(_ => _healthText.text = "0")
             .AddTo(this);
 
         MessageBroker.Default.Receive<EnterPromptEvent>()
@@ -84,7 +81,8 @@ public class PlayerUIController : PostLevelInitialize
     public override void Initialize()
     {
         var player = FindObjectOfType<PlayerController>();
-        _healthFill.fillAmount = _slowHealthFill.fillAmount = player.Health.HealthPercent;
+        _healthText.text = player.Health.CurrentHealth.ToString();
+        _healthText.color = player.Health.HealthPercent == 1 ? new Color(1, 0.9f, 0) : Color.white;
         UpdateItemDisplay(player.Inventory);
         UpdateEquippedItem(player.EquippedItem);
     }
@@ -93,29 +91,9 @@ public class PlayerUIController : PostLevelInitialize
     {
         if (e.Health.gameObject.GetComponent<PlayerController>() != null)
         {
-            if (e.Change == 0)
-                _healthFill.fillAmount = _slowHealthFill.fillAmount = e.Health.HealthPercent;
-            else
-                StartCoroutine(TweenFill(e.Health.HealthPercent));
+            _healthText.text = e.Health.CurrentHealth.ToString();
+            _healthText.color = e.Health.HealthPercent == 1 ? new Color(1, 0.9f, 0) : Color.white;
         }
-    }
-
-    IEnumerator TweenFill(float target)
-    {
-        IEnumerator Tween(Image img, int steps)
-        {
-            var diff = Mathf.Abs(img.fillAmount - target);
-
-            var delta = diff / steps;
-            for (int i = 0; i < steps; ++i)
-            {
-                img.fillAmount = Mathf.MoveTowards(img.fillAmount, target, delta);
-                yield return null;
-            }
-        }
-
-        yield return Tween(_healthFill, 15);
-        yield return Tween(_slowHealthFill, 30);
     }
 
     void OnItemPickedUp(ItemPickUpEvent e) => StartCoroutine(DisplayItemMessage(e.ItemId, e.Count));

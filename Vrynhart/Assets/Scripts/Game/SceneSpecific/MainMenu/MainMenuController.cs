@@ -136,8 +136,15 @@ public class MainMenuController : MonoBehaviour
         foreach (var file in files)
         {
             var tile = Instantiate(_saveFileUISource, _loadGamePopupContainer);
-            tile.Populate(file);
+            tile.Populate(file, OnSelectedSaveFile);
         }
+    }
+
+    async void OnSelectedSaveFile(string file)
+    {
+        MessageBroker.Default.Publish(new AudioEvent(_select, _selectVolume));
+        await TransitionController.TriggerTransitionAsTask();
+        GameSaveSystem.LoadGame(file);
     }
 
     public void OnCloseLoadGamePopUp()

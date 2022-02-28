@@ -42,7 +42,7 @@ public class CombatController : MonoBehaviour
             }
         }
 
-        var enemies = FindObjectsOfType<EnemyController>();
+        var enemies = GetActiveEnemies();
         foreach (var enemy in enemies)
         {
             if (Vector2.Distance(e.Position, enemy.transform.position) < 1.0f)
@@ -58,7 +58,7 @@ public class CombatController : MonoBehaviour
             return;
         _shouldResolve = false;
 
-        var enemies = FindObjectsOfType<EnemyController>();
+        var enemies = GetActiveEnemies();
         var player = FindObjectOfType<PlayerController>();
 
         if (player != null && player.Health.IsAlive)
@@ -86,6 +86,11 @@ public class CombatController : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerable<EnemyController> GetActiveEnemies()
+    {
+        return FindObjectsOfType<EnemyController>().Where(e => e.enabled && e.gameObject.activeSelf);
     }
 
     bool InCombatRange(Transform t1, Transform t2) =>

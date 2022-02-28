@@ -613,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 1773328354}
   _ambientSource: {fileID: 1773328356}
-  _poolSize: 16
+  _poolSize: 32
 --- !u!82 &1773328356
 AudioSource:
   m_ObjectHideFlags: 0

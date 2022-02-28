@@ -6,6 +6,8 @@ public class SlugLogic : EnemyLogic
     [SerializeField]
     PlayerController _player;
 
+    public PlayerController Player { get => _player; set => _player = value; }
+
     int _turnDelay = 0;
 
     public override void DoLogic()

@@ -55,5 +55,6 @@ public class EnemyView : MonoBehaviour
             _renderer.color = color;
             yield return new WaitForSeconds(0.1f);
         }
+        _renderer.color = color;
     }
 }

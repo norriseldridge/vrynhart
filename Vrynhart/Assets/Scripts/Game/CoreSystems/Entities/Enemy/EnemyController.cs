@@ -111,8 +111,10 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        _hitTimer -= Time.deltaTime;
-        _view.SetState(_mover.IsMoving.Value ? EnemyVisualState.Run : EnemyVisualState.Idle);
+        if (_hitTimer > 0)
+            _hitTimer -= Time.deltaTime;
+        if (_view != null)
+            _view.SetState(_mover.IsMoving.Value ? EnemyVisualState.Run : EnemyVisualState.Idle);
     }
 
     public void DealDamage(string itemId)
