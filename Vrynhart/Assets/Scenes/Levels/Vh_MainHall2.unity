@@ -20810,8 +20810,8 @@ MonoBehaviour:
   _destination: {fileID: 2107843385}
   _transition: 1
   _requiresPrompt: 1
-  _sfx: {fileID: 0}
-  _volume: 0
+  _sfx: {fileID: 8300000, guid: 600badd0394714c57ab23b36f60fbc34, type: 3}
+  _volume: 0.3
 --- !u!61 &1022287540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41180,8 +41180,8 @@ MonoBehaviour:
   _destination: {fileID: 1294708437}
   _transition: 1
   _requiresPrompt: 1
-  _sfx: {fileID: 0}
-  _volume: 0
+  _sfx: {fileID: 8300000, guid: 600badd0394714c57ab23b36f60fbc34, type: 3}
+  _volume: 0.3
 --- !u!114 &2094807398
 MonoBehaviour:
   m_ObjectHideFlags: 0
