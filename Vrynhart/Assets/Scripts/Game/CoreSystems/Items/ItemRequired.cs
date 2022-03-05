@@ -24,7 +24,7 @@ public class ItemRequired : PostLevelInitialize
         var player = FindObjectOfType<PlayerController>();
         ProcessInventory(player.Inventory);
 
-        MessageBroker.Default.Receive<InventoryChangeEvent>()
+        Brokers.Default.Receive<InventoryChangeEvent>()
             .Subscribe(OnInventoryChange)
             .AddTo(this);
     }

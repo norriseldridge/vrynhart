@@ -9,15 +9,15 @@ public class CombatController : MonoBehaviour
     Queue<UseItemEvent> _itemEvents = new Queue<UseItemEvent>();
     void Start()
     {
-        MessageBroker.Default.Receive<TileMoveCompleteEvent>()
+        Brokers.Default.Receive<TileMoveCompleteEvent>()
             .Subscribe(_ => _shouldResolve = true)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<UseItemEvent>()
+        Brokers.Default.Receive<UseItemEvent>()
             .Subscribe(OnUseItem)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<EnvironmentalDamageEvent>()
+        Brokers.Default.Receive<EnvironmentalDamageEvent>()
             .Subscribe(OnEnvironmentalDamageEvent)
             .AddTo(this);
     }

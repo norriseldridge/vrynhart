@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UniRx;
 
@@ -31,10 +30,10 @@ public class CharacterCreateView : MonoBehaviour
         _parts = new[] { _head, _hair, _eyes };
         Select(0);
 
-        MessageBroker.Default.Receive<ColorChangeEvent>()
+        Brokers.Default.Receive<ColorChangeEvent>()
             .Subscribe(OnColorChange)
             .AddTo(this);
-        MessageBroker.Default.Publish(new PlayerViewDataEvent(_saveData.ViewData));
+        Brokers.Default.Publish(new PlayerViewDataEvent(_saveData.ViewData));
     }
 
     public void Select(int index)
@@ -86,7 +85,7 @@ public class CharacterCreateView : MonoBehaviour
                 break;
         }
 
-        MessageBroker.Default.Publish(new PlayerViewDataEvent(_saveData.ViewData));
+        Brokers.Default.Publish(new PlayerViewDataEvent(_saveData.ViewData));
     }
 
     public async void OnClickDone()

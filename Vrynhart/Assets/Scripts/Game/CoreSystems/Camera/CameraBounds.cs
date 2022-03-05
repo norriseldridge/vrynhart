@@ -1,5 +1,4 @@
 using UnityEngine;
-using UniRx;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CameraBounds : MonoBehaviour
@@ -54,12 +53,12 @@ public class CameraBounds : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<CameraBoundsTarget>())
-            MessageBroker.Default.Publish(new CameraBoundsChangeEvent(this));
+            Brokers.Default.Publish(new CameraBoundsChangeEvent(this));
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<CameraBoundsTarget>())
-            MessageBroker.Default.Publish(new CameraBoundsChangeEvent(this, false));
+            Brokers.Default.Publish(new CameraBoundsChangeEvent(this, false));
     }
 }

@@ -19,7 +19,7 @@ public class SimpleDialogueView : BaseDialogeView
 
         if (_prompt.SFX != null)
         {
-            MessageBroker.Default.Publish(new AudioEvent(_prompt.SFX, _prompt.Volume));
+            Brokers.Audio.Publish(new AudioEvent(_prompt.SFX, _prompt.Volume));
         }
 
         StartCoroutine(DisplayDialogue(_prompt.Conversation as SimpleConversation));
@@ -38,6 +38,6 @@ public class SimpleDialogueView : BaseDialogeView
             yield return new WaitForEndOfFrame();
         }
 
-        MessageBroker.Default.Publish(new ConversationCompleteEvent(_prompt));
+        Brokers.Default.Publish(new ConversationCompleteEvent(_prompt));
     }
 }

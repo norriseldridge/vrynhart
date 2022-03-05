@@ -113,8 +113,8 @@ public class DemonJump : EnemyLogic
     {
         await StartCoroutine(JumpTo(_currentTarget.transform.position));
 
-        MessageBroker.Default.Publish(new AudioEvent(_walk, _walkVolume * 1.2f, _walkPitch.x, _walkPitch.y, transform.position));
-        MessageBroker.Default.Publish(new CameraShakeEvent(0.5f, 0.06f, 15));
+        Brokers.Audio.Publish(new AudioEvent(_walk, _walkVolume * 1.2f, _walkPitch.x, _walkPitch.y, transform.position));
+        Brokers.Default.Publish(new CameraShakeEvent(0.5f, 0.06f, 15));
     }
 
     IEnumerator JumpTo(Vector3 target)
@@ -136,6 +136,6 @@ public class DemonJump : EnemyLogic
         transform.position = target;
 
         // broadcast this boss has moved
-        MessageBroker.Default.Publish(new TileMoveCompleteEvent(EnemyController.TileMover));
+        Brokers.Default.Publish(new TileMoveCompleteEvent(EnemyController.TileMover));
     }
 }

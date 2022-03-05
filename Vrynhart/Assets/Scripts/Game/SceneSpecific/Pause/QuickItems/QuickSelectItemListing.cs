@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 
 public class QuickSelectItemListing : MonoBehaviour
 {
@@ -29,6 +28,6 @@ public class QuickSelectItemListing : MonoBehaviour
 
     public void OnClick()
     {
-        MessageBroker.Default.Publish(new QuickSelectItemListingClickEvent(this));
+        Brokers.Default.Publish(new QuickSelectItemListingClickEvent(this));
     }
 }

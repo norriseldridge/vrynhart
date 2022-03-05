@@ -72,7 +72,7 @@ public class PauseController : MonoBehaviour
         _isOpen = false;
         SceneManager.LoadSceneAsync(Constants.Game.MainMenuScene)
             .completed += _ => {
-                MessageBroker.Default.Publish(new TransitionEvent(TransitionType.End));
+                Brokers.Default.Publish(new TransitionEvent(TransitionType.End));
             };
     }
 }

@@ -11,10 +11,10 @@ public class LevelMusicController : PostLevelInitialize
 
     public override void Initialize()
     {
-        MessageBroker.Default.Publish(new MusicEvent(_music, _volume));
+        Brokers.Audio.Publish(new MusicEvent(_music, _volume));
 
-        MessageBroker.Default.Receive<RestartLevelMusicEvent>()
-            .Subscribe(_ => MessageBroker.Default.Publish(new MusicEvent(_music, _volume)))
+        Brokers.Audio.Receive<RestartLevelMusicEvent>()
+            .Subscribe(_ => Brokers.Audio.Publish(new MusicEvent(_music, _volume)))
             .AddTo(this);
     }
 }

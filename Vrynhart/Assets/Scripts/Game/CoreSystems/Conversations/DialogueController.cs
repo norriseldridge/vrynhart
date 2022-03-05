@@ -11,11 +11,11 @@ public class DialogueController : MonoBehaviour
     {
         DontDestroyOnLoad(this);
 
-        MessageBroker.Default.Receive<ConversationCompleteEvent>()
+        Brokers.Default.Receive<ConversationCompleteEvent>()
             .Subscribe(OnConversationComplete)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<SimpleConversationEvent>()
+        Brokers.Default.Receive<SimpleConversationEvent>()
             .Subscribe(OnSimpleConversation)
             .AddTo(this);
     }

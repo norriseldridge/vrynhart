@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
 
 public class RandomSoundSource : MonoBehaviour
 {
@@ -36,6 +35,6 @@ public class RandomSoundSource : MonoBehaviour
     void PlayRandomSound()
     {
         var i = Random.Range(0, _clips.Count);
-        MessageBroker.Default.Publish(new AudioEvent(_clips[i], _volume, position: transform.position));
+        Brokers.Audio.Publish(new AudioEvent(_clips[i], _volume, position: transform.position));
     }
 }

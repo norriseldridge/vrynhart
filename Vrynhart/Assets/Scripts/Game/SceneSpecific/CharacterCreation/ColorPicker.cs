@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 
 public class ColorPicker : MonoBehaviour
 {
@@ -28,19 +27,19 @@ public class ColorPicker : MonoBehaviour
     void OnRedChange(float value)
     {
         _color.r = value;
-        MessageBroker.Default.Publish(new ColorChangeEvent(_color));
+        Brokers.Default.Publish(new ColorChangeEvent(_color));
     }
 
     void OnGreenChange(float value)
     {
         _color.g = value;
-        MessageBroker.Default.Publish(new ColorChangeEvent(_color));
+        Brokers.Default.Publish(new ColorChangeEvent(_color));
     }
 
     void OnBlueChange(float value)
     {
         _color.b = value;
-        MessageBroker.Default.Publish(new ColorChangeEvent(_color));
+        Brokers.Default.Publish(new ColorChangeEvent(_color));
     }
 
     public void SetColor(Color color)
@@ -50,6 +49,6 @@ public class ColorPicker : MonoBehaviour
         _green.value = _color.g;
         _blue.value = _color.b;
 
-        MessageBroker.Default.Publish(new ColorChangeEvent(_color));
+        Brokers.Default.Publish(new ColorChangeEvent(_color));
     }
 }

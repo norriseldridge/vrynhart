@@ -6,7 +6,7 @@ public class SavePoint : MonoBehaviour
 {
     void Start()
     {
-        MessageBroker.Default.Receive<ConversationCompleteEvent>()
+        Brokers.Default.Receive<ConversationCompleteEvent>()
             .Where(e => e.Prompt.transform == transform)
             .Subscribe(_ => SaveGame())
             .AddTo(this);

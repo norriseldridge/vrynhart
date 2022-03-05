@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
 
 // this is a generic base class, player specific one is with player logic
 [RequireComponent(typeof(Collider2D))]
@@ -17,7 +16,7 @@ public class ConversationStarter : MonoBehaviour
         if (prompt != null && prompt.enabled)
         {
             _nearPrompts.Add(prompt);
-            MessageBroker.Default.Publish(new EnterPromptEvent());
+            Brokers.Default.Publish(new EnterPromptEvent());
         }
     }
 
@@ -27,10 +26,10 @@ public class ConversationStarter : MonoBehaviour
         if (prompt != null && prompt.enabled)
         {
             _nearPrompts.Remove(prompt);
-            MessageBroker.Default.Publish(new ExitPromptEvent());
+            Brokers.Default.Publish(new ExitPromptEvent());
             if (_currentPrompt != null)
             {
-                MessageBroker.Default.Publish(new ConversationCompleteEvent(prompt));
+                Brokers.Default.Publish(new ConversationCompleteEvent(prompt));
             }
             _currentPrompt = null;
         }

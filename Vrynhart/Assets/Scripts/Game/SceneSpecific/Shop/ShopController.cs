@@ -49,7 +49,7 @@ public class ShopController : MonoBehaviour
         {
             _player.Inventory.RemoveItem("coin", item.Cost);
             _player.Inventory.AddItem(item.Id, item.PurchaseQuantity);
-            MessageBroker.Default.Publish(new AudioEvent(_purchaseSfx, _volume));
+            Brokers.Audio.Publish(new AudioEvent(_purchaseSfx, _volume));
             return true;
         }
 

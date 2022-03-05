@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour
 
     public void PlayStepSound()
     {
-        MessageBroker.Default.Publish(new AudioEvent(_step, _volume, _minPitch, _maxPitch, transform.position));
+        Brokers.Audio.Publish(new AudioEvent(_step, _volume, _minPitch, _maxPitch, transform.position));
     }
 
 #if UNITY_EDITOR

@@ -47,7 +47,7 @@ public class BossUI : MonoBehaviour
 
     public void Initialize(string name, BossDisplayData data)
     {
-        MessageBroker.Default.Receive<BossDisplayData>()
+        Brokers.Default.Receive<BossDisplayData>()
             .Subscribe(SetDisplay)
             .AddTo(this);
 

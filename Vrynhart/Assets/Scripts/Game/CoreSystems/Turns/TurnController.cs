@@ -18,11 +18,11 @@ public class TurnController : MonoBehaviour
 
         _time = _turnTime;
 
-        MessageBroker.Default.Receive<StopTurnsEvent>()
+        Brokers.Default.Receive<StopTurnsEvent>()
             .Subscribe(_ => enabled = false)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<TurnProgressionEvent>()
+        Brokers.Default.Receive<TurnProgressionEvent>()
             .Subscribe(_ => _time = _turnTime)
             .AddTo(this);
     }
@@ -40,7 +40,7 @@ public class TurnController : MonoBehaviour
         _time -= Time.deltaTime;
 
         if (_time <= 0)
-            MessageBroker.Default.Publish(new TurnProgressionEvent());
+            Brokers.Default.Publish(new TurnProgressionEvent());
 
         _view.SetTime(_time, _turnTime);
     }

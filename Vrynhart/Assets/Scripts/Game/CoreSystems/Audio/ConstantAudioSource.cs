@@ -18,7 +18,7 @@ public class ConstantAudioSource : MonoBehaviour
         _source.volume = 0;
         _source.Play();
 
-        MessageBroker.Default.Receive<AudioSettingsChangedEvent>()
+        Brokers.Audio.Receive<AudioSettingsChangedEvent>()
             .Subscribe(_ => {
                 _sfxVolume = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);
             })

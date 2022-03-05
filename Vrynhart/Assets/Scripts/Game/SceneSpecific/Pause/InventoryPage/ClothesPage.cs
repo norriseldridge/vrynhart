@@ -32,11 +32,11 @@ public class ClothesPage : PausePage
 
     public override void Initialize(PlayerController player)
     {
-        MessageBroker.Default.Receive<PauseItemSelectedEvent>()
+        Brokers.Default.Receive<PauseItemSelectedEvent>()
             .Subscribe(OnItemChanged)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<PlayerViewDataEvent>()
+        Brokers.Default.Receive<PlayerViewDataEvent>()
             .Subscribe(e => HandleViewData(e.ViewData))
             .AddTo(this);
 

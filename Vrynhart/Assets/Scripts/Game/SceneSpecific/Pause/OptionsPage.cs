@@ -30,12 +30,12 @@ public class OptionsPage : PausePage
     void OnSetMusicValue(float value)
     {
         PlayerPrefs.SetFloat(Constants.Prefs.MusicVolume, value);
-        MessageBroker.Default.Publish(new AudioSettingsChangedEvent());
+        Brokers.Audio.Publish(new AudioSettingsChangedEvent());
     }
 
     void OnSetSFXValue(float value)
     {
         PlayerPrefs.SetFloat(Constants.Prefs.SFXVolume, value);
-        MessageBroker.Default.Publish(new AudioSettingsChangedEvent());
+        Brokers.Audio.Publish(new AudioSettingsChangedEvent());
     }
 }

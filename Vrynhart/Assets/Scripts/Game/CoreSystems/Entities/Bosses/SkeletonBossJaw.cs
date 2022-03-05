@@ -53,7 +53,7 @@ public class SkeletonBossJaw : MonoBehaviour
     IEnumerator Laugh()
     {
         _laughing = true;
-        MessageBroker.Default.Publish(new AudioEvent(_laughSfx, 0.7f, position: transform.position));
+        Brokers.Audio.Publish(new AudioEvent(_laughSfx, 0.7f, position: transform.position));
         yield return new WaitForSeconds(_laughDuration);
         _laughing = false;
     }

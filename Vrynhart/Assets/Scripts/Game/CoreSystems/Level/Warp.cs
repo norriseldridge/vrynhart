@@ -56,7 +56,7 @@ public class Warp : RequiresPrompt
     async void DoWarp()
     {
         if (_sfx)
-            MessageBroker.Default.Publish(new AudioEvent(_sfx, _volume));
+            Brokers.Audio.Publish(new AudioEvent(_sfx, _volume));
 
         if (_transition)
             await TransitionController.TriggerTransitionAsTask();
@@ -68,7 +68,7 @@ public class Warp : RequiresPrompt
         }
 
         if (_transition)
-            MessageBroker.Default.Publish(new TransitionEvent(TransitionType.End));
+            Brokers.Default.Publish(new TransitionEvent(TransitionType.End));
     }
 
 #if UNITY_EDITOR

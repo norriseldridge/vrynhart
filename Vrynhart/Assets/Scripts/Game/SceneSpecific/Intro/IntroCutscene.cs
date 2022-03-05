@@ -58,7 +58,7 @@ public class IntroCutscene : MonoBehaviour
         Cursor.visible = false;
 
         // play the theme
-        MessageBroker.Default.Publish(new MusicEvent(_theme));
+        Brokers.Audio.Publish(new MusicEvent(_theme));
 
         yield return new WaitForSeconds(3.0f); // let the music play for a bit first / give transition time
 
@@ -158,7 +158,7 @@ public class IntroCutscene : MonoBehaviour
 
     IEnumerator CarriageRunsOut()
     {
-        MessageBroker.Default.Publish(new AudioEvent(_nya, 0.3f));
+        Brokers.Audio.Publish(new AudioEvent(_nya, 0.3f));
         var carriageSpeed = 2.5f;
         var sfxSpeed = 0.35f;
         while (_carriage.transform.position.x > -12)

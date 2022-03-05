@@ -36,7 +36,7 @@ public class LevelExit : MonoBehaviour
         {
             _exiter = exiter;
             if (_requiresPrompt)
-                MessageBroker.Default.Publish(new EnterPromptEvent());
+                Brokers.Default.Publish(new EnterPromptEvent());
             else
                 ExitLevel();
         }
@@ -51,7 +51,7 @@ public class LevelExit : MonoBehaviour
         if (exiter && exiter.enabled)
         {
             _exiter = null;
-            MessageBroker.Default.Publish(new ExitPromptEvent());
+            Brokers.Default.Publish(new ExitPromptEvent());
         }
     }
 
@@ -74,10 +74,10 @@ public class LevelExit : MonoBehaviour
 
         // stop the player and stop any turns from happening
         player.enabled = false;
-        MessageBroker.Default.Publish(new StopTurnsEvent());
+        Brokers.Default.Publish(new StopTurnsEvent());
 
         // play the sfx
-        MessageBroker.Default.Publish(new AudioEvent(_sfx, _volume));
+        Brokers.Audio.Publish(new AudioEvent(_sfx, _volume));
 
         // fade out
         await TransitionController.TriggerTransitionAsTask();

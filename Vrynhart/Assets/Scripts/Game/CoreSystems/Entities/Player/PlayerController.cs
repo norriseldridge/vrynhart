@@ -61,28 +61,28 @@ public class PlayerController : MonoBehaviour
         _camera = FindObjectOfType<Camera>();
         _tileMap = FindObjectOfType<TileMap>();
         PopulateWithSaveData(saveData);
-        MessageBroker.Default.Publish(new PlayerInputEvent(transform.position)); // get the move indicator in position
+        Brokers.Default.Publish(new PlayerInputEvent(transform.position)); // get the move indicator in position
 
-        MessageBroker.Default.Receive<TurnProgressionEvent>()
+        Brokers.Default.Receive<TurnProgressionEvent>()
             .Subscribe(OnTurnProgression)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<ItemPickUpEvent>()
+        Brokers.Default.Receive<ItemPickUpEvent>()
             .Subscribe(OnItemPickedUp)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<PlayerEquippedItemChangeEvent>()
+        Brokers.Default.Receive<PlayerEquippedItemChangeEvent>()
             .Subscribe(OnPlayerEquippedItemChangeEvent)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<HealthChangeEvent>()
+        Brokers.Default.Receive<HealthChangeEvent>()
             .Where(e => e.Health == _health)
             .Subscribe(e =>
             {
                 if (e.Change > 0)
-                    MessageBroker.Default.Publish(new AudioEvent(_heal, 0.7f));
+                    Brokers.Audio.Publish(new AudioEvent(_heal, 0.7f));
                 else
-                    MessageBroker.Default.Publish(new AudioEvent(_hit));
+                    Brokers.Audio.Publish(new AudioEvent(_hit));
             })
             .AddTo(this);
 
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
             }
 
             transform.position = new Vector3(saveData.X, saveData.Y, 0);
-            MessageBroker.Default.Publish(new PlayerViewDataEvent(saveData.ViewData));
+            Brokers.Default.Publish(new PlayerViewDataEvent(saveData.ViewData));
         }
     }
 
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
                 _quickSelectIndex = 0;
 
             _equippedItem = ItemsLookup.GetItem(_quickItems[_quickSelectIndex]);
-            MessageBroker.Default.Publish(new PlayerEquippedItemChangeEvent(_equippedItem));
+            Brokers.Default.Publish(new PlayerEquippedItemChangeEvent(_equippedItem));
         }
     }
 
@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
             _itemTarget.Hide();
 
         if (Input.GetMouseButtonDown(0))
-            MessageBroker.Default.Publish(new UseItemEvent(EquippedItem, transform.position, target));
+            Brokers.Default.Publish(new UseItemEvent(EquippedItem, transform.position, target));
     }
 
     void HandleMove()
@@ -220,8 +220,8 @@ public class PlayerController : MonoBehaviour
             if (_momentum != momentum && _tileMap.IsFloorAt(target))
             {
                 _momentum = momentum;
-                MessageBroker.Default.Publish(new PlayerInputEvent(target));
-                MessageBroker.Default.Publish(new TurnProgressionEvent());
+                Brokers.Default.Publish(new PlayerInputEvent(target));
+                Brokers.Default.Publish(new TurnProgressionEvent());
             }
         }
 
@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
 
     void OnItemPickedUp(ItemPickUpEvent e)
     {
-        MessageBroker.Default.Publish(new AudioEvent(_itemPickup, 0.25f));
+        Brokers.Audio.Publish(new AudioEvent(_itemPickup, 0.25f));
         _inventory.AddItem(e.ItemId, e.Count);
     }
 
@@ -256,8 +256,8 @@ public class PlayerController : MonoBehaviour
     {
         Instantiate(_bloodSpawnerSource, transform.position, Quaternion.Euler(Vector3.zero));
         Destroy(gameObject);
-        MessageBroker.Default.Publish(new AudioEvent(_death, 0.8f));
-        MessageBroker.Default.Publish(new PlayerDiedEvent());
+        Brokers.Audio.Publish(new AudioEvent(_death, 0.8f));
+        Brokers.Default.Publish(new PlayerDiedEvent());
         SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Additive);
     }
 }

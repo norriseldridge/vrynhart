@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
     public void SetHealth(int health)
     {
         _health = health;
-        MessageBroker.Default.Publish(new HealthChangeEvent(this, 0));
+        Brokers.Default.Publish(new HealthChangeEvent(this, 0));
     }
 
     public void TakeDamage(int damage)
@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
         _health -= damage;
         if (_health < 0)
             _health = 0;
-        MessageBroker.Default.Publish(new HealthChangeEvent(this, -damage));
+        Brokers.Default.Publish(new HealthChangeEvent(this, -damage));
     }
 
     IEnumerator RunIFrames()
@@ -56,6 +56,6 @@ public class Health : MonoBehaviour
         _health += health;
         if (_health > _maxHealth)
             _health = _maxHealth;
-        MessageBroker.Default.Publish(new HealthChangeEvent(this, health));
+        Brokers.Default.Publish(new HealthChangeEvent(this, health));
     }
 }

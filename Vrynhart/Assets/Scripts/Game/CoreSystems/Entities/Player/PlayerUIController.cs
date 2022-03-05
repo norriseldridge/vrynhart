@@ -49,31 +49,31 @@ public class PlayerUIController : PostLevelInitialize
         _itemPickUpText.text = "";
         _oilFill.fillAmount = 0;
 
-        MessageBroker.Default.Receive<HealthChangeEvent>()
+        Brokers.Default.Receive<HealthChangeEvent>()
             .Subscribe(OnHealthChange)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<PlayerDiedEvent>()
+        Brokers.Default.Receive<PlayerDiedEvent>()
             .Subscribe(_ => _healthText.text = "0")
             .AddTo(this);
 
-        MessageBroker.Default.Receive<EnterPromptEvent>()
+        Brokers.Default.Receive<EnterPromptEvent>()
             .Subscribe(_ => _actionPrompt.SetActive(true))
             .AddTo(this);
 
-        MessageBroker.Default.Receive<ExitPromptEvent>()
+        Brokers.Default.Receive<ExitPromptEvent>()
             .Subscribe(_ => _actionPrompt.SetActive(false))
             .AddTo(this);
 
-        MessageBroker.Default.Receive<ItemPickUpEvent>()
+        Brokers.Default.Receive<ItemPickUpEvent>()
             .Subscribe(OnItemPickedUp)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<InventoryChangeEvent>()
+        Brokers.Default.Receive<InventoryChangeEvent>()
             .Subscribe(OnInventoryChanged)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<PlayerEquippedItemChangeEvent>()
+        Brokers.Default.Receive<PlayerEquippedItemChangeEvent>()
             .Subscribe(OnEquippedItemChanged)
             .AddTo(this);
     }

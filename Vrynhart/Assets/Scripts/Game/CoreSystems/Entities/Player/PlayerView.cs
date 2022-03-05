@@ -42,11 +42,11 @@ public class PlayerView : MonoBehaviour
 
     void Awake()
     {
-        MessageBroker.Default.Receive<PlayerViewDataEvent>()
+        Brokers.Default.Receive<PlayerViewDataEvent>()
             .Subscribe(OnViewDataChanged)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<HealthChangeEvent>()
+        Brokers.Default.Receive<HealthChangeEvent>()
             .Where(e => e.Change < 0)
             .Subscribe(OnTakeDamage)
             .AddTo(this);

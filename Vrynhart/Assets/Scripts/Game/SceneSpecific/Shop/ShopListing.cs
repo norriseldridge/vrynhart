@@ -38,7 +38,7 @@ public class ShopListing : MonoBehaviour
     public void Initialize(PlayerController player, string itemId)
     {
         _player = player;
-        MessageBroker.Default.Receive<InventoryChangeEvent>()
+        Brokers.Default.Receive<InventoryChangeEvent>()
             .Subscribe(e =>
             {
                 _ownedQuantity.text = $"Owned: {_player.Inventory.GetCount(_item.Id)}";

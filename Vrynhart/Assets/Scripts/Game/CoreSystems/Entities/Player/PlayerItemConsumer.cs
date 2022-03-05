@@ -12,7 +12,7 @@ public class PlayerItemConsumer : MonoBehaviour
     {
         _player = GetComponent<PlayerController>();
 
-        MessageBroker.Default.Receive<UseItemEvent>()
+        Brokers.Default.Receive<UseItemEvent>()
             .Where(IsItemUseable)
             .Subscribe(e => UseItem(e.Item))
             .AddTo(this);

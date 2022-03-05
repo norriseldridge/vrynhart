@@ -1,5 +1,4 @@
 using UnityEngine;
-using UniRx;
 
 [RequireComponent(typeof(Collider2D))]
 public class RequiresPrompt : MonoBehaviour
@@ -13,7 +12,7 @@ public class RequiresPrompt : MonoBehaviour
         if (user)
         {
             _promptUser = user;
-            MessageBroker.Default.Publish(new EnterPromptEvent());
+            Brokers.Default.Publish(new EnterPromptEvent());
         }
     }
 
@@ -23,7 +22,7 @@ public class RequiresPrompt : MonoBehaviour
         if (user)
         {
             _promptUser = null;
-            MessageBroker.Default.Publish(new ExitPromptEvent());
+            Brokers.Default.Publish(new ExitPromptEvent());
         }
     }
 }

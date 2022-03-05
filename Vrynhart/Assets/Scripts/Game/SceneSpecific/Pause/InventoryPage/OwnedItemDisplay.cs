@@ -24,11 +24,11 @@ public class OwnedItemDisplay : MonoBehaviour
 
     void Start()
     {
-        MessageBroker.Default.Receive<InventoryChangeEvent>()
+        Brokers.Default.Receive<InventoryChangeEvent>()
             .Subscribe(OnInventoryChange)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<PauseItemSelectedEvent>()
+        Brokers.Default.Receive<PauseItemSelectedEvent>()
             .Subscribe(OnItemSelected)
             .AddTo(this);
     }
@@ -51,7 +51,7 @@ public class OwnedItemDisplay : MonoBehaviour
 
     public void OnClick()
     {
-        MessageBroker.Default.Publish(new PauseItemSelectedEvent(_tab, _item));
+        Brokers.Default.Publish(new PauseItemSelectedEvent(_tab, _item));
     }
 
     void OnInventoryChange(InventoryChangeEvent e)

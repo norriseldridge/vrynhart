@@ -10,11 +10,11 @@ public class TileMap : MonoBehaviour
     {
         _tiles = new List<Tile>(FindObjectsOfType<Tile>());
 
-        MessageBroker.Default.Receive<TileMoveEvent>()
+        Brokers.Default.Receive<TileMoveEvent>()
             .Subscribe(OnTileMove)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<TileMoveCompleteEvent>()
+        Brokers.Default.Receive<TileMoveCompleteEvent>()
             .Subscribe(e => {
                 if (e.Mover != null && e.Mover.ShouldPlayStepSounds)
                 {

@@ -30,7 +30,7 @@ public class Inventory
     {
         _itemsOwned = inventory._itemsOwned;
 
-        MessageBroker.Default.Publish(new InventoryChangeEvent(this));
+        Brokers.Default.Publish(new InventoryChangeEvent(this));
     }
 
     public void AddItem(string itemId, int count = 1)
@@ -44,7 +44,7 @@ public class Inventory
             _itemsOwned[itemId] += count;
         }
 
-        MessageBroker.Default.Publish(new InventoryChangeEvent(this));
+        Brokers.Default.Publish(new InventoryChangeEvent(this));
     }
 
     public void RemoveItem(string itemId, int count = 1)
@@ -57,7 +57,7 @@ public class Inventory
 
         _itemsOwned[itemId] -= count;
 
-        MessageBroker.Default.Publish(new InventoryChangeEvent(this));
+        Brokers.Default.Publish(new InventoryChangeEvent(this));
     }
 
     public int GetCount(string itemId)

@@ -40,14 +40,14 @@ public class GiantSlugTentacle : MonoBehaviour
     IEnumerator Play()
     {
         _enemyController.enabled = false;
-        MessageBroker.Default.Publish(new AudioEvent(_warningSfx, _warningVolume, priority: 1));
+        Brokers.Audio.Publish(new AudioEvent(_warningSfx, _warningVolume, priority: 1));
         yield return TweenInSwirls();
 
-        var task = MessageBroker.Default.Receive<TurnProgressionEvent>().Take(2).ToTask();
+        var task = Brokers.Default.Receive<TurnProgressionEvent>().Take(2).ToTask();
         yield return new WaitUntil(() => task.IsCompleted);
 
         _enemyController.enabled = true;
-        MessageBroker.Default.Publish(new TileMoveCompleteEvent(_enemyController.TileMover));
+        Brokers.Default.Publish(new TileMoveCompleteEvent(_enemyController.TileMover));
 
         yield return TweenInAndOut();
         _enemyController.enabled = false;

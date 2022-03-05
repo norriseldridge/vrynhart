@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 
 public class QuickItemSlot : MonoBehaviour
 {
@@ -27,6 +26,6 @@ public class QuickItemSlot : MonoBehaviour
 
     public void OnClick()
     {
-        MessageBroker.Default.Publish(new QuickSelectSlotClickedEvent(_index));
+        Brokers.Default.Publish(new QuickSelectSlotClickedEvent(_index));
     }
 }

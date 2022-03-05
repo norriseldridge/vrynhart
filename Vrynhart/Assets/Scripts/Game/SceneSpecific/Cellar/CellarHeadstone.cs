@@ -13,7 +13,7 @@ public class CellarHeadstone : MonoBehaviour
 
     void Start()
     {
-        MessageBroker.Default.Receive<EnemyDiedEvent>()
+        Brokers.Default.Receive<EnemyDiedEvent>()
             .Subscribe(e => {
                 if (e.EnemyController == _enemyController)
                 {

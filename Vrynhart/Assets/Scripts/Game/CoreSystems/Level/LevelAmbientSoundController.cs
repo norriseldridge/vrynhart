@@ -1,5 +1,4 @@
 using UnityEngine;
-using UniRx;
 
 public class LevelAmbientSoundController : MonoBehaviour
 {
@@ -11,6 +10,6 @@ public class LevelAmbientSoundController : MonoBehaviour
 
     void Start()
     {
-        MessageBroker.Default.Publish(new AmbientAudioEvent(_sound, _volume));
+        Brokers.Audio.Publish(new AmbientAudioEvent(_sound, _volume));
     }
 }

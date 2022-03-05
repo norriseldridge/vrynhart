@@ -59,11 +59,11 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         _mover = GetComponent<TileMover>();
-        MessageBroker.Default.Receive<TurnProgressionEvent>()
+        Brokers.Default.Receive<TurnProgressionEvent>()
             .Subscribe(OnTurnProgression)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<EnemyDestinationPickedEvent>()
+        Brokers.Default.Receive<EnemyDestinationPickedEvent>()
             .Subscribe(OnEnemyDestinationPickedEvent)
             .AddTo(this);
     }
@@ -101,7 +101,7 @@ public class EnemyController : MonoBehaviour
         if (_takenPositions.Any(p => Vector2.Distance(p, target) < 1))
             return false; // another enemy is at this position, don't try
 
-        MessageBroker.Default.Publish(new EnemyDestinationPickedEvent(this, target));
+        Brokers.Default.Publish(new EnemyDestinationPickedEvent(this, target));
 
         _view.FaceTowards(target);
         var direction = target - transform.position;
@@ -127,13 +127,13 @@ public class EnemyController : MonoBehaviour
     public void DealDamage(int damage)
     {
         _health -= damage;
-        MessageBroker.Default.Publish(new EnemyTakeDamageEvent(this, damage));
+        Brokers.Default.Publish(new EnemyTakeDamageEvent(this, damage));
         if (_health <= 0)
         {
-            MessageBroker.Default.Publish(new EnemyDiedEvent(this));
+            Brokers.Default.Publish(new EnemyDiedEvent(this));
 
             // play visuals
-            MessageBroker.Default.Publish(new AudioEvent(_die, _dieVolume));
+            Brokers.Audio.Publish(new AudioEvent(_die, _dieVolume));
             if (_deathSource != null)
             {
                 var death = Instantiate(_deathSource, transform.position, Quaternion.Euler(0, 0, 0));
@@ -150,7 +150,7 @@ public class EnemyController : MonoBehaviour
                 return;
 
             if (_hit.Length > 0)
-                MessageBroker.Default.Publish(new AudioEvent(_hit[Random.Range(0, _hit.Length)], _hitVolume, _hitPitchRange.x, _hitPitchRange.y));
+                Brokers.Audio.Publish(new AudioEvent(_hit[Random.Range(0, _hit.Length)], _hitVolume, _hitPitchRange.x, _hitPitchRange.y));
             _hitTimer = 0.25f;
         }
     }

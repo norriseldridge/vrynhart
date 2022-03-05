@@ -1,5 +1,4 @@
 using UnityEngine;
-using UniRx;
 
 public class BlownOutCandle : MonoBehaviour
 {
@@ -11,6 +10,6 @@ public class BlownOutCandle : MonoBehaviour
 
     void OnEnable()
     {
-        MessageBroker.Default.Publish(new AudioEvent(_sfx, _volume, position: transform.position));
+        Brokers.Audio.Publish(new AudioEvent(_sfx, _volume, position: transform.position));
     }
 }

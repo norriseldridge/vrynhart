@@ -24,7 +24,7 @@ public class KeysPage : PausePage
 
     public override void Initialize(PlayerController player)
     {
-        MessageBroker.Default.Receive<PauseItemSelectedEvent>()
+        Brokers.Default.Receive<PauseItemSelectedEvent>()
             .Subscribe(OnItemChanged)
             .AddTo(this);
 

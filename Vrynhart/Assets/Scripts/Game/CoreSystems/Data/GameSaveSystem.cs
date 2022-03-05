@@ -48,7 +48,7 @@ public static class GameSaveSystem
         DataStorage.Save(_cache, GetCurrentSaveFile());
         _saved = true;
 
-        MessageBroker.Default.Publish(new SaveDataChangeEvent(_cache));
+        Brokers.Default.Publish(new SaveDataChangeEvent(_cache));
     }
 
     public static bool DoSaveFilesExist() => GetSaveFiles().Length > 0;
@@ -80,7 +80,7 @@ public static class GameSaveSystem
         DataStorage.Save(_cache, GetCurrentSaveFile());
         _saved = true;
 
-        MessageBroker.Default.Publish(new SaveDataChangeEvent(_cache));
+        Brokers.Default.Publish(new SaveDataChangeEvent(_cache));
     }
 
     public static void LoadGame(string file = null)
@@ -92,7 +92,7 @@ public static class GameSaveSystem
             _cache = new SaveData(); // we try to load but fail, just create a new savedata
 
         _saved = true; // a freshly loaded game is at the last save, thus "saved"
-        MessageBroker.Default.Publish(new SaveDataChangeEvent(_cache));
+        Brokers.Default.Publish(new SaveDataChangeEvent(_cache));
 
         SceneManager.LoadSceneAsync(_cache.Scene);
     }
@@ -106,7 +106,7 @@ public static class GameSaveSystem
         _cache.X = (int)position.x;
         _cache.Y = (int)position.y;
 
-        MessageBroker.Default.Publish(new SaveDataChangeEvent(_cache));
+        Brokers.Default.Publish(new SaveDataChangeEvent(_cache));
     }
 
     public static void CacheGame(PlayerController player) // on exiting a scene
@@ -117,7 +117,7 @@ public static class GameSaveSystem
         _cache.QuickItems = player.QuickItems;
         _cache.Health = player.Health.CurrentHealth;
 
-        MessageBroker.Default.Publish(new SaveDataChangeEvent(_cache));
+        Brokers.Default.Publish(new SaveDataChangeEvent(_cache));
     }
 
     public static void CacheGame(string flag) // on completing a permanent action
@@ -127,14 +127,14 @@ public static class GameSaveSystem
         if (!_cache.CompletedFlags.Contains(flag))
             _cache.CompletedFlags.Add(flag);
 
-        MessageBroker.Default.Publish(new SaveDataChangeEvent(_cache));
+        Brokers.Default.Publish(new SaveDataChangeEvent(_cache));
     }
 
     public static void CacheGame(PlayerViewData viewData)
     {
         _saved = false;
         _cache.ViewData = viewData;
-        MessageBroker.Default.Publish(new PlayerViewDataEvent(_cache.ViewData));
-        MessageBroker.Default.Publish(new SaveDataChangeEvent(_cache));
+        Brokers.Default.Publish(new PlayerViewDataEvent(_cache.ViewData));
+        Brokers.Default.Publish(new SaveDataChangeEvent(_cache));
     }
 }

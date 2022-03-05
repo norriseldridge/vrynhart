@@ -1,5 +1,4 @@
 using UnityEngine;
-using UniRx;
 
 [RequireComponent(typeof(Collider2D))]
 public class ConversationPrompt : MonoBehaviour
@@ -22,7 +21,7 @@ public class ConversationPrompt : MonoBehaviour
     void StartConversation()
     {
         if (_conversation is SimpleConversation)
-            MessageBroker.Default.Publish(new SimpleConversationEvent(this));
+            Brokers.Default.Publish(new SimpleConversationEvent(this));
         else
             throw new System.Exception($"Don't know how to handle converstaion of type `{_conversation.GetType()}`.");
     }

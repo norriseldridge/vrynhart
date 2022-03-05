@@ -70,32 +70,32 @@ public class CellarBoss : MonoBehaviour
         _triggered = true;
 
         // start the music
-        MessageBroker.Default.Publish(new MusicEvent(_music, 1, false));
+        Brokers.Audio.Publish(new MusicEvent(_music, 1, false));
 
         // show the boss ui
         _startingHealth = _boss.Health;
         await BossUI.Show(_bossName, new BossUI.BossDisplayData() { Hp = _boss.Health, MaxHp = _startingHealth });
 
         // listen for health changes
-        MessageBroker.Default.Receive<EnemyTakeDamageEvent>()
+        Brokers.Default.Receive<EnemyTakeDamageEvent>()
             .Where(e => e.EnemyController == _boss)
             .Subscribe(OnEnemyTakeDamageEvent)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<EnemyDiedEvent>()
+        Brokers.Default.Receive<EnemyDiedEvent>()
             .Where(e => e.EnemyController == _boss)
             .Subscribe(OnEnemyDiedEvent)
             .AddTo(this);
 
         // each turn
-        MessageBroker.Default.Receive<TurnProgressionEvent>()
+        Brokers.Default.Receive<TurnProgressionEvent>()
             .Subscribe(OnTurnProgressionEvent)
             .AddTo(this);
     }
 
     void OnEnemyTakeDamageEvent(EnemyTakeDamageEvent e)
     {
-        MessageBroker.Default.Publish(new BossUI.BossDisplayData() { Hp = _boss.Health, MaxHp = _startingHealth });
+        Brokers.Default.Publish(new BossUI.BossDisplayData() { Hp = _boss.Health, MaxHp = _startingHealth });
 
         if (_boss.Health > 25)
             _phase = 0;
@@ -110,7 +110,7 @@ public class CellarBoss : MonoBehaviour
     void OnEnemyDiedEvent(EnemyDiedEvent e)
     {
         // resume the normal music the music
-        MessageBroker.Default.Publish(new RestartLevelMusicEvent());
+        Brokers.Audio.Publish(new RestartLevelMusicEvent());
 
         GameSaveSystem.CacheGame(_persistentId);
 

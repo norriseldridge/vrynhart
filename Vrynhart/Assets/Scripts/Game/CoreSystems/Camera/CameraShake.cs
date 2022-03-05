@@ -7,7 +7,7 @@ public class CameraShake : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MessageBroker.Default.Receive<CameraShakeEvent>()
+        Brokers.Default.Receive<CameraShakeEvent>()
             .Subscribe(OnCameraShake)
             .AddTo(this);
     }

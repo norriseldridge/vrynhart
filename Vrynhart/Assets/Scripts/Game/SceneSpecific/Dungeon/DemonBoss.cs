@@ -59,23 +59,23 @@ public class DemonBoss : MonoBehaviour
             _startingHealth = _boss.Health;
             await BossUI.Show(_bossName, new BossUI.BossDisplayData() { Hp = _boss.Health, MaxHp = _startingHealth });
 
-            MessageBroker.Default.Publish(new MusicEvent(_music));
-            MessageBroker.Default.Publish(new AudioEvent(_screech, _screechVolume));
-            MessageBroker.Default.Publish(new CameraShakeEvent(0.5f, 0.05f, 36));
+            Brokers.Audio.Publish(new MusicEvent(_music));
+            Brokers.Audio.Publish(new AudioEvent(_screech, _screechVolume));
+            Brokers.Default.Publish(new CameraShakeEvent(0.5f, 0.05f, 36));
 
             // set up enemy controller listening
-            MessageBroker.Default.Receive<EnemyTakeDamageEvent>()
+            Brokers.Default.Receive<EnemyTakeDamageEvent>()
                 .Where(e => e.EnemyController == _boss)
                 .Subscribe(e => {
-                    MessageBroker.Default.Publish(new BossUI.BossDisplayData() { Hp = _boss.Health, MaxHp = _startingHealth });
+                    Brokers.Default.Publish(new BossUI.BossDisplayData() { Hp = _boss.Health, MaxHp = _startingHealth });
                 })
                 .AddTo(this);
 
-            MessageBroker.Default.Receive<EnemyDiedEvent>()
+            Brokers.Default.Receive<EnemyDiedEvent>()
                 .Where(e => e.EnemyController == _boss)
                 .Subscribe(e => {
                     // stop the music
-                    MessageBroker.Default.Publish(new MusicEvent(null));
+                    Brokers.Audio.Publish(new MusicEvent(null));
 
                     // close the ui
                     BossUI.Close();
@@ -110,7 +110,7 @@ public class DemonBoss : MonoBehaviour
         {
             _currentGruntDelay = Random.Range(_gruntDelay / 2, _gruntDelay);
             var i = Random.Range(0, _fightGrunts.Length);
-            MessageBroker.Default.Publish(new AudioEvent(_fightGrunts[i], _gruntVolume));
+            Brokers.Audio.Publish(new AudioEvent(_fightGrunts[i], _gruntVolume));
         }
     }
 }

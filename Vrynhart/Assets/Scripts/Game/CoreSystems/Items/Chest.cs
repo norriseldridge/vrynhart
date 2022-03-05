@@ -32,7 +32,7 @@ public class Chest : MonoBehaviour
         var saveData = GameSaveSystem.GetCachedSaveData();
         HandleSaveData(saveData);
 
-        MessageBroker.Default.Receive<SaveDataChangeEvent>()
+        Brokers.Default.Receive<SaveDataChangeEvent>()
             .Subscribe(e => HandleSaveData(e.SaveData))
             .AddTo(this);
     }
@@ -64,7 +64,7 @@ public class Chest : MonoBehaviour
         if (controller)
         {
             _collector = controller;
-            MessageBroker.Default.Publish(new EnterPromptEvent());
+            Brokers.Default.Publish(new EnterPromptEvent());
         }
     }
 
@@ -77,7 +77,7 @@ public class Chest : MonoBehaviour
         if (controller)
         {
             _collector = null;
-            MessageBroker.Default.Publish(new ExitPromptEvent());
+            Brokers.Default.Publish(new ExitPromptEvent());
         }
     }
 
@@ -86,8 +86,8 @@ public class Chest : MonoBehaviour
         if (_collector != null && _collector.RequestedCollect)
         {
             GameSaveSystem.CacheGame(_uid);
-            MessageBroker.Default.Publish(new ItemPickUpEvent(_itemId, _count));
-            MessageBroker.Default.Publish(new ExitPromptEvent());
+            Brokers.Default.Publish(new ItemPickUpEvent(_itemId, _count));
+            Brokers.Default.Publish(new ExitPromptEvent());
             _collector = null;
             _wasCollected = true;
         }

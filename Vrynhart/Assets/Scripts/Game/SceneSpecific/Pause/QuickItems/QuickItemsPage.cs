@@ -42,11 +42,11 @@ public class QuickItemsPage : PausePage
         // don't show this equipment
         _equipmentDisplay.SetActive(false);
 
-        MessageBroker.Default.Receive<QuickSelectSlotClickedEvent>()
+        Brokers.Default.Receive<QuickSelectSlotClickedEvent>()
             .Subscribe(OnQuickSelectSlotClicked)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<QuickSelectItemListingClickEvent>()
+        Brokers.Default.Receive<QuickSelectItemListingClickEvent>()
             .Subscribe(OnQuickSelectItemListingClickEvent)
             .AddTo(this);
     }
@@ -100,7 +100,7 @@ public class QuickItemsPage : PausePage
         if (_selectedSlotIndex == _player.QuickSelectIndex)
         {
             var item = ItemsLookup.GetItem(quickItems[_selectedSlotIndex]);
-            MessageBroker.Default.Publish(new PlayerEquippedItemChangeEvent(item));
+            Brokers.Default.Publish(new PlayerEquippedItemChangeEvent(item));
         }
     }
 

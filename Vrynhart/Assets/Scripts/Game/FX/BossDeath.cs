@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UniRx;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class BossDeath : MonoBehaviour
@@ -27,7 +26,7 @@ public class BossDeath : MonoBehaviour
 
     void Start()
     {
-        MessageBroker.Default.Publish(new AudioEvent(_sfx, _volume, priority: 10));
+        Brokers.Audio.Publish(new AudioEvent(_sfx, _volume, priority: 10));
         _dissolver.Dissolve();
         StartCoroutine(Play());
     }

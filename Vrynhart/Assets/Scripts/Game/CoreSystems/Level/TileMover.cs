@@ -41,7 +41,7 @@ public class TileMover : MonoBehaviour
         if (_isMoving.Value)
             return;
 
-        MessageBroker.Default.Publish(new TileMoveEvent(this, direction));
+        Brokers.Default.Publish(new TileMoveEvent(this, direction));
     }
 
     public void MoveTo(Vector3 destination)
@@ -65,6 +65,6 @@ public class TileMover : MonoBehaviour
         transform.position = destination;
         _isMoving.Value = false;
 
-        MessageBroker.Default.Publish(new TileMoveCompleteEvent(this));
+        Brokers.Default.Publish(new TileMoveCompleteEvent(this));
     }
 }

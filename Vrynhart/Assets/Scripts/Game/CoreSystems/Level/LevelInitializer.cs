@@ -67,8 +67,8 @@ public class LevelInitializer : MonoBehaviour
             p.Initialize();
 
         // fade in
-        MessageBroker.Default.Publish(new TransitionEvent(TransitionType.End));
-        await MessageBroker.Default.Receive<TransitionCompleteEvent>().Where(e => e.Type == TransitionType.End).Take(1);
+        Brokers.Default.Publish(new TransitionEvent(TransitionType.End));
+        await Brokers.Default.Receive<TransitionCompleteEvent>().Where(e => e.Type == TransitionType.End).Take(1);
         mover.enabled = true;
     }
 

@@ -12,8 +12,8 @@ public class TransitionController : MonoBehaviour
 {
     public static Task TriggerTransitionAsTask()
     {
-        MessageBroker.Default.Publish(new TransitionEvent(TransitionType.Start));
-        return MessageBroker.Default.Receive<TransitionCompleteEvent>()
+        Brokers.Default.Publish(new TransitionEvent(TransitionType.Start));
+        return Brokers.Default.Receive<TransitionCompleteEvent>()
             .Where(e => e.Type == TransitionType.Start)
             .Take(1)
             .ToTask();
@@ -28,11 +28,11 @@ public class TransitionController : MonoBehaviour
     {
         DontDestroyOnLoad(this);
 
-        MessageBroker.Default.Receive<TransitionEvent>()
+        Brokers.Default.Receive<TransitionEvent>()
             .Subscribe(OnTransitionEvent)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<TransitionCompleteEvent>()
+        Brokers.Default.Receive<TransitionCompleteEvent>()
             .Subscribe(OnTransitionCompleteEvent)
             .AddTo(this);
     }

@@ -27,14 +27,14 @@ public class GateController : MonoBehaviour
 
     void Start()
     {
-        MessageBroker.Default.Receive<GateOpenEvent>()
+        Brokers.Default.Receive<GateOpenEvent>()
             .Subscribe(OnGateOpen)
             .AddTo(this);
     }
 
     void OnGateOpen(GateOpenEvent e)
     {
-        MessageBroker.Default.Publish(new AudioEvent(_sfx, _volume));
+        Brokers.Audio.Publish(new AudioEvent(_sfx, _volume));
         StartCoroutine(OpenGateAnimation());
     }
 

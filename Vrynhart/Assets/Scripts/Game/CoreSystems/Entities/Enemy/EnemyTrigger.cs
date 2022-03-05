@@ -37,7 +37,7 @@ public class EnemyTrigger : MonoBehaviour
             _triggered = true;
 
             if (_triggerSound != null)
-                MessageBroker.Default.Publish(new AudioEvent(_triggerSound, _volume));
+                Brokers.Audio.Publish(new AudioEvent(_triggerSound, _volume));
 
             foreach (var e in _enemies)
             {

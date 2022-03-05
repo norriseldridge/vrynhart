@@ -26,7 +26,7 @@ public class TransitionView : MonoBehaviour
             yield return null;
         }
 
-        MessageBroker.Default.Publish(new TransitionCompleteEvent(TransitionType.Start));
+        Brokers.Default.Publish(new TransitionCompleteEvent(TransitionType.Start));
     }
 
     public void FadeFromBlack() => StartCoroutine(FromBlack());
@@ -44,6 +44,6 @@ public class TransitionView : MonoBehaviour
             yield return null;
         }
 
-        MessageBroker.Default.Publish(new TransitionCompleteEvent(TransitionType.End));
+        Brokers.Default.Publish(new TransitionCompleteEvent(TransitionType.End));
     }
 }

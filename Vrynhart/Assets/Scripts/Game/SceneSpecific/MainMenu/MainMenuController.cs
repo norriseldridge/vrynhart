@@ -66,20 +66,20 @@ public class MainMenuController : MonoBehaviour
             _load.gameObject.SetActive(false);
         }
 
-        MessageBroker.Default.Publish(new MusicEvent(_music));
-        MessageBroker.Default.Publish(new AmbientAudioEvent(null));
+        Brokers.Audio.Publish(new MusicEvent(_music));
+        Brokers.Audio.Publish(new AmbientAudioEvent(null));
     }
 
     void OnSetMusicValue(float value)
     {
         PlayerPrefs.SetFloat(Constants.Prefs.MusicVolume, value);
-        MessageBroker.Default.Publish(new AudioSettingsChangedEvent());
+        Brokers.Audio.Publish(new AudioSettingsChangedEvent());
     }
 
     void OnSetSFXValue(float value)
     {
         PlayerPrefs.SetFloat(Constants.Prefs.SFXVolume, value);
-        MessageBroker.Default.Publish(new AudioSettingsChangedEvent());
+        Brokers.Audio.Publish(new AudioSettingsChangedEvent());
     }
 
     void OnDestroy()
@@ -89,16 +89,18 @@ public class MainMenuController : MonoBehaviour
         _sfxVolume.onValueChanged.RemoveAllListeners();
     }
 
+    void PlaySelectSound() => Brokers.Audio.Publish(new AudioEvent(_select, _selectVolume));
+
     public async void OnClickPlay()
     {
-        MessageBroker.Default.Publish(new AudioEvent(_select, _selectVolume));
+        PlaySelectSound();
         await TransitionController.TriggerTransitionAsTask();
         GameSaveSystem.LoadLastPlayedGame();
     }
 
     public void OnClickNewGame()
     {
-        MessageBroker.Default.Publish(new AudioEvent(_select, _selectVolume));
+        PlaySelectSound();
         _newGamePopup.SetActive(true);
     }
 
@@ -111,7 +113,7 @@ public class MainMenuController : MonoBehaviour
         GameSaveSystem.CreateSaveFile(name);
         SceneManager.LoadSceneAsync("Intro")
             .completed += (s) => {
-                MessageBroker.Default.Publish(new TransitionEvent(TransitionType.End));
+                Brokers.Default.Publish(new TransitionEvent(TransitionType.End));
             };
     }
 
@@ -122,8 +124,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickLoadGame()
     {
-        // TODO load a game???
-        MessageBroker.Default.Publish(new AudioEvent(_select, _selectVolume));
+        PlaySelectSound();
 
         // destory children
         foreach (Transform child in _loadGamePopupContainer)
@@ -142,7 +143,7 @@ public class MainMenuController : MonoBehaviour
 
     async void OnSelectedSaveFile(string file)
     {
-        MessageBroker.Default.Publish(new AudioEvent(_select, _selectVolume));
+        PlaySelectSound();
         await TransitionController.TriggerTransitionAsTask();
         GameSaveSystem.LoadGame(file);
     }
@@ -154,7 +155,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickOptions()
     {
-        MessageBroker.Default.Publish(new AudioEvent(_select, _selectVolume));
+        PlaySelectSound();
         _musicVolume.value = PlayerPrefs.GetFloat(Constants.Prefs.MusicVolume, 1.0f);
         _sfxVolume.value = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);
         _optionsPopup.SetActive(true);
@@ -167,7 +168,7 @@ public class MainMenuController : MonoBehaviour
 
     public async void OnClickQuit()
     {
-        MessageBroker.Default.Publish(new AudioEvent(_select, _selectVolume));
+        PlaySelectSound();
         await TransitionController.TriggerTransitionAsTask();
 
 #if UNITY_EDITOR

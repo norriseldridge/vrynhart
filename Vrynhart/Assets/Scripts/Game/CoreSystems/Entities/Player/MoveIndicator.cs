@@ -13,7 +13,7 @@ public class MoveIndicator : PostLevelInitialize
     {
         var player = FindObjectOfType<PlayerController>();
         transform.position = player.transform.position;
-        MessageBroker.Default.Receive<PlayerInputEvent>()
+        Brokers.Default.Receive<PlayerInputEvent>()
             .Subscribe(OnPlayerInput)
             .AddTo(this);
     }

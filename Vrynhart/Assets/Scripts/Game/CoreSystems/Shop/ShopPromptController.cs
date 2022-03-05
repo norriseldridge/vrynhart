@@ -9,7 +9,7 @@ public class ShopPromptController : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        MessageBroker.Default.Receive<ShopEvent>()
+        Brokers.Default.Receive<ShopEvent>()
             .Subscribe(OnShopEvent)
             .AddTo(this);
     }

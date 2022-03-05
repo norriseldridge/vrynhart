@@ -9,6 +9,6 @@ public class WarpUser : MonoBehaviour
 
         var mover = GetComponent<TileMover>();
         if (mover)
-            MessageBroker.Default.Publish(new TileMoveCompleteEvent(mover));
+            Brokers.Default.Publish(new TileMoveCompleteEvent(mover));
     }
 }

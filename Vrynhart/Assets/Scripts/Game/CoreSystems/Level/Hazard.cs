@@ -9,13 +9,13 @@ public class Hazard : MonoBehaviour
 
     void Start()
     {
-        MessageBroker.Default.Receive<TurnProgressionEvent>()
+        Brokers.Default.Receive<TurnProgressionEvent>()
             .Subscribe(OnTurn)
             .AddTo(this);
     }
 
     void OnTurn(TurnProgressionEvent e)
     {
-        MessageBroker.Default.Publish(new EnvironmentalDamageEvent(transform.position, _damage));
+        Brokers.Default.Publish(new EnvironmentalDamageEvent(transform.position, _damage));
     }
 }

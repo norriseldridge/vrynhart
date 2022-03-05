@@ -36,19 +36,19 @@ public class AudioController : MonoBehaviour
         _sfxVolume = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);
 
         _pool = new List<AudioSource>();
-        MessageBroker.Default.Receive<AudioEvent>()
+        Brokers.Audio.Receive<AudioEvent>()
             .Subscribe(OnAudioEvent)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<AmbientAudioEvent>()
+        Brokers.Audio.Receive<AmbientAudioEvent>()
             .Subscribe(OnAmbientAudioEvent)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<MusicEvent>()
+        Brokers.Audio.Receive<MusicEvent>()
             .Subscribe(OnMusicEvent)
             .AddTo(this);
 
-        MessageBroker.Default.Receive<AudioSettingsChangedEvent>()
+        Brokers.Audio.Receive<AudioSettingsChangedEvent>()
             .Subscribe(_ => {
                 _musicVolume = PlayerPrefs.GetFloat(Constants.Prefs.MusicVolume, 1.0f);
                 _sfxVolume = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);

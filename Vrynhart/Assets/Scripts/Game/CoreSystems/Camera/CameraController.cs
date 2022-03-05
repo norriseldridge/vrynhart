@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        MessageBroker.Default.Receive<CameraBoundsChangeEvent>()
+        Brokers.Default.Receive<CameraBoundsChangeEvent>()
             .Subscribe(OnCameraBoundsChanged)
             .AddTo(this);
 

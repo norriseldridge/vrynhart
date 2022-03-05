@@ -12,8 +12,8 @@ public class GateLever : MonoBehaviour
             enabled = false;
 
             _player = null;
-            MessageBroker.Default.Publish(new ExitPromptEvent());
-            MessageBroker.Default.Publish(new GateOpenEvent());
+            Brokers.Default.Publish(new ExitPromptEvent());
+            Brokers.Default.Publish(new GateOpenEvent());
         }
     }
 
@@ -26,7 +26,7 @@ public class GateLever : MonoBehaviour
         if (player)
         {
             _player = player;
-            MessageBroker.Default.Publish(new EnterPromptEvent());
+            Brokers.Default.Publish(new EnterPromptEvent());
         }
     }
 
@@ -39,7 +39,7 @@ public class GateLever : MonoBehaviour
         if (player)
         {
             _player = null;
-            MessageBroker.Default.Publish(new ExitPromptEvent());
+            Brokers.Default.Publish(new ExitPromptEvent());
         }
     }
 }

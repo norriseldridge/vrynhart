@@ -71,7 +71,7 @@ public class SkeletonBossFight : MonoBehaviour
     {
         var save = GameSaveSystem.GetCachedSaveData();
         HandleBossPreviouslyCompleted(save);
-        MessageBroker.Default.Receive<SaveDataChangeEvent>()
+        Brokers.Default.Receive<SaveDataChangeEvent>()
             .Subscribe(e => HandleBossPreviouslyCompleted(e.SaveData))
             .AddTo(this);
     }
@@ -122,7 +122,7 @@ public class SkeletonBossFight : MonoBehaviour
         else
         {
             _data.Hp = _spawns.Count(s => !s.Destroyed) * 10;
-            MessageBroker.Default.Publish(new BossUI.BossDisplayData() { Hp = _data.Hp, MaxHp = _data.MaxHp });
+            Brokers.Default.Publish(new BossUI.BossDisplayData() { Hp = _data.Hp, MaxHp = _data.MaxHp });
         }
     }
 
@@ -135,12 +135,12 @@ public class SkeletonBossFight : MonoBehaviour
         foreach (var tile in _tilesToDisableAtStart)
             tile.enabled = false;
 
-        MessageBroker.Default.Publish(new MusicEvent(_bossMusic, _volume));
+        Brokers.Audio.Publish(new MusicEvent(_bossMusic, _volume));
         StartCoroutine(FadeInLight());
 
         await BossUI.Show(_bossName, new BossUI.BossDisplayData() { Hp = _data.Hp, MaxHp = _data.MaxHp });
 
-        MessageBroker.Default.Receive<TurnProgressionEvent>()
+        Brokers.Default.Receive<TurnProgressionEvent>()
             .Subscribe(_ =>
             {
                 if (_spawnedCount >= _maxSpawns)
@@ -195,13 +195,13 @@ public class SkeletonBossFight : MonoBehaviour
             tile.enabled = true;
 
         // destroy the boss
-        MessageBroker.Default.Publish(new AudioEvent(_bossDeathSfx, _bossDeathVolume, _bossDeathPitch, _bossDeathPitch));
+        Brokers.Audio.Publish(new AudioEvent(_bossDeathSfx, _bossDeathVolume, _bossDeathPitch, _bossDeathPitch));
         Destroy(_boss);
         _bossDeath.gameObject.SetActive(true);
         _bossDeath.Explode();
 
         // stop music
-        MessageBroker.Default.Publish(new MusicEvent(null));
+        Brokers.Audio.Publish(new MusicEvent(null));
         StartCoroutine(RetartLevelMusic());
 
         // mark that this boss is done
@@ -211,6 +211,6 @@ public class SkeletonBossFight : MonoBehaviour
     IEnumerator RetartLevelMusic()
     {
         yield return new WaitForSeconds(4);
-        MessageBroker.Default.Publish(new RestartLevelMusicEvent());
+        Brokers.Audio.Publish(new RestartLevelMusicEvent());
     }
 }

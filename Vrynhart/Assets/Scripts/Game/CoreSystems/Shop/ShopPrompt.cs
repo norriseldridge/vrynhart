@@ -13,11 +13,11 @@ public class ShopPrompt : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        MessageBroker.Default.Publish(new ShopEvent(true, _itemListings, _conversation));
+        Brokers.Default.Publish(new ShopEvent(true, _itemListings, _conversation));
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        MessageBroker.Default.Publish(new ShopEvent(false));
+        Brokers.Default.Publish(new ShopEvent(false));
     }
 }

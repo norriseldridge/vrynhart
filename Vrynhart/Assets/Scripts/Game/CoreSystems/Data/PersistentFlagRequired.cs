@@ -20,7 +20,7 @@ public class PersistentFlagRequired : MonoBehaviour
         var saveData = GameSaveSystem.GetCachedSaveData();
         HandlePersistentFlags(saveData.CompletedFlags);
 
-        MessageBroker.Default.Receive<SaveDataChangeEvent>()
+        Brokers.Default.Receive<SaveDataChangeEvent>()
             .Subscribe(e => HandlePersistentFlags(e.SaveData.CompletedFlags))
             .AddTo(this);
     }

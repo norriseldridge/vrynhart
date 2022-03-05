@@ -30,7 +30,7 @@ public class LevelItem : MonoBehaviour
         var player = collision.GetComponent<PlayerController>();
         if (player != null)
         {
-            MessageBroker.Default.Publish(new ItemPickUpEvent(_itemId, _count));
+            Brokers.Default.Publish(new ItemPickUpEvent(_itemId, _count));
             Destroy(gameObject);
         }
     }
