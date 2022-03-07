@@ -7,6 +7,6 @@ public class PlayerPromptUser : PromptUser
 
     void Update()
     {
-        _accepted = Input.GetKeyDown(KeyCode.Space);
+        _accepted = CustomInput.GetKeyDown(CustomInput.Interact);
     }
 }

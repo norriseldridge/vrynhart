@@ -9,6 +9,9 @@ public class ButtonActiveText : MonoBehaviour
     [SerializeField]
     Color _activeColor;
 
+    [SerializeField]
+    Color _mouseOverColor;
+
     Text _text;
     Color _normalColor;
 
@@ -23,7 +26,7 @@ public class ButtonActiveText : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        _text.color = _activeColor;
+        _text.color = _active ? _activeColor : _mouseOverColor;
     }
 
     public void OnMouseExit()

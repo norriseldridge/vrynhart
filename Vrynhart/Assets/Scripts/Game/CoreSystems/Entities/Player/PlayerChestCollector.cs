@@ -7,6 +7,6 @@ public class PlayerChestCollector : ChestCollector
 
     void Update()
     {
-        _requestedCollect = Input.GetKeyDown(KeyCode.Space);
+        _requestedCollect = CustomInput.GetKeyDown(CustomInput.Interact);
     }
 }

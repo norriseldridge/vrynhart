@@ -2,9 +2,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using System.Collections.Generic;
 
 public class KeysPage : PausePage
 {
+    [SerializeField]
+    ControllerButtonListNavigation _buttons;
+
     [SerializeField]
     OwnedItemDisplay _source;
 
@@ -34,6 +38,8 @@ public class KeysPage : PausePage
         var filteredSortedList = ownedItems
             .Where(oi => oi.count > 0 && oi.item.ItemType == ItemType.Key)
             .OrderBy(oi => oi.item.Name);
+
+        var displayList = new List<Button>();
         foreach (var ownedItem in filteredSortedList)
         {
             var item = ownedItem.item;
@@ -41,7 +47,9 @@ public class KeysPage : PausePage
             var display = Instantiate(_source, _itemsContainer);
             display.SetTab(InventoryPage.Keys);
             display.PopulateWithItem(item, count);
+            displayList.Add(display.GetComponent<Button>());
         }
+        _buttons.SetOverride(displayList);
 
         var first = filteredSortedList.Count() > 0 ? filteredSortedList.First().item : null;
         SelectItem(first);
@@ -71,5 +79,15 @@ public class KeysPage : PausePage
         {
             _details.SetActive(false);
         }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        var y = CustomInput.GetAxis("Mouse Y");
+        var scroll = _itemDescription.GetComponentInParent<ScrollRect>();
+        if (scroll && scroll.content)
+            scroll.content.localPosition += Vector3.up * y;
     }
 }

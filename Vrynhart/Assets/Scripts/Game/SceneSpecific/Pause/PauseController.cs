@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UniRx;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PauseController : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class PauseController : MonoBehaviour
         {
             _tabText.SetActive(active);
             _page.gameObject.SetActive(active);
+            _page.enabled = active;
         }
     }
 
@@ -39,31 +41,63 @@ public class PauseController : MonoBehaviour
     }
 
     [SerializeField]
+    ControllerButtonListNavigation _buttons;
+
+    [SerializeField]
     List<PauseScreenTabPagePair> _tabPages;
+    IReactiveProperty<int> _tabIndex = new ReactiveProperty<int>(-1);
 
     void Start()
     {
+        _buttons.enabled = true;
         var player = FindObjectOfType<PlayerController>();
 
         foreach (var tp in _tabPages)
+        {
             tp.Page.Initialize(player);
+            tp.SetActive(false);
+        }
 
-        SelectTab("quick");
+        _tabIndex
+            .Skip(1)
+            .Subscribe(i =>
+            {
+                if (i >= 0 && i < _tabPages.Count)
+                {
+                    var activeId = _tabPages[i].Id;
+                    _tabPages.ForEach(tp => tp.SetActive(tp.Id == activeId));
+                    _buttons.enabled = false;
+                }
+            }).AddTo(this);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.UnloadSceneAsync(Constants.Game.PauseScene);
-            _isOpen = false;
-        }
+        if (CustomInput.GetKeyDown(CustomInput.Start))
+            Close();
+
+        var activePages = _tabPages.Count(p => p.Page.gameObject.activeSelf);
+        _buttons.enabled = activePages == 0;
+        if (CustomInput.GetKeyDown(CustomInput.Cancel) && activePages == 0)
+            Close();
+    }
+
+    void Close()
+    {
+        SceneManager.UnloadSceneAsync(Constants.Game.PauseScene);
+        _isOpen = false;
     }
 
     public void OnClickTab(string tab) => SelectTab(tab);
 
-    void SelectTab(string tab) =>
-        _tabPages.ForEach(tp => tp.SetActive(tp.Id == tab));
+    void SelectTab(string tab)
+    {
+        var index = _tabPages.IndexOf(_tabPages.Where(p => p.Id == tab).FirstOrDefault());
+        if (_tabIndex.Value == index)
+            _tabIndex.Value = -1;
+
+        _tabIndex.Value = index;
+    }
 
     public async void OnClickQuit()
     {

@@ -7,7 +7,7 @@ public class GateLever : MonoBehaviour
 
     void Update()
     {
-        if (enabled && _player != null && Input.GetKeyDown(KeyCode.Space))
+        if (enabled && _player != null && CustomInput.GetKeyDown(CustomInput.Interact))
         {
             enabled = false;
 

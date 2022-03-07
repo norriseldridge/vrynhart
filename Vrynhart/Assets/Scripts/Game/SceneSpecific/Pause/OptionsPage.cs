@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 
 public class OptionsPage : PausePage
 {
+    [SerializeField]
+    ControllerSliderListNavigation _sliders;
+
     [SerializeField]
     Slider _musicVolume;
 
@@ -12,6 +14,8 @@ public class OptionsPage : PausePage
 
     public override void Initialize(PlayerController player)
     {
+        _sliders.enabled = false;
+
         // set the options values
         _musicVolume.value = PlayerPrefs.GetFloat(Constants.Prefs.MusicVolume, 1.0f);
         _sfxVolume.value = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);
@@ -19,6 +23,22 @@ public class OptionsPage : PausePage
         // option sliders listeners
         _musicVolume.onValueChanged.AddListener(OnSetMusicValue);
         _sfxVolume.onValueChanged.AddListener(OnSetSFXValue);
+    }
+
+    void OnEnable()
+    {
+        _sliders.enabled = true;
+        var children = _sliders.transform.GetComponentsInChildren<ControllerSliderAdjuster>();
+        foreach (var child in children)
+            child.enabled = true;
+    }
+
+    void OnDisable()
+    {
+        _sliders.enabled = false;
+        var children = _sliders.transform.GetComponentsInChildren<ControllerSliderAdjuster>();
+        foreach (var child in children)
+            child.enabled = false;
     }
 
     void OnDestroy()

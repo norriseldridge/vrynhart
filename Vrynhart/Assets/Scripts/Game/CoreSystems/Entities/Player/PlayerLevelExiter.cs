@@ -7,6 +7,6 @@ public class PlayerLevelExiter : LevelExiter
 
     void Update()
     {
-        _requestedExit = Input.GetKeyDown(KeyCode.Space);
+        _requestedExit = CustomInput.GetKeyDown(CustomInput.Interact);
     }
 }

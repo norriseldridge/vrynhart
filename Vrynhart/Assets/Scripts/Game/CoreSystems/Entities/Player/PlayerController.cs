@@ -123,7 +123,8 @@ public class PlayerController : MonoBehaviour
         if (!_health.IsAlive)
             return;
 
-        // TODO accept controller input?
+        if (PauseController.IsPaused)
+            return;
 
         HandleIFrames();
         HandlePause();
@@ -140,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     void HandlePause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (CustomInput.GetKeyDown(CustomInput.Start))
             PauseController.Open();
     }
 
@@ -149,7 +150,7 @@ public class PlayerController : MonoBehaviour
         if (_quickItems.Count == 0)
             return;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (CustomInput.GetKeyDown(CustomInput.Toggle))
         {
             _quickSelectIndex++;
             if (_quickSelectIndex >= _quickItems.Count)
@@ -174,15 +175,31 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        var worldSpace = _camera.ScreenToWorldPoint(Input.mousePosition);
-        var target = new Vector3(Mathf.RoundToInt(worldSpace.x), Mathf.RoundToInt(worldSpace.y), Mathf.RoundToInt(worldSpace.z));
+        // TODO accept controller input here
+        Vector3 target = transform.position;
+        if (CustomInput.IsController())
+        {
+            var x = Input.GetAxis("Mouse X");
+            var y = Input.GetAxis("Mouse Y");
+            var useRange = EquippedItem.UseRange;
+            var dx = x * useRange;
+            var dy = -y * useRange;
+            target += new Vector3(Mathf.RoundToInt(dx), Mathf.RoundToInt(dy), 0);
+        }
+        else
+        {
+            var worldSpace = _camera.ScreenToWorldPoint(Input.mousePosition);
+            target = new Vector3(Mathf.RoundToInt(worldSpace.x), Mathf.RoundToInt(worldSpace.y), Mathf.RoundToInt(worldSpace.z));
+        }
 
+        // update the view
         if (Vector2.Distance(transform.position, target) <= EquippedItem.UseRange)
             _itemTarget.Set(EquippedItem, target);
         else
             _itemTarget.Hide();
 
-        if (Input.GetMouseButtonDown(0))
+        // attempt to use the item
+        if (CustomInput.GetKeyDown(CustomInput.Use))
             Brokers.Default.Publish(new UseItemEvent(EquippedItem, transform.position, target));
     }
 
@@ -192,16 +209,16 @@ public class PlayerController : MonoBehaviour
             return;
 
         var momentum = Vector2.zero;
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetAxis("Vertical") > CustomInput.CONTROLLER_AXIS_THRESHOLD)
             momentum.y = 1;
 
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetAxis("Vertical") < -CustomInput.CONTROLLER_AXIS_THRESHOLD)
             momentum.y = -1;
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetAxis("Horizontal") < -CustomInput.CONTROLLER_AXIS_THRESHOLD)
             momentum.x = -1;
 
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetAxis("Horizontal") > CustomInput.CONTROLLER_AXIS_THRESHOLD)
             momentum.x = 1;
 
         if (!_mover.IsMoving.Value && momentum.magnitude > 0)

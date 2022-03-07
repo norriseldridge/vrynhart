@@ -2,11 +2,15 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using System.Collections.Generic;
 
 public class EquipmentPage : PausePage
 {
     [SerializeField]
     OwnedItemDisplay _source;
+
+    [SerializeField]
+    ControllerButtonListNavigation _buttons;
 
     [SerializeField]
     GameObject _details;
@@ -35,6 +39,8 @@ public class EquipmentPage : PausePage
             .Where(oi => oi.item.ItemType == ItemType.Equippable)
             .OrderBy(oi => oi.item.Unique)
             .OrderBy(oi => oi.item.Name);
+
+        var displayList = new List<Button>();
         foreach (var ownedItem in filteredSortedList)
         {
             var item = ownedItem.item;
@@ -42,7 +48,9 @@ public class EquipmentPage : PausePage
             var display = Instantiate(_source, _itemsContainer);
             display.SetTab(InventoryPage.Equipment);
             display.PopulateWithItem(item, count);
+            displayList.Add(display.GetComponent<Button>());
         }
+        _buttons.SetOverride(displayList);
 
         var first = filteredSortedList.Count() > 0 ? filteredSortedList.First().item : null;
         SelectItem(first);
@@ -72,5 +80,15 @@ public class EquipmentPage : PausePage
         {
             _details.SetActive(false);
         }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        var y = CustomInput.GetAxis("Mouse Y");
+        var scroll = _itemDescription.GetComponentInParent<ScrollRect>();
+        if (scroll && scroll.content)
+            scroll.content.localPosition += Vector3.up * y;
     }
 }

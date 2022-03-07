@@ -14,4 +14,9 @@ public class InitController : MonoBehaviour
         Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
         SceneManager.LoadSceneAsync(_firstScene);
     }
+
+    void Update()
+    {
+        Cursor.visible = !CustomInput.IsController();
+    }
 }

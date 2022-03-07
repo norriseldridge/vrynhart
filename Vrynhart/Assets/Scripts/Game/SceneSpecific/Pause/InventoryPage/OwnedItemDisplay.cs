@@ -7,6 +7,7 @@ public class OwnedItemDisplay : MonoBehaviour
     static Color SelectedColor = new Color(1, 1, 1, 1);
     static Color UnselectedColor = new Color(1, 1, 1, 0.6f);
     static Color EquippedColor = new Color(1, 1, 0, 1);
+    static Color MouseOverColor = new Color(1, 1, 0, 0.6f);
 
     [SerializeField]
     Image _image;
@@ -21,6 +22,9 @@ public class OwnedItemDisplay : MonoBehaviour
     ItemRecord _item;
     public ItemRecord Item => _item;
     bool _equipped = false;
+    bool _mouseOver = false;
+
+    ItemRecord _lastSelected;
 
     void Start()
     {
@@ -54,6 +58,18 @@ public class OwnedItemDisplay : MonoBehaviour
         Brokers.Default.Publish(new PauseItemSelectedEvent(_tab, _item));
     }
 
+    public void OnMouseOver()
+    {
+        _mouseOver = true;
+        UpdateColor();
+    }
+
+    public void OnMouseExit()
+    {
+        _mouseOver = false;
+        UpdateColor();
+    }
+
     void OnInventoryChange(InventoryChangeEvent e)
     {
         var owned = e.Inventory.GetCount(_item.Id);
@@ -65,9 +81,19 @@ public class OwnedItemDisplay : MonoBehaviour
         if (e.Tab != _tab)
             return;
 
-        if (e.Item != null)
+        _lastSelected = e.Item;
+        UpdateColor();
+    }
+
+    void UpdateColor()
+    {
+        if (_lastSelected != null && _lastSelected.Id == _item.Id)
         {
-            _border.color = e.Item.Id == _item.Id ? SelectedColor : (_equipped ? EquippedColor : UnselectedColor);
+            _border.color = SelectedColor;
+        }
+        else
+        {
+            _border.color = _mouseOver ? MouseOverColor : UnselectedColor;
         }
     }
 }

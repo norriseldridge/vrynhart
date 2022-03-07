@@ -37,6 +37,10 @@ public class TurnController : MonoBehaviour
             return;
         }
 #endif
+
+        if (PauseController.IsPaused)
+            return;
+
         _time -= Time.deltaTime;
 
         if (_time <= 0)

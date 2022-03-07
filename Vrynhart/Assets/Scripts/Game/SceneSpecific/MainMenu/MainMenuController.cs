@@ -1,7 +1,9 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UniRx;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -20,6 +22,9 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     Button _load;
 
+    [SerializeField]
+    ControllerButtonListNavigation _buttonsList;
+
     [Header("New Game")]
     [SerializeField]
     GameObject _newGamePopup;
@@ -37,9 +42,15 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     SaveGameTileUI _saveFileUISource;
 
+    [SerializeField]
+    ControllerButtonListNavigation _loadGameList;
+
     [Header("Options")]
     [SerializeField]
     GameObject _optionsPopup;
+
+    [SerializeField]
+    ControllerSliderListNavigation _optionsSlidersList;
 
     [SerializeField]
     Slider _musicVolume;
@@ -54,6 +65,8 @@ public class MainMenuController : MonoBehaviour
         _loadGamePopup.SetActive(false);
         _optionsPopup.SetActive(false);
 
+        _buttonsList.enabled = true;
+        _optionsSlidersList.enabled = false;
 
         // option sliders
         _musicVolume.onValueChanged.AddListener(OnSetMusicValue);
@@ -68,6 +81,21 @@ public class MainMenuController : MonoBehaviour
 
         Brokers.Audio.Publish(new MusicEvent(_music));
         Brokers.Audio.Publish(new AmbientAudioEvent(null));
+    }
+
+    void Update()
+    {
+        if (CustomInput.GetKeyDown(CustomInput.Cancel))
+        {
+            if (_newGamePopup.activeSelf)
+                OnCloseNewGamePopup();
+
+            if (_loadGamePopup.activeSelf)
+                OnCloseLoadGamePopUp();
+
+            if (_optionsPopup.activeSelf)
+                OnCloseOptionsPopUp();
+        }
     }
 
     void OnSetMusicValue(float value)
@@ -124,6 +152,9 @@ public class MainMenuController : MonoBehaviour
 
     public void OnClickLoadGame()
     {
+        // this button list is no longer active
+        _buttonsList.enabled = false;
+
         PlaySelectSound();
 
         // destory children
@@ -134,11 +165,14 @@ public class MainMenuController : MonoBehaviour
 
         // populate with files
         var files = GameSaveSystem.GetSaveFiles();
+        var addedLoadTiles = new List<SaveGameTileUI>();
         foreach (var file in files)
         {
             var tile = Instantiate(_saveFileUISource, _loadGamePopupContainer);
             tile.Populate(file, OnSelectedSaveFile);
+            addedLoadTiles.Add(tile);
         }
+        _loadGameList.SetOverride(addedLoadTiles.Select(t => t.GetComponent<Button>()).ToList());
     }
 
     async void OnSelectedSaveFile(string file)
@@ -150,11 +184,19 @@ public class MainMenuController : MonoBehaviour
 
     public void OnCloseLoadGamePopUp()
     {
+        // this button list is active again
+        _buttonsList.enabled = true;
+        _loadGameList.enabled = false;
+
         _loadGamePopup.SetActive(false);
     }
 
     public void OnClickOptions()
     {
+        // this button list is no longer active
+        _buttonsList.enabled = false;
+        _optionsSlidersList.enabled = true;
+
         PlaySelectSound();
         _musicVolume.value = PlayerPrefs.GetFloat(Constants.Prefs.MusicVolume, 1.0f);
         _sfxVolume.value = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);
@@ -163,6 +205,10 @@ public class MainMenuController : MonoBehaviour
 
     public void OnCloseOptionsPopUp()
     {
+        // this button list is active again
+        _buttonsList.enabled = true;
+        _optionsSlidersList.enabled = false;
+
         _optionsPopup.SetActive(false);
     }
 

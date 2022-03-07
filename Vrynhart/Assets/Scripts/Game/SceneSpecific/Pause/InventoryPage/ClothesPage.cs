@@ -2,9 +2,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class ClothesPage : PausePage
 {
+    [SerializeField]
+    ControllerButtonListNavigation _buttons;
+
     [SerializeField]
     OwnedItemDisplay _source;
 
@@ -48,6 +53,8 @@ public class ClothesPage : PausePage
                 (oi.item.ItemType == ItemType.Clothes ||
                 oi.item.ItemType == ItemType.Hat))
             .OrderBy(oi => oi.item.Name);
+
+        var displayList = new List<Button>();
         foreach (var ownedItem in filteredSortedList)
         {
             var item = ownedItem.item;
@@ -55,7 +62,9 @@ public class ClothesPage : PausePage
             var display = Instantiate(_source, _itemsContainer);
             display.SetTab(InventoryPage.Clothes);
             display.PopulateWithItem(item, count);
+            displayList.Add(display.GetComponent<Button>());
         }
+        _buttons.SetOverride(displayList);
 
         var saveData = GameSaveSystem.GetCachedSaveData();
         var viewData = saveData.ViewData;
@@ -126,5 +135,23 @@ public class ClothesPage : PausePage
         {
             _details.SetActive(false);
         }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (CustomInput.GetAxis("Horizontal") > CustomInput.CONTROLLER_AXIS_THRESHOLD)
+        {
+            EventSystem.current.SetSelectedGameObject(_equipButton.gameObject);
+
+            if (CustomInput.GetKeyDown(CustomInput.Accept))
+                _equipButton.onClick.Invoke();
+        }
+
+        var y = CustomInput.GetAxis("Mouse Y");
+        var scroll = _itemDescription.GetComponentInParent<ScrollRect>();
+        if (scroll && scroll.content)
+            scroll.content.localPosition += Vector3.up * y;
     }
 }

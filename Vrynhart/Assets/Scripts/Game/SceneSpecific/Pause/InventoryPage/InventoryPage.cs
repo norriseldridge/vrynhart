@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +9,9 @@ public class InventoryPage : PausePage
     public const string Resources = "resources";
     public const string Clothes = "clothes";
     public const string Keys = "keys";
+
+    [SerializeField]
+    ControllerButtonListNavigation _buttons;
 
     [SerializeField]
     Button _equipmentTabButton;
@@ -32,6 +37,8 @@ public class InventoryPage : PausePage
     [SerializeField]
     KeysPage _keysPage;
 
+    List<PausePage> _tabPages;
+
     public override void Initialize(PlayerController player)
     {
         _equipmentPage.Initialize(player);
@@ -39,7 +46,13 @@ public class InventoryPage : PausePage
         _clothesPage.Initialize(player);
         _keysPage.Initialize(player);
 
-        OnClickTab(Equipment);
+        _tabPages = new List<PausePage>()
+        {
+            _equipmentPage,
+            _resourcesPage,
+            _clothesPage,
+            _keysPage
+        };
     }
 
     public void OnClickTab(string tab)
@@ -55,5 +68,13 @@ public class InventoryPage : PausePage
 
         _keysTabButton.GetComponent<Image>().color = (tab == Keys) ? Color.white : Color.gray;
         _keysPage.gameObject.SetActive(tab == Keys);
+    }
+
+    protected override void Update()
+    {
+        var activePages = _tabPages.Count(p => p.gameObject.activeSelf);
+        _buttons.enabled = activePages == 0;
+        if (CustomInput.GetKeyDown(CustomInput.Cancel) && activePages == 0)
+            gameObject.SetActive(false);
     }
 }

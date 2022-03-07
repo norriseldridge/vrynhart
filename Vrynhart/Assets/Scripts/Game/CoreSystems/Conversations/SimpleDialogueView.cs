@@ -34,7 +34,7 @@ public class SimpleDialogueView : BaseDialogeView
             _text.text = line;
 
             yield return new WaitForEndOfFrame();
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            yield return new WaitUntil(() => CustomInput.GetKeyDown(CustomInput.Accept));
             yield return new WaitForEndOfFrame();
         }
 

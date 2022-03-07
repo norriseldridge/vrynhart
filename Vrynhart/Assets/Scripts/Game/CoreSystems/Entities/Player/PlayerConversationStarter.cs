@@ -1,10 +1,8 @@
-using UnityEngine;
-
 public class PlayerConversationStarter : ConversationStarter
 {
     void Update()
     {
-        if (IsNearPrompt && Input.GetButtonDown("Submit"))
+        if (IsNearPrompt && CustomInput.GetKeyDown(CustomInput.Interact))
         {
             TriggerPrompt();
         }

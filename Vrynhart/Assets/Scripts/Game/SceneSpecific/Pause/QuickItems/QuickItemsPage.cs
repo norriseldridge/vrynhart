@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UniRx;
+using UnityEngine.UI;
 
 public class QuickItemsPage : PausePage
 {
@@ -16,6 +17,12 @@ public class QuickItemsPage : PausePage
 
     [SerializeField]
     Transform _equipmentContainer;
+
+    [SerializeField]
+    ControllerButtonListNavigation _slotsList;
+
+    [SerializeField]
+    ControllerButtonListNavigation _itemsList;
 
     PlayerController _player;
     int _selectedSlotIndex = -1;
@@ -74,6 +81,7 @@ public class QuickItemsPage : PausePage
 
         // filter the currently displayed equipment
         _equipmentListings.ForEach(l => l.gameObject.SetActive(!_player.QuickItems.Contains(l.Item.Id)));
+        _itemsList.SetOverride(_equipmentListings.Where(l => l.gameObject.activeSelf).Select(l => l.GetComponent<Button>()).ToList());
 
         _equipmentDisplay.SetActive(true);
     }
@@ -116,6 +124,22 @@ public class QuickItemsPage : PausePage
                 slot.Populate(i, ItemsLookup.GetItem(id), inventory.GetCount(id));
             else
                 slot.Populate(i, null, 0);
+        }
+    }
+
+    protected override void Update()
+    {
+        _slotsList.enabled = !_equipmentDisplay.activeSelf;
+
+        if (CustomInput.IsController())
+        {
+            if (CustomInput.GetKeyDown(CustomInput.Cancel))
+            {
+                if (!_equipmentDisplay.activeSelf)
+                    gameObject.SetActive(false);
+                else
+                    _equipmentDisplay.SetActive(false);
+            }
         }
     }
 }

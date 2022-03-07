@@ -87,8 +87,6 @@ public class AudioController : MonoBehaviour
             }
         }
 
-        Debug.Log($"[AudioController] Events in queue: {_events.Count}  Post filter: {filtered.Count}");
-
         _events.Clear();
 
         // play the list
