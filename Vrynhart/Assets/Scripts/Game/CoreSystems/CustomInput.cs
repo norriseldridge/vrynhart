@@ -14,6 +14,15 @@ public static class CustomInput
     // Rb - 5
     // Lb - 4
 
+    // Xbox Controller
+    // A - 1
+    // B - 2
+    // X - 4
+    // Y - 5
+    // Start - 12
+    // Rb - 8
+    // Lb - 7
+
     public const string Start = "start";
     public const string Use = "use";
     public const string Interact = "interact";
@@ -47,28 +56,60 @@ public static class CustomInput
         { Lb, "joystick 1 button 4" }
     };
 
+    readonly static Dictionary<string, string> XboxController = new Dictionary<string, string>()
+    {
+        { Start, "joystick 1 button 12" }, // menu / start button
+        { Use, "joystick 1 button 8" }, // Rb
+        { Interact, "joystick 1 button 4" }, // X
+        { Toggle, "joystick 1 button 5" }, // Y
+        { Accept, "joystick 1 button 1" }, // A
+        { Cancel, "joystick 1 button 2" }, // B
+        { Rb, "joystick 1 button 8"},
+        { Lb, "joystick 1 button 7" }
+    };
+
     public static bool IsController() => Input.GetJoystickNames().Length > 0;
+
+    public static Dictionary<string, string> GetControllerMappings()
+    {
+        var names = Input.GetJoystickNames();
+        if (names.Length > 0)
+        {
+            var lower = names[0].ToLower();
+
+            if (lower.Contains("xbox"))
+                return XboxController;
+
+            if (lower.Contains("playstation") || lower.Contains("sony"))
+                return PS5Controller;
+        }
+
+        return null;
+    }
 
     public static bool GetKey(string key)
     {
-        if (IsController())
-            return Input.GetKey(PS5Controller[key]);
+        var controllerMapping = GetControllerMappings();
+        if (controllerMapping != null)
+            return Input.GetKey(controllerMapping[key]);
 
         return Input.GetKey(Keyboard[key]);
     }
 
     public static bool GetKeyDown(string key)
     {
-        if (IsController())
-            return Input.GetKeyDown(PS5Controller[key]);
+        var controllerMapping = GetControllerMappings();
+        if (controllerMapping != null)
+            return Input.GetKeyDown(controllerMapping[key]);
 
         return Input.GetKeyDown(Keyboard[key]);
     }
 
     public static bool GetKeyUp(string key)
     {
-        if (IsController())
-            return Input.GetKeyUp(PS5Controller[key]);
+        var controllerMapping = GetControllerMappings();
+        if (controllerMapping != null)
+            return Input.GetKeyUp(controllerMapping[key]);
 
         return Input.GetKeyUp(Keyboard[key]);
     }

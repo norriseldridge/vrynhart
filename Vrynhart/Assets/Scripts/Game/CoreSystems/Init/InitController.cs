@@ -11,6 +11,8 @@ public class InitController : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
+
         Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
         SceneManager.LoadSceneAsync(_firstScene);
     }
