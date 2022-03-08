@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 
 public class ShopController : MonoBehaviour
 {
@@ -11,6 +11,9 @@ public class ShopController : MonoBehaviour
 
     [SerializeField]
     Transform _container;
+
+    [SerializeField]
+    ControllerButtonListNavigation _buttons;
 
     [Header("Dialogue")]
     [SerializeField]
@@ -30,6 +33,8 @@ public class ShopController : MonoBehaviour
     float _volume;
 
     PlayerController _player;
+
+    public void OnClickClose() => Brokers.Default.Publish(new ShopEvent(false));
 
     void Start()
     {
@@ -68,6 +73,7 @@ public class ShopController : MonoBehaviour
         if (_player == null)
             _player = FindObjectOfType<PlayerController>();
 
+        var listings = new List<ShopListing>();
         foreach (var item in itemIds)
         {
             // handle one time purchases
@@ -81,7 +87,9 @@ public class ShopController : MonoBehaviour
             var listing = Instantiate(_source, _container);
             listing.Initialize(_player, item);
             listing.AddOnBuyCallback(AttemptPurchase);
+            listings.Add(listing);
         }
+        _buttons.SetOverride(listings.Select(l => l.GetComponent<Button>()).ToList());
     }
 
     public void SetDialogue(SimpleConversation conversation)

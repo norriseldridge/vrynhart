@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using UnityEngine.EventSystems;
 
 public class OwnedItemDisplay : MonoBehaviour
 {
@@ -25,9 +26,11 @@ public class OwnedItemDisplay : MonoBehaviour
     bool _mouseOver = false;
 
     ItemRecord _lastSelected;
+    EventTrigger _eventTrigger;
 
     void Start()
     {
+        _eventTrigger = GetComponent<EventTrigger>();
         Brokers.Default.Receive<InventoryChangeEvent>()
             .Subscribe(OnInventoryChange)
             .AddTo(this);
@@ -35,6 +38,15 @@ public class OwnedItemDisplay : MonoBehaviour
         Brokers.Default.Receive<PauseItemSelectedEvent>()
             .Subscribe(OnItemSelected)
             .AddTo(this);
+    }
+
+    void Update()
+    {
+        // this is because EventTrigger will "eat" the scroll event
+        // so when playing with mouse and keyboard, we want this disabled
+        // so that scrolling works
+        var isController = CustomInput.IsController();
+        _eventTrigger.enabled = isController;
     }
 
     public void SetTab(string tab) => _tab = tab;

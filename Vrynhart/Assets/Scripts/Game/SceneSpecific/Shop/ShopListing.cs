@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using UnityEngine.EventSystems;
 
-public class ShopListing : MonoBehaviour
+public class ShopListing : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     public delegate bool AttemptPurchase(ItemRecord item);
 
@@ -29,6 +30,7 @@ public class ShopListing : MonoBehaviour
 
     ItemRecord _item;
     PlayerController _player;
+    bool _selected = false;
 
     void OnDestroy()
     {
@@ -69,5 +71,18 @@ public class ShopListing : MonoBehaviour
         _cost.text = _item.Cost.ToString();
         _quantity.text = $"x{_item.PurchaseQuantity}";
         _ownedQuantity.text = $"Owned: {_player.Inventory.GetCount(_item.Id)}";
+    }
+
+    public void OnSelect(BaseEventData eventData) => _selected = true;
+
+    public void OnDeselect(BaseEventData eventData) => _selected = false;
+
+    void Update()
+    {
+        if (CustomInput.IsController())
+        {
+            if (CustomInput.GetKeyDown(CustomInput.Accept) && _selected)
+                _buy.onClick.Invoke();
+        }
     }
 }

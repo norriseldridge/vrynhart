@@ -3,7 +3,7 @@ using UniRx;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider2D))]
-public class ShopPrompt : MonoBehaviour
+public class ShopPrompt : RequiresPrompt
 {
     [SerializeField]
     SimpleConversation _conversation;
@@ -11,13 +11,28 @@ public class ShopPrompt : MonoBehaviour
     [SerializeField]
     List<string> _itemListings;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    bool _opened = false;
+
+    void Start()
     {
-        Brokers.Default.Publish(new ShopEvent(true, _itemListings, _conversation));
+        Brokers.Default.Receive<ShopEvent>()
+            .Subscribe(e => _opened = e.Open)
+            .AddTo(this);
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    void Update()
     {
-        Brokers.Default.Publish(new ShopEvent(false));
+        if (PromptUser == null)
+            return;
+
+        if (CustomInput.GetKeyDown(CustomInput.Interact) && !_opened)
+            Brokers.Default.Publish(new ShopEvent(true, _itemListings, _conversation));
+
+        if (CustomInput.GetKeyDown(CustomInput.Cancel) && _opened)
+            Brokers.Default.Publish(new ShopEvent(false));
+
+        var player = PromptUser.gameObject.GetComponent<PlayerController>();
+        if (player)
+            player.enabled = !_opened;
     }
 }
