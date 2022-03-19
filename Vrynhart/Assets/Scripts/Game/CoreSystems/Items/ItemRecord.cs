@@ -24,6 +24,12 @@ public class ItemRecord : ScriptableObject
     [HideInInspector]
     public bool ShowUseIndicator = true;
 
+    [HideInInspector]
+    public AudioClip CombatSfx;
+
+    [HideInInspector]
+    public string OverrideCountId;
+
     // Clothing specific
     [HideInInspector]
     public RuntimeAnimatorController ClothingAnimator;

@@ -6,15 +6,17 @@ public class PlayerItemConsumer : MonoBehaviour
 {
     PlayerController _player;
     float _oilTimer = 1.0f;
+    ItemRecord _bullet;
 
     // Start is called before the first frame update
     void Start()
     {
         _player = GetComponent<PlayerController>();
+        _bullet = ItemsLookup.GetItem("bullet");
 
         Brokers.Default.Receive<UseItemEvent>()
             .Where(IsItemUseable)
-            .Subscribe(e => UseItem(e.Item))
+            .Subscribe(UseItem)
             .AddTo(this);
     }
 
@@ -48,8 +50,9 @@ public class PlayerItemConsumer : MonoBehaviour
         return true;
     }
 
-    void UseItem(ItemRecord item)
+    void UseItem(UseItemEvent e)
     {
+        var item = e.Item;
         // try to use the item
         switch (item.Id)
         {
@@ -61,6 +64,13 @@ public class PlayerItemConsumer : MonoBehaviour
             case "whiskey":
                 _player.Inventory.RemoveItem(item.Id);
                 _player.Health.RestoreHealth(2);
+                break;
+
+            case "gun":
+                Brokers.Default
+                    .Publish(new UseItemEvent(_bullet,
+                        e.TargetPosition,
+                        e.TargetPosition));
                 break;
         }
     }

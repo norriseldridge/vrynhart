@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UniRx;
 
 [Serializable]
 public class Inventory

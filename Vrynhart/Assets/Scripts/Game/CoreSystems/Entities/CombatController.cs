@@ -79,6 +79,8 @@ public class CombatController : MonoBehaviour
                     {
                         if (TryUseItemOnEnemy(player, e.Item, enemy))
                         {
+                            if (e.Item.CombatSfx != null)
+                                Brokers.Audio.Publish(new AudioEvent(e.Item.CombatSfx));
                             player.Inventory.RemoveItem(e.Item.Id);
                             enemy.DealDamage(e.Item.Id);
                         }

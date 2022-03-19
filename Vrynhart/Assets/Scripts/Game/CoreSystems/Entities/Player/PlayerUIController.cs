@@ -117,7 +117,8 @@ public class PlayerUIController : PostLevelInitialize
 
         if (_equippedItem != null)
         {
-            _equippedItemCountText.text = _inventory.GetCount(_equippedItem.Id).ToString();
+            var itemId = string.IsNullOrEmpty(_equippedItem.OverrideCountId) ? _equippedItem.Id : _equippedItem.OverrideCountId;
+            _equippedItemCountText.text = _inventory.GetCount(itemId).ToString();
         }
 
         HandleLantern();
@@ -147,7 +148,8 @@ public class PlayerUIController : PostLevelInitialize
         {
             _equippedItemImage.sprite = _equippedItem.Sprite;
             _equippedItemImage.enabled = true;
-            _equippedItemCountText.text = _inventory.GetCount(_equippedItem.Id).ToString();
+            var itemId = string.IsNullOrEmpty(_equippedItem.OverrideCountId) ? _equippedItem.Id : _equippedItem.OverrideCountId;
+            _equippedItemCountText.text = _inventory.GetCount(itemId).ToString();
         }
         else
         {
