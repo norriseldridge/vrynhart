@@ -6978,6 +6978,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 541816737}
     m_Modifications:
+    - target: {fileID: 2942346169149798370, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
+      propertyPath: _music
+      value: 
+      objectReference: {fileID: 8300000, guid: 004e7cb3b83234d4c9f8b6cd4c3dc068, type: 3}
+    - target: {fileID: 2942346169149798370, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
+      propertyPath: _volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2942346169149798371, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7025,6 +7033,14 @@ PrefabInstance:
     - target: {fileID: 2942346169149798397, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
       propertyPath: m_Name
       value: LevelSoundController
+      objectReference: {fileID: 0}
+    - target: {fileID: 6639808456671354797, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 8300000, guid: f24a6b2308ae6417dbc5c0b09cae22ee, type: 3}
+    - target: {fileID: 6639808456671354797, guid: e9fef50016c194e81b3139777384d0d8, type: 3}
+      propertyPath: _volume
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9fef50016c194e81b3139777384d0d8, type: 3}

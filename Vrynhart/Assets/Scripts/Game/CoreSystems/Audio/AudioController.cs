@@ -155,11 +155,14 @@ public class AudioController : MonoBehaviour
 
     void OnAmbientAudioEvent(AmbientAudioEvent e)
     {
-        if (_ambientSource.clip == e.Clip)
-            return;
-
         _currentAmbientVolume = e.Volume;
-        if (_ambientSource.isPlaying)
+        if (_ambientSource.clip == e.Clip)
+        {
+            StartCoroutine(FadeVolume(_ambientSource, _currentAmbientVolume));
+            return;
+        }
+
+        if (_ambientSource.isPlaying && e.ShouldFade)
         {
             StartCoroutine(FadeOutThenPlay(_ambientSource, e.Clip, _sfxVolume, _currentAmbientVolume));
         }
@@ -173,10 +176,13 @@ public class AudioController : MonoBehaviour
 
     void OnMusicEvent(MusicEvent e)
     {
-        if (_musicSource.clip == e.Clip)
-            return;
-
         _currentMusicVolume = e.Volume;
+        if (_musicSource.clip == e.Clip)
+        {
+            StartCoroutine(FadeVolume(_musicSource, _currentMusicVolume));
+            return;
+        }
+
         if (_musicSource.isPlaying && e.ShouldFade)
         {
             StartCoroutine(FadeOutThenPlay(_musicSource, e.Clip, _musicVolume, _currentMusicVolume));
@@ -191,11 +197,7 @@ public class AudioController : MonoBehaviour
 
     IEnumerator FadeOutThenPlay(AudioSource source, AudioClip clip, float maxVolume, float currentVolume)
     {
-        while (source.volume > 0)
-        {
-            source.volume -= _fadeSpeed * Time.deltaTime;
-            yield return null;
-        }
+        yield return StartCoroutine(FadeVolume(source, 0));
 
         if (clip != null)
         {
@@ -205,6 +207,26 @@ public class AudioController : MonoBehaviour
             while (source.volume < maxVolume * currentVolume)
             {
                 source.volume += _fadeSpeed * Time.deltaTime;
+                yield return null;
+            }
+        }
+    }
+
+    IEnumerator FadeVolume(AudioSource source, float target)
+    {
+        if (source.volume < target)
+        {
+            while (source.volume < target)
+            {
+                source.volume += _fadeSpeed * Time.deltaTime;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (source.volume > target)
+            {
+                source.volume -= _fadeSpeed * Time.deltaTime;
                 yield return null;
             }
         }

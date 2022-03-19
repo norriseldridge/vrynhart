@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -71,6 +70,7 @@ public class MainMenuController : MonoBehaviour
         // option sliders
         _musicVolume.onValueChanged.AddListener(OnSetMusicValue);
         _sfxVolume.onValueChanged.AddListener(OnSetSFXValue);
+        UpdateVolumeValues();
 
         // no save files exist so we can't load or continue
         if (!GameSaveSystem.DoSaveFilesExist())
@@ -80,7 +80,7 @@ public class MainMenuController : MonoBehaviour
         }
 
         Brokers.Audio.Publish(new MusicEvent(_music));
-        Brokers.Audio.Publish(new AmbientAudioEvent(null));
+        Brokers.Audio.Publish(new AmbientAudioEvent(null, 0));
     }
 
     void Update()
@@ -198,9 +198,14 @@ public class MainMenuController : MonoBehaviour
         _optionsSlidersList.enabled = true;
 
         PlaySelectSound();
+        UpdateVolumeValues();
+        _optionsPopup.SetActive(true);
+    }
+
+    void UpdateVolumeValues()
+    {
         _musicVolume.value = PlayerPrefs.GetFloat(Constants.Prefs.MusicVolume, 1.0f);
         _sfxVolume.value = PlayerPrefs.GetFloat(Constants.Prefs.SFXVolume, 0.8f);
-        _optionsPopup.SetActive(true);
     }
 
     public void OnCloseOptionsPopUp()
