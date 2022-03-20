@@ -12,6 +12,9 @@ public class MoveToward : EnemyLogic
     [Min(1)]
     int _turns = 1;
 
+    [SerializeField]
+    bool _mustFollowFloor = true;
+
     public Transform Target
     {
         get => _target;
@@ -58,7 +61,7 @@ public class MoveToward : EnemyLogic
             if (_lastTargetLocation != _target.position)
             {
                 _lastTargetLocation = _target.position;
-                _currentPath = PathFinder.Instance.BuildPath(transform.position, _target.position);
+                _currentPath = PathFinder.Instance.BuildPath(transform.position, _target.position, _mustFollowFloor);
             }
         }
     }

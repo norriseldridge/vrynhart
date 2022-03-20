@@ -202,6 +202,7 @@ public class AudioController : MonoBehaviour
         if (clip != null)
         {
             source.clip = clip;
+            source.time = 0;
             source.Play();
 
             while (source.volume < maxVolume * currentVolume)

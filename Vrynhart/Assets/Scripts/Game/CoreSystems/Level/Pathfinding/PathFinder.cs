@@ -33,14 +33,14 @@ public class PathFinder : MonoBehaviour
         }
     }
 
-    public Stack<Tile> BuildPath(Vector2 start, Vector3 end)
+    public Stack<Tile> BuildPath(Vector2 start, Vector3 end, bool mustFollowFloor = true)
     {
         var startTile = FindTileAt(start);
         var endTile = FindTileAt(end);
-        return BuildPath(startTile, endTile);
+        return BuildPath(startTile, endTile, mustFollowFloor);
     }
 
-    public Stack<Tile> BuildPath(Tile start, Tile end)
+    public Stack<Tile> BuildPath(Tile start, Tile end, bool mustFollowFloor)
     {
         Reset();
 
@@ -79,7 +79,7 @@ public class PathFinder : MonoBehaviour
             foreach (var tile in current.Neighbors)
             {
                 var neighbor = _nodes[tile];
-                if (!neighbor.IsVisited && tile.IsFloor)
+                if (!neighbor.IsVisited && (tile.IsFloor || !mustFollowFloor))
                     toTest.Add(neighbor);
 
                 float possibleLowerLocalGoal = current.LocalGoal + Heuristic(current.Tile, neighbor.Tile);

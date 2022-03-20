@@ -17,6 +17,7 @@ public class RandomSoundSource : MonoBehaviour
     void Start()
     {
         ResetDelay();
+        PlayRandomSound();
     }
 
     // Update is called once per frame
