@@ -1,9 +1,0 @@
-How to import clothes
-
-1. image is sliced by 16x16
-2. image compression is turned off
-3. image filter is turned off (point)
-4. a new {imagename}_Idle animation is create from frames 1 and 2
-5. a new {imagename}_Run animation is create from frames 3 to 6
-6. both animations are set to loop
-7. a new animator controller is created containing both of those as Idle and Run

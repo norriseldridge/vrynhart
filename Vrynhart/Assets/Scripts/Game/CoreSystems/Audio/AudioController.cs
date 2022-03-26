@@ -76,7 +76,7 @@ public class AudioController : MonoBehaviour
                 filtered.Add(e);
             else
             {
-                if (e.Position != null)
+                if (e.Position.HasValue && existing.Position.HasValue)
                 {
                     if (Vector2.Distance(listener.position, e.Position.Value) < Vector2.Distance(listener.position, existing.Position.Value))
                     {
