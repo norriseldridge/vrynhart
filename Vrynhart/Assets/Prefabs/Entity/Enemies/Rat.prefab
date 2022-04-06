@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 106350243599910920}
   - component: {fileID: 106350243599910919}
   - component: {fileID: 106350243599910923}
+  - component: {fileID: 5780825306658216154}
   m_Layer: 0
   m_Name: RatView
   m_TagString: Untagged
@@ -221,6 +222,20 @@ SortingGroup:
   m_SortingLayerID: -444228331
   m_SortingLayer: 5
   m_SortingOrder: 0
+--- !u!114 &5780825306658216154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106350243599910918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5044ba53f13b47d98782e45d3ca2768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 106350243599910921}
 --- !u!1 &106350244730986998
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _turns: 2
+  _mustFollowFloor: 1
 --- !u!114 &106350244730987002
 MonoBehaviour:
   m_ObjectHideFlags: 0

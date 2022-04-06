@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 5306720788827703494}
   - component: {fileID: 5306720788827703495}
   - component: {fileID: 5306720788827703512}
+  - component: {fileID: 8558462800972303167}
   m_Layer: 0
   m_Name: SlugView
   m_TagString: Untagged
@@ -317,3 +318,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8aaffa3d269c46d4aab02d31bbc5ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8558462800972303167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306720788827703492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5044ba53f13b47d98782e45d3ca2768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 5306720788827703494}

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Swirl : MonoBehaviour
@@ -13,6 +14,18 @@ public class Swirl : MonoBehaviour
 
     [SerializeField]
     float _swirlSpeed;
+
+    public IEnumerator FadeAlpha(float start, float end, float speed)
+    {
+        _material.SetFloat("_Alpha", start);
+        float t = start;
+        while (Mathf.Abs(end - t) > 0.1f)
+        {
+            t = Mathf.LerpUnclamped(t, end, speed * Time.deltaTime);
+            _material.SetFloat("_Alpha", t);
+            yield return null;
+        }
+    }
 
     void Update()
     {

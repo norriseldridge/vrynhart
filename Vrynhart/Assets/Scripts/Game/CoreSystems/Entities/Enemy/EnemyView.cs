@@ -9,10 +9,12 @@ public enum EnemyVisualState
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(TakeDamageView))]
 public class EnemyView : MonoBehaviour
 {
     SpriteRenderer _renderer;
     Animator _animator;
+    TakeDamageView _takeDamageView;
     EnemyVisualState _state = EnemyVisualState.Idle;
 
     public bool Flipped => _renderer.flipX;
@@ -21,6 +23,7 @@ public class EnemyView : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        _takeDamageView = GetComponent<TakeDamageView>();
     }
 
     public void FaceTowards(Vector2 target)
@@ -40,21 +43,5 @@ public class EnemyView : MonoBehaviour
         }
     }
 
-    public void TakeHit()
-    {
-        StartCoroutine(FlashColor(Color.red));
-    }
-
-    IEnumerator FlashColor(Color target)
-    {
-        var color = _renderer.color;
-        for (var i = 0; i < 3; ++i)
-        {
-            _renderer.color = target;
-            yield return new WaitForSeconds(0.1f);
-            _renderer.color = color;
-            yield return new WaitForSeconds(0.1f);
-        }
-        _renderer.color = color;
-    }
+    public void TakeHit() => _takeDamageView.TakeHit();
 }

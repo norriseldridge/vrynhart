@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7949263939716202082}
   - component: {fileID: 7949263939716202085}
   - component: {fileID: 7949263939716202086}
+  - component: {fileID: 2880601698676349476}
   m_Layer: 0
-  m_Name: Vampire
+  m_Name: VampireView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +128,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8aaffa3d269c46d4aab02d31bbc5ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2880601698676349476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949263939716202081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5044ba53f13b47d98782e45d3ca2768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 7949263939716202083}
 --- !u!1 &7949263940215757043
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _turns: 2
+  _mustFollowFloor: 1
 --- !u!114 &1457150397385945757
 MonoBehaviour:
   m_ObjectHideFlags: 0
