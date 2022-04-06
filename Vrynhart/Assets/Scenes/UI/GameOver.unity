@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activeColor: {r: 0.4627451, g: 0, b: 0, a: 1}
+  _mouseOverColor: {r: 1, g: 0.90592486, b: 0, a: 1}
 --- !u!114 &300168029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,6 +818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activeColor: {r: 0.4627451, g: 0, b: 0, a: 1}
+  _mouseOverColor: {r: 1, g: 0.90588236, b: 0, a: 1}
 --- !u!114 &1296043928
 MonoBehaviour:
   m_ObjectHideFlags: 0

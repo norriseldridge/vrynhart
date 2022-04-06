@@ -48,8 +48,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/InnerCourtyard.unity
     guid: 0d07784a4f037414b8cf5d61d1513801
   - enabled: 1
+    path: Assets/Scenes/Levels/BackWoods.unity
+    guid: 8b6b6519660004033a1c4053de46e122
+  - enabled: 1
     path: Assets/Scenes/Levels/InnerCourtyardBuilding.unity
     guid: 2c706e79cd4e341648893ecf0d8a7d4c
+  - enabled: 1
+    path: Assets/Scenes/Levels/WestCourtyardBuilding.unity
+    guid: 2420e32b094ff4fb9b44f00275ee4d26
   - enabled: 1
     path: Assets/Scenes/Levels/Dungeon.unity
     guid: 69e42491e69ee4d45af6162480360f42
