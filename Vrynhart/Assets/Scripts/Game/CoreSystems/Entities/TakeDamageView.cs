@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class TakeDamageView : MonoBehaviour
 {
+    static Color _damageColor = new Color(0.5f, 0.1f, 0.1f, 1);
+
     [SerializeField]
     List<SpriteRenderer> _renderers;
 
-    public void TakeHit() => StartCoroutine(FlashColor(Color.red));
+    public void TakeHit() => StartCoroutine(FlashColor(_damageColor));
 
     IEnumerator FlashColor(Color target)
     {

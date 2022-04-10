@@ -45,11 +45,6 @@ public class PlayerView : MonoBehaviour
         Brokers.Default.Receive<PlayerViewDataEvent>()
             .Subscribe(OnViewDataChanged)
             .AddTo(this);
-
-        Brokers.Default.Receive<HealthChangeEvent>()
-            .Where(e => e.Change < 0)
-            .Subscribe(OnTakeDamage)
-            .AddTo(this);
     }
 
     // Start is called before the first frame update
@@ -84,24 +79,6 @@ public class PlayerView : MonoBehaviour
         }
     }
 
-    void OnTakeDamage(HealthChangeEvent e)
-    {
-        StartCoroutine(Shake());
-    }
-
-    IEnumerator Shake()
-    {
-        var orig = transform.localPosition;
-        var off = orig;
-        for (int i = 0; i < 16; ++i)
-        {
-            off.x = (Mathf.Sin(i * 0.25f) - 0.5f) * 0.1f;
-            transform.localPosition = off;
-            yield return null;
-        }
-        transform.localPosition = orig;
-    }
-
     public void SetState(PlayerState state)
     {
         if (_state != state)
@@ -123,11 +100,5 @@ public class PlayerView : MonoBehaviour
             var flip = _facing != PlayerFacing.Right;
             transform.localScale = new Vector3(flip ? -1 : 1, 1);
         }
-    }
-
-    public void SetIFrameState(bool hasIFrames)
-    {
-        foreach (var mat in _materials)
-            mat.SetColor("_Tint", hasIFrames ? Color.red : Color.white);
     }
 }

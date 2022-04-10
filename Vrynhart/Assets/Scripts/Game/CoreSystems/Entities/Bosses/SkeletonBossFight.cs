@@ -136,7 +136,7 @@ public class SkeletonBossFight : MonoBehaviour
             tile.enabled = false;
 
         Brokers.Audio.Publish(new MusicEvent(_bossMusic, _volume));
-        StartCoroutine(FadeInLight());
+        _ = StartCoroutine(FadeInLight());
 
         await BossUI.Show(_bossName, new BossUI.BossDisplayData() { Hp = _data.Hp, MaxHp = _data.MaxHp });
 

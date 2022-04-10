@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     PlayerView _view;
 
     [SerializeField]
+    TakeDamageView _damageView;
+
+    [SerializeField]
     Light2D _lanternLight;
 
     [SerializeField]
@@ -82,7 +85,10 @@ public class PlayerController : MonoBehaviour
                 if (e.Change > 0)
                     Brokers.Audio.Publish(new AudioEvent(_heal, 0.7f));
                 else
+                {
                     Brokers.Audio.Publish(new AudioEvent(_hit));
+                    _damageView.TakeHit();
+                }
             })
             .AddTo(this);
 
@@ -126,17 +132,11 @@ public class PlayerController : MonoBehaviour
         if (PauseController.IsPaused)
             return;
 
-        HandleIFrames();
         HandlePause();
         ToggleQuickSelectItem();
         HandleLantern();
         HandleUseEquippedItem();
         HandleMove();
-    }
-
-    void HandleIFrames()
-    {
-        _view.SetIFrameState(_health.HasActiveIFrames);
     }
 
     void HandlePause()

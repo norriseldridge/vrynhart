@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 6643202143610023466}
   - component: {fileID: 7369813377598583411}
   - component: {fileID: 252439148833680102}
+  - component: {fileID: 4753637771723245127}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -544,6 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 7802794167138252806}
+  _damageView: {fileID: 4753637771723245127}
   _lanternLight: {fileID: 7802794167794792758}
   _health: {fileID: 4499292848529493321}
   _mover: {fileID: 7802794167521487755}
@@ -604,7 +606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 3
   _health: 3
-  _iFrames: 10
+  _iFrames: 30
 --- !u!114 &7829108912398094172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,6 +667,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236b504afe9c94c308b0aa18c526094d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4753637771723245127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7802794167521487472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5044ba53f13b47d98782e45d3ca2768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 7802794166207972359}
+  - {fileID: 7802794167581576590}
+  - {fileID: 7802794166591652617}
+  - {fileID: 7802794168263009578}
+  - {fileID: 7802794167748074623}
 --- !u!1 &7802794167581576587
 GameObject:
   m_ObjectHideFlags: 0

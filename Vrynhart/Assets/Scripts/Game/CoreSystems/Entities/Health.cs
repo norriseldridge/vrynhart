@@ -1,5 +1,4 @@
 using UnityEngine;
-using UniRx;
 using System.Collections;
 
 public class Health : MonoBehaviour
