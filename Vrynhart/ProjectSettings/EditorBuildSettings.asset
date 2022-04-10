@@ -51,6 +51,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/BackWoods.unity
     guid: 8b6b6519660004033a1c4053de46e122
   - enabled: 1
+    path: Assets/Scenes/Levels/GreenHouse.unity
+    guid: 53a7c29b3c244402fabaa3e3b75b8be8
+  - enabled: 1
     path: Assets/Scenes/Levels/InnerCourtyardBuilding.unity
     guid: 2c706e79cd4e341648893ecf0d8a7d4c
   - enabled: 1
