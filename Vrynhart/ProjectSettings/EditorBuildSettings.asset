@@ -54,6 +54,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/GreenHouse.unity
     guid: 53a7c29b3c244402fabaa3e3b75b8be8
   - enabled: 1
+    path: Assets/Scenes/Levels/NewCathedral.unity
+    guid: b636c196582b24d85901f4c59b25b202
+  - enabled: 1
     path: Assets/Scenes/Levels/InnerCourtyardBuilding.unity
     guid: 2c706e79cd4e341648893ecf0d8a7d4c
   - enabled: 1
