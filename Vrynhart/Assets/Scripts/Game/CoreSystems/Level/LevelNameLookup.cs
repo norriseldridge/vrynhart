@@ -14,6 +14,7 @@ public static class LevelNameLookup
         { "Vh_Tower", $"{Vrynhart} Watchtower" },
         { "BackWoods", $"{Vrynhart}'s Back Woods" },
         { "GreenHouse", $"{Vrynhart}'s Green House" },
+        { "NewCathedral", $"{Vrynhart}'s New Cathedral" },
         { "Vh_MainHall", $"{Vrynhart} Grand Hall" },
         { "Vh_MainHall2", $"{Vrynhart}'s North Hall" },
         { "Vh_MainHall3", $"{Vrynhart}'s East Hall" },
