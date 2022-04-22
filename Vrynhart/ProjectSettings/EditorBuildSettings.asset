@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/StartingTown.unity
     guid: f222bb06aa1794dad96ebeae95b19a4c
   - enabled: 1
+    path: Assets/Scenes/Levels/OldCathedral.unity
+    guid: b5a9f4995e33e4dc0b292f46d0ad0ca3
+  - enabled: 1
     path: Assets/Scenes/Levels/Vh_Woods.unity
     guid: ad3540bfed0c04d47957314fe04374c5
   - enabled: 1
