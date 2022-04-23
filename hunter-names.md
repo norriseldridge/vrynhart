@@ -6,6 +6,7 @@ Hunter names
 * Athair - irish (father)
 * Dearmad - irish (forgot)
 * Chle - irish (left)
+* Aislynn - irish (dream or vision)
 
 
 * Syglair

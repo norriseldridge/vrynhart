@@ -14,12 +14,6 @@ public class SkeletonBossFight : MonoBehaviour
     [SerializeField]
     Light2D _light;
 
-    [SerializeField]
-    List<Tile> _tilesToDisableAtStart;
-
-    [SerializeField]
-    List<Tile> _tilesToEnableAtEnd;
-
     [Header("Boss")]
     [SerializeField]
     string _bossName;
@@ -47,7 +41,7 @@ public class SkeletonBossFight : MonoBehaviour
     EnemyController _source;
 
     [SerializeField]
-    List<CellarHeadstone> _spawns;
+    List<EnemyController> _spawns;
 
     [SerializeField]
     int _spawnTurnDelay;
@@ -80,26 +74,22 @@ public class SkeletonBossFight : MonoBehaviour
     {
         if (save.CompletedFlags.Contains(_persistentId))
         {
-            // enable the tiles
-            foreach (var tile in _tilesToEnableAtEnd)
-                tile.enabled = true;
-
             // destory the boss
-            Destroy(_boss);
+            Destroy(_boss.gameObject);
 
-            // destory the headstones
-            foreach (var headstone in _spawns)
-                headstone.MarkDestroyed();
+            // destory the spawns
+            foreach (var spawn in _spawns)
+            {
+                if (spawn != null)
+                    Destroy(spawn.gameObject);
+            }
 
-            enabled = false;
+            Destroy(gameObject);
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!enabled)
-            return;
-
         if (_fightStarted)
             return;
 
@@ -113,7 +103,7 @@ public class SkeletonBossFight : MonoBehaviour
         if (!_fightStarted)
             return;
 
-        if (_spawns.All(s => s.Destroyed))
+        if (_spawns.All(s => s == null))
         {
             // boss defeated
             enabled = false;
@@ -121,19 +111,19 @@ public class SkeletonBossFight : MonoBehaviour
         }
         else
         {
-            _data.Hp = _spawns.Count(s => !s.Destroyed) * 10;
+            _data.Hp = _spawns.Count(s => s != null) * 10;
             Brokers.Default.Publish(new BossUI.BossDisplayData() { Hp = _data.Hp, MaxHp = _data.MaxHp });
         }
     }
 
     async void StartFight()
     {
+        if (_fightStarted)
+            return;
+
         _levelMonsters = FindObjectsOfType<EnemyController>().Length;
         _boss.gameObject.SetActive(true);
         _fightStarted = true;
-
-        foreach (var tile in _tilesToDisableAtStart)
-            tile.enabled = false;
 
         Brokers.Audio.Publish(new MusicEvent(_bossMusic, _volume));
         _ = StartCoroutine(FadeInLight());
@@ -158,22 +148,24 @@ public class SkeletonBossFight : MonoBehaviour
 
     IEnumerator FadeInLight()
     {
-        for (var i = 0.0f; i < 0.85f; i += Time.deltaTime)
+        var target = 0.8f;
+        for (var i = 0.0f; i < target; i += Time.deltaTime)
         {
             _light.intensity = i;
             yield return null;
         }
+        _light.intensity = target;
     }
 
     void SpawnEnemy()
     {
-        var r = Random.Range(0, _spawns.Count);
-        var location = _spawns[r];
-
-        if (location.Destroyed)
+        var possible = _spawns.Where(s => s != null).ToArray();
+        if (possible.Length == 0)
             return;
 
-        var enemy = Instantiate(_source, location.transform.position + Vector3.down, Quaternion.Euler(0, 0, 0));
+        var r = Random.Range(0, possible.Length);
+        var location = possible[r];
+        var enemy = Instantiate(_source, location.transform.position, Quaternion.Euler(0, 0, 0));
         var move = enemy.GetComponent<MoveToward>();
         if (move != null)
         {
@@ -190,10 +182,6 @@ public class SkeletonBossFight : MonoBehaviour
     {
         BossUI.Close();
 
-        // enable the tiles again so you can leave
-        foreach (var tile in _tilesToEnableAtEnd)
-            tile.enabled = true;
-
         // destroy the boss
         Brokers.Audio.Publish(new AudioEvent(_bossDeathSfx, _bossDeathVolume, _bossDeathPitch, _bossDeathPitch));
         Destroy(_boss);
@@ -206,6 +194,9 @@ public class SkeletonBossFight : MonoBehaviour
 
         // mark that this boss is done
         GameSaveSystem.CacheGame(_persistentId);
+
+        // destory the boss logic
+        Destroy(gameObject);
     }
 
     IEnumerator RetartLevelMusic()
