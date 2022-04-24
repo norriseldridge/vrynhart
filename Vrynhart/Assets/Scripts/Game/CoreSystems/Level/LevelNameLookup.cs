@@ -19,7 +19,8 @@ public static class LevelNameLookup
         { "Vh_MainHall2", $"{Vrynhart}'s North Hall" },
         { "Vh_MainHall3", $"{Vrynhart}'s East Hall" },
         { "Vh_Cellar", $"{Vrynhart} Cellars" },
-        { "Dungeon", $"{Vrynhart} Dungeon" }
+        { "Dungeon", $"{Vrynhart} Dungeon" },
+        { "Vh_MainTower", $"{Vrynhart}'s Central Tower" }
     };
 
     public static string GetDisplayName(string sceneName)

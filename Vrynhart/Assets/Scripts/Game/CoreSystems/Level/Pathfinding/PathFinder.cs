@@ -79,7 +79,7 @@ public class PathFinder : MonoBehaviour
             foreach (var tile in current.Neighbors)
             {
                 var neighbor = _nodes[tile];
-                if (!neighbor.IsVisited && (tile.IsFloor || !mustFollowFloor))
+                if (!neighbor.IsVisited && tile.enabled && (tile.IsFloor || !mustFollowFloor))
                     toTest.Add(neighbor);
 
                 float possibleLowerLocalGoal = current.LocalGoal + Heuristic(current.Tile, neighbor.Tile);

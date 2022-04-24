@@ -48,6 +48,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Vh_MainHall3.unity
     guid: 8bd90904844c0412bb6eb575e818d346
   - enabled: 1
+    path: Assets/Scenes/Levels/Vh_MainTower.unity
+    guid: 2a8368a133df04963b6f3d7efdc63b8b
+  - enabled: 1
+    path: Assets/Scenes/Levels/DravenFight.unity
+    guid: e147bc89d40a24bd2942fd138d4578c1
+  - enabled: 1
     path: Assets/Scenes/Levels/InnerCourtyard.unity
     guid: 0d07784a4f037414b8cf5d61d1513801
   - enabled: 1

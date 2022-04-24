@@ -2307,6 +2307,7 @@ Transform:
   - {fileID: 2000713690}
   - {fileID: 777428306}
   - {fileID: 1701354340}
+  - {fileID: 912863273}
   m_Father: {fileID: 1211686472}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2329,6 +2330,8 @@ MonoBehaviour:
     position: {fileID: 777428306}
   - name: main_hall2
     position: {fileID: 1701354340}
+  - name: main_tower
+    position: {fileID: 912863273}
 --- !u!1001 &309973766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2784,7 +2787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf62bf6813954d79b5c2339d8d26f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextLevel: Vh_MainHall
+  _nextLevel: Vh_MainTower
   _startingPointIdentifier: main_hall3
   _requiresPrompt: 1
   _sfx: {fileID: 8300000, guid: 600badd0394714c57ab23b36f60fbc34, type: 3}
@@ -10824,6 +10827,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6884553459148202747, guid: 8416ca18f201540c6b7eee5e8eadad62, type: 3}
   m_PrefabInstance: {fileID: 900963750}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &912863272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 912863273}
+  m_Layer: 0
+  m_Name: FromMainTower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &912863273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912863272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 286682941}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &918462753
 GameObject:
   m_ObjectHideFlags: 0
