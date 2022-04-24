@@ -9,10 +9,17 @@ public class TakeDamageView : MonoBehaviour
     [SerializeField]
     List<SpriteRenderer> _renderers;
 
-    public void TakeHit() => StartCoroutine(FlashColor(_damageColor));
+    bool _flashing = false;
+
+    public void TakeHit()
+    {
+        if (!_flashing)
+            StartCoroutine(FlashColor(_damageColor));
+    }
 
     IEnumerator FlashColor(Color target)
     {
+        _flashing = true;
         var originalColors = new Dictionary<SpriteRenderer, Color>();
         _renderers.ForEach(r => originalColors[r] = r.color);
 
@@ -26,5 +33,6 @@ public class TakeDamageView : MonoBehaviour
         }
 
         _renderers.ForEach(r => r.color = originalColors[r]);
+        _flashing = false;
     }
 }

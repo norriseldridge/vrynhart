@@ -45,6 +45,9 @@ public class CombatController : MonoBehaviour
         var enemies = GetActiveEnemies();
         foreach (var enemy in enemies)
         {
+            if (e.Ignore == enemy.transform)
+                continue; // skip if this should be ignored
+
             if (Vector2.Distance(e.Position, enemy.transform.position) < 1.0f)
             {
                 enemy.DealDamage(e.Damage);
