@@ -23,6 +23,9 @@ public class GreenHouseBoss : MonoBehaviour
     [SerializeField]
     AudioClip _music;
 
+    [SerializeField]
+    AudioClip _victoryMusic;
+
     EnemyController _currentTentacle;
     bool _fightStarted = false;
     int _turnsPassed = 0;
@@ -91,6 +94,7 @@ public class GreenHouseBoss : MonoBehaviour
         {
             // stop the music
             Brokers.Audio.Publish(new MusicEvent(null, shouldFade: false));
+            Brokers.Audio.Publish(new AudioEvent(_victoryMusic));
 
             // close the ui
             BossUI.Close();

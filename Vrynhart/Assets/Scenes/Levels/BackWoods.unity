@@ -12328,6 +12328,7 @@ MonoBehaviour:
   _view: {fileID: 936736930}
   _logic:
   - {fileID: 339684675}
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: bullet
     Damage: 3
@@ -72424,6 +72425,7 @@ MonoBehaviour:
   _summonEnemySource: {fileID: 2537760808036248986, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
   _startSfx: {fileID: 8300000, guid: 106915bb2f047471ba5b72d4674c9569, type: 3}
   _music: {fileID: 8300000, guid: 3cc59675682544392be09b88ee887e3c, type: 3}
+  _victoryMusic: {fileID: 8300000, guid: 56830e905c0fa47478a7c403046c4f3d, type: 3}
 --- !u!1001 &2102958789
 PrefabInstance:
   m_ObjectHideFlags: 0

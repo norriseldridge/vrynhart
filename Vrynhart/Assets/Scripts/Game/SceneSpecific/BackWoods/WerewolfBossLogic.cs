@@ -26,6 +26,9 @@ public class WerewolfBossLogic : MonoBehaviour
     [SerializeField]
     AudioClip _music;
 
+    [SerializeField]
+    AudioClip _victoryMusic;
+
     int _startingHealth;
     bool _fightStarted = false;
 
@@ -66,6 +69,7 @@ public class WerewolfBossLogic : MonoBehaviour
                 .Subscribe(e => {
                     // stop the music
                     Brokers.Audio.Publish(new MusicEvent(null, shouldFade: false));
+                    Brokers.Audio.Publish(new AudioEvent(_victoryMusic));
 
                     // close the ui
                     BossUI.Close();

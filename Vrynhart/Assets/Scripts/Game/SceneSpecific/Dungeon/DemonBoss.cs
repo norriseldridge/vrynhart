@@ -16,6 +16,9 @@ public class DemonBoss : MonoBehaviour
     AudioClip _music;
 
     [SerializeField]
+    AudioClip _victoryMusic;
+
+    [SerializeField]
     AudioClip _screech;
 
     [SerializeField]
@@ -76,6 +79,7 @@ public class DemonBoss : MonoBehaviour
                 .Subscribe(e => {
                     // stop the music
                     Brokers.Audio.Publish(new MusicEvent(null));
+                    Brokers.Audio.Publish(new AudioEvent(_victoryMusic));
 
                     // close the ui
                     BossUI.Close();

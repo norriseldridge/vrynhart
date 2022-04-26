@@ -17,6 +17,9 @@ public class CellarBoss : MonoBehaviour
     AudioClip _music;
 
     [SerializeField]
+    AudioClip _victoryMusic;
+
+    [SerializeField]
     GiantSlugTentacle _source;
 
     [SerializeField]
@@ -110,6 +113,7 @@ public class CellarBoss : MonoBehaviour
     void OnEnemyDiedEvent(EnemyDiedEvent e)
     {
         // resume the normal music the music
+        Brokers.Audio.Publish(new AudioEvent(_victoryMusic));
         Brokers.Audio.Publish(new RestartLevelMusicEvent());
 
         GameSaveSystem.CacheGame(_persistentId);

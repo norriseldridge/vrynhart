@@ -20,6 +20,9 @@ public class BatBoss : MonoBehaviour
     AudioClip _music;
 
     [SerializeField]
+    AudioClip _victoryMusic;
+
+    [SerializeField]
     List<Transform> _bossLocations;
 
     [SerializeField]
@@ -87,6 +90,7 @@ public class BatBoss : MonoBehaviour
                 .Where(e => e.EnemyController == _boss)
                 .Subscribe(e => {
                     // stop the music
+                    Brokers.Audio.Publish(new AudioEvent(_victoryMusic));
                     Brokers.Audio.Publish(new MusicEvent(null));
 
                     // close the ui

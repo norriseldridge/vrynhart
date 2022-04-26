@@ -233,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 0}
   _logic: []
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: holy_water
     Damage: 1
@@ -3718,6 +3719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 1931410761}
   _logic: []
+  _avoidOtherEnemies: 1
   _killItems: []
   _health: 0
   _hit: []
@@ -5319,6 +5321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 0}
   _logic: []
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: holy_water
     Damage: 1
@@ -6438,6 +6441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 0}
   _logic: []
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: holy_water
     Damage: 1
@@ -12625,6 +12629,7 @@ MonoBehaviour:
   _maxSpawns: 4
   _bossMusic: {fileID: 8300000, guid: de4c2201604184abb872a76de982ce61, type: 3}
   _volume: 1
+  _victoryMusic: {fileID: 8300000, guid: 56830e905c0fa47478a7c403046c4f3d, type: 3}
 --- !u!61 &984491009
 BoxCollider2D:
   m_ObjectHideFlags: 0

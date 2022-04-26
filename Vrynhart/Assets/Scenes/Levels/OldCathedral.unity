@@ -8481,6 +8481,7 @@ MonoBehaviour:
   _view: {fileID: 860813116}
   _logic:
   - {fileID: 790401595}
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: wood_stake
     Damage: 1
@@ -20207,6 +20208,7 @@ MonoBehaviour:
   _bossName: Old Hunter Laidyr
   _boss: {fileID: 790401594}
   _music: {fileID: 8300000, guid: 22af87aa6323546f8989b0c0d7aa9176, type: 3}
+  _victoryMusic: {fileID: 8300000, guid: 56830e905c0fa47478a7c403046c4f3d, type: 3}
   _screech: {fileID: 8300000, guid: 5675a7795b11c41bf929d2fe5919988c, type: 3}
   _screechVolume: 1
   _fightGrunts:

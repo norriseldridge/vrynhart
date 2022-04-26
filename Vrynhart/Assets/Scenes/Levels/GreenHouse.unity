@@ -68512,6 +68512,7 @@ MonoBehaviour:
     summon: {fileID: 522143815}
   _summonEnemySource: {fileID: 2537760808036248986, guid: 0694a5558eb3741b58e209ddd1928726, type: 3}
   _music: {fileID: 8300000, guid: 3cc59675682544392be09b88ee887e3c, type: 3}
+  _victoryMusic: {fileID: 8300000, guid: 56830e905c0fa47478a7c403046c4f3d, type: 3}
 --- !u!1001 &1933354990
 PrefabInstance:
   m_ObjectHideFlags: 0

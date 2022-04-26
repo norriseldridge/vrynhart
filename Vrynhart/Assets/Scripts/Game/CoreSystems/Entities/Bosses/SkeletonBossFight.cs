@@ -56,6 +56,9 @@ public class SkeletonBossFight : MonoBehaviour
     [SerializeField]
     float _volume;
 
+    [SerializeField]
+    AudioClip _victoryMusic;
+
     bool _fightStarted = false;
     int _turns = 0;
     int _levelMonsters;
@@ -190,6 +193,7 @@ public class SkeletonBossFight : MonoBehaviour
 
         // stop music
         Brokers.Audio.Publish(new MusicEvent(null));
+        Brokers.Audio.Publish(new AudioEvent(_victoryMusic));
         StartCoroutine(RetartLevelMusic());
 
         // mark that this boss is done

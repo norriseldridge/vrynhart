@@ -10162,6 +10162,7 @@ MonoBehaviour:
   _bossName: Old Hunter Athyr
   _boss: {fileID: 19032388}
   _music: {fileID: 8300000, guid: 004f7cf9bef664baa9c7ed139f518f71, type: 3}
+  _victoryMusic: {fileID: 8300000, guid: 56830e905c0fa47478a7c403046c4f3d, type: 3}
   _bossLocations:
   - {fileID: 411416316}
   - {fileID: 352317190}
