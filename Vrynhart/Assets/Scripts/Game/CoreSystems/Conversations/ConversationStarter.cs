@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 // this is a generic base class, player specific one is with player logic
 [RequireComponent(typeof(Collider2D))]
@@ -37,6 +38,9 @@ public class ConversationStarter : MonoBehaviour
 
     protected void TriggerPrompt()
     {
+        // make sure these are valid prompts still
+        _nearPrompts.RemoveAll(p => p == null || !p.enabled);
+
         if (_nearPrompts.Count > 0)
         {
             _currentPrompt = _nearPrompts[0];

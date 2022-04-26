@@ -528,8 +528,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 30bf29007e11c424f8cc4bbed2cc00e0, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: f9194597964084d359da9358ac91afdc, type: 3}
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -539,7 +539,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 2
   m_Text: <color="#f00">Lorem ipsum</color> dolor sit amet, consectetur adipiscing
     elit. Donec vitae tincidunt eros. Vestibulum convallis dui vitae erat posuere,
     at sagittis tellus lacinia. Sed dapibus sollicitudin tellus, vel ultricies nibh

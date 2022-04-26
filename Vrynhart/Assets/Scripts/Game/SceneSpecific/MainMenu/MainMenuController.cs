@@ -79,7 +79,7 @@ public class MainMenuController : MonoBehaviour
             _load.gameObject.SetActive(false);
         }
 
-        Brokers.Audio.Publish(new MusicEvent(_music));
+        Brokers.Audio.Publish(new MusicEvent(_music, shouldFade: false));
         Brokers.Audio.Publish(new AmbientAudioEvent(null, 0));
     }
 

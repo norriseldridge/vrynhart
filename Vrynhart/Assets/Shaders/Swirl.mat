@@ -49,9 +49,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_7a1cf03a91a44a1e8c77c7a991907eef: 10
-    - _Alpha: 0.097904
+    - _Alpha: 1
     - _EnableExternalAlpha: 0
-    - _Rotation: 78.383255
+    - _Rotation: 21.42103
     - _SwirlAmount: 11
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

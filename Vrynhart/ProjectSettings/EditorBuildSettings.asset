@@ -54,6 +54,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/DravenFight.unity
     guid: e147bc89d40a24bd2942fd138d4578c1
   - enabled: 1
+    path: Assets/Scenes/Levels/ThrownRoom.unity
+    guid: 14e41c3e797d44925a9b5b65a35a7470
+  - enabled: 1
     path: Assets/Scenes/Levels/InnerCourtyard.unity
     guid: 0d07784a4f037414b8cf5d61d1513801
   - enabled: 1
@@ -95,4 +98,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/BossUI.unity
     guid: bc358de99135840a89f8a15134062df8
+  - enabled: 1
+    path: Assets/Scenes/Outro.unity
+    guid: a4a041734c709464896d20b0888e6ae3
   m_configObjects: {}

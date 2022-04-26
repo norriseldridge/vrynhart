@@ -14,6 +14,7 @@ public static class Constants
         public const string PauseScene = "Pause";
         public const string ShopScene = "Shop";
         public const string BossUIScene = "BossUI";
+        public const string OutroScene = "Outro";
 
         public static readonly Dictionary<string, int> TargetItemQuantities = new Dictionary<string, int>()
         {

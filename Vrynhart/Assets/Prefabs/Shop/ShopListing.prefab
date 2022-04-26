@@ -448,8 +448,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 30bf29007e11c424f8cc4bbed2cc00e0, type: 3}
-    m_FontSize: 16
+    m_Font: {fileID: 12800000, guid: f9194597964084d359da9358ac91afdc, type: 3}
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -459,7 +459,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 0.9
+    m_LineSpacing: 2
   m_Text: Used to do a thing in the game.
 --- !u!1 &3807117682845271637
 GameObject:

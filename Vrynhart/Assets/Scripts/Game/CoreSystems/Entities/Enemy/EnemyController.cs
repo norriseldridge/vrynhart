@@ -19,6 +19,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     List<EnemyLogic> _logic;
 
+    [SerializeField]
+    bool _avoidOtherEnemies = true;
+
     [Header("Kill")]
     [SerializeField]
     List<KillItem> _killItems;
@@ -101,7 +104,8 @@ public class EnemyController : MonoBehaviour
         if (_takenPositions.Any(p => Vector2.Distance(p, target) < 1))
             return false; // another enemy is at this position, don't try
 
-        Brokers.Default.Publish(new EnemyDestinationPickedEvent(this, target));
+        if (_avoidOtherEnemies)
+            Brokers.Default.Publish(new EnemyDestinationPickedEvent(this, target));
 
         _view.FaceTowards(target);
         var direction = target - transform.position;

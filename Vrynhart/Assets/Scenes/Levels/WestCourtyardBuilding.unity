@@ -294,6 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 1503138366}
   _logic: []
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: wood_stake
     Damage: 5
@@ -4045,6 +4046,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 134024768}
     m_Modifications:
+    - target: {fileID: -6211330924657604258, guid: f6a720370732b47aa9e31632de63a4f7, type: 3}
+      propertyPath: _delay.y
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7949263940215757043, guid: f6a720370732b47aa9e31632de63a4f7, type: 3}
       propertyPath: m_Name
       value: VampireController
@@ -32606,6 +32611,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 134024768}
     m_Modifications:
+    - target: {fileID: -6211330924657604258, guid: f6a720370732b47aa9e31632de63a4f7, type: 3}
+      propertyPath: _volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6211330924657604258, guid: f6a720370732b47aa9e31632de63a4f7, type: 3}
+      propertyPath: _delay.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6211330924657604258, guid: f6a720370732b47aa9e31632de63a4f7, type: 3}
+      propertyPath: _delay.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7949263940215757043, guid: f6a720370732b47aa9e31632de63a4f7, type: 3}
       propertyPath: m_Name
       value: VampireController (1)

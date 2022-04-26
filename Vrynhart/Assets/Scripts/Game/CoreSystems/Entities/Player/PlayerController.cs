@@ -200,7 +200,10 @@ public class PlayerController : MonoBehaviour
 
         // attempt to use the item
         if (CustomInput.GetKeyDown(CustomInput.Use))
+        {
             Brokers.Default.Publish(new UseItemEvent(EquippedItem, transform.position, target));
+            Brokers.Default.Publish(new TurnProgressionEvent());
+        }
     }
 
     void HandleMove()
