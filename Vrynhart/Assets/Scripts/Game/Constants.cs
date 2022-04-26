@@ -19,10 +19,10 @@ public static class Constants
         public static readonly Dictionary<string, int> TargetItemQuantities = new Dictionary<string, int>()
         {
             { "holy_water", 2 },
-            { "coin", 5 },
+            { "coin", 20 },
             { "wood_stake", 3 },
             { "rusty_dagger", 11 },
-            { "oil", 30 }
+            { "oil", 80 }
         };
     }
 
