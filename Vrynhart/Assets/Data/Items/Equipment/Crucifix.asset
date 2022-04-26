@@ -24,4 +24,6 @@ MonoBehaviour:
     sight of it strikes fear into even the most foul of Hell's abominations.
   UseRange: 3
   ShowUseIndicator: 1
+  CombatSfx: {fileID: 8300000, guid: ca9b8c324f6184480a6f001903a95e49, type: 3}
+  OverrideCountId: 
   ClothingAnimator: {fileID: 0}

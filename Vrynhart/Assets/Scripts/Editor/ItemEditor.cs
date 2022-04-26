@@ -39,7 +39,7 @@ public class ItemEditor : Editor
             UnityEngine.GUI.contentColor = color;
         }
 
-        if (type == ItemType.Currency)
+        if (type == ItemType.Currency || type == ItemType.Equippable)
         {
             EditorGUILayout.PropertyField(combatSfx);
         }

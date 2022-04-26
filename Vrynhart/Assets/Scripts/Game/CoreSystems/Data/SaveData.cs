@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
 
-[System.Serializable]
+[Serializable]
 public class SaveData
 {
     public string Name;
@@ -12,4 +13,6 @@ public class SaveData
     public int Health;
     public PlayerViewData ViewData;
     public List<string> CompletedFlags;
+    public DateTime LastPlayed;
+    public double TotalPlayedTimeSeconds;
 }

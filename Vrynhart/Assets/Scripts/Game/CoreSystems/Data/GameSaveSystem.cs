@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -40,7 +41,9 @@ public static class GameSaveSystem
             X = 0,
             Y = 0,
             Scene = Constants.Game.StartingScene,
-            CompletedFlags = new List<string>()
+            CompletedFlags = new List<string>(),
+            TotalPlayedTimeSeconds = 0,
+            LastPlayed = DateTime.UtcNow
         };
 
         var path = Path.Combine(DataStorage.GetDataPath(), _currentSaveFile);
@@ -77,6 +80,13 @@ public static class GameSaveSystem
         _cache.QuickItems = player.QuickItems;
         _cache.Health = player.Health.CurrentHealth;
 
+        // update the total played time
+        var last = _cache.LastPlayed;
+        var now = DateTime.UtcNow;
+        var diff = now.Subtract(last).TotalSeconds;
+        _cache.TotalPlayedTimeSeconds += diff;
+        _cache.LastPlayed = now;
+
         DataStorage.Save(_cache, GetCurrentSaveFile());
         _saved = true;
 
@@ -90,6 +100,8 @@ public static class GameSaveSystem
 
         if (!DataStorage.TryLoad(GetCurrentSaveFile(), out _cache))
             _cache = new SaveData(); // we try to load but fail, just create a new savedata
+
+        _cache.LastPlayed = DateTime.UtcNow;
 
         _saved = true; // a freshly loaded game is at the last save, thus "saved"
         Brokers.Default.Publish(new SaveDataChangeEvent(_cache));

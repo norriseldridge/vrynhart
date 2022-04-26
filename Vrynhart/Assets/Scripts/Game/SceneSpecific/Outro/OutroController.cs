@@ -59,7 +59,7 @@ public class OutroController : MonoBehaviour
 
     IEnumerator RollCredits()
     {
-        while (_credits.localPosition.y < 800)
+        while (_credits.localPosition.y < 922)
         {
             _credits.localPosition += _creditsSpeed * Time.deltaTime * Vector3.up;
             yield return null;
@@ -150,10 +150,6 @@ public class OutroController : MonoBehaviour
 
         // credits
         yield return RollCredits();
-
-        //stop music
-        Brokers.Audio.Publish(new MusicEvent(null));
-
         yield return new WaitForSeconds(2.0f);
 
         // back to main menu

@@ -14,6 +14,9 @@ public class SaveGameTileUI : MonoBehaviour
     [SerializeField]
     Text _date;
 
+    [SerializeField]
+    Text _timePlayed;
+
     Button _button;
     string _saveFile;
 
@@ -21,10 +24,12 @@ public class SaveGameTileUI : MonoBehaviour
     {
         _saveFile = saveFile;
         var saveData = DataStorage.Load<SaveData>(Path.Combine(saveFile, Constants.Data.SaveFile));
-        var directoryData = new FileInfo(Path.Combine(saveFile, Constants.Data.SaveFile));
         _name.text = saveData.Name;
         _location.text = LevelNameLookup.GetDisplayName(saveData.Scene);
-        _date.text = directoryData.LastWriteTime.ToString("MM/dd/yy H:mm:ss");
+        _date.text = saveData.LastPlayed.ToLocalTime().ToString("MM/dd/yy H:mm:ss");
+
+        var played = TimeSpan.FromSeconds(saveData.TotalPlayedTimeSeconds);
+        _timePlayed.text = $"{played.Hours}:{played.Minutes}:{played.Seconds}";
 
         _button = GetComponent<Button>();
         _button.onClick.AddListener(() => onClick.Invoke(_saveFile));

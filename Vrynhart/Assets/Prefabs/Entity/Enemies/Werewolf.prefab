@@ -160,9 +160,18 @@ MonoBehaviour:
   _logic:
   - {fileID: 6055558315529690605}
   - {fileID: 6055558315529690604}
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: bullet
     Damage: 1
+  - ItemId: wood_stake
+    Damage: 0
+  - ItemId: crucifix
+    Damage: 0
+  - ItemId: rusty_dagger
+    Damage: 0
+  - ItemId: holy_water
+    Damage: 0
   _health: 1
   _hit: []
   _hitVolume: 0

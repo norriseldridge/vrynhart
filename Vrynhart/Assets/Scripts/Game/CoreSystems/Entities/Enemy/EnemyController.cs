@@ -130,6 +130,9 @@ public class EnemyController : MonoBehaviour
 
     public void DealDamage(int damage)
     {
+        if (damage == 0)
+            return;
+
         _health -= damage;
         Brokers.Default.Publish(new EnemyTakeDamageEvent(this, damage));
         if (_health <= 0)

@@ -30050,7 +30050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
       propertyPath: _health
-      value: 1
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8824362648358390911, guid: 92afc752cfc5745ddaa80f8060291d95, type: 3}
       propertyPath: _killItems.Array.size

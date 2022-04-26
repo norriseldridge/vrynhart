@@ -209,6 +209,7 @@ MonoBehaviour:
   _logic:
   - {fileID: 7949263940215757046}
   - {fileID: 1457150397385945757}
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: wood_stake
     Damage: 3
@@ -218,6 +219,8 @@ MonoBehaviour:
     Damage: 2
   - ItemId: rusty_dagger
     Damage: 1
+  - ItemId: bullet
+    Damage: 0
   _health: 3
   _hit:
   - {fileID: 8300000, guid: 7a5cd42058a194b50839e0d42152d443, type: 3}

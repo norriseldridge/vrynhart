@@ -304,11 +304,18 @@ MonoBehaviour:
   - {fileID: 106350244730987003}
   - {fileID: 106350244730987002}
   - {fileID: 106350244730987002}
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: wood_stake
     Damage: 2
   - ItemId: rusty_dagger
     Damage: 1
+  - ItemId: bullet
+    Damage: 5
+  - ItemId: holy_water
+    Damage: 0
+  - ItemId: crucifix
+    Damage: 0
   _health: 2
   _hit:
   - {fileID: 8300000, guid: 7a5cd42058a194b50839e0d42152d443, type: 3}

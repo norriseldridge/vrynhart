@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,6 +15,9 @@ public class MainMenuController : MonoBehaviour
 
     [SerializeField]
     float _selectVolume;
+
+    [SerializeField]
+    Image _fadeIn;
 
     [SerializeField]
     Button _continue;
@@ -59,6 +63,7 @@ public class MainMenuController : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(FadeIn());
         _newGamePopup.SetActive(false);
         _nameInput.onEndEdit.AddListener(OnEnterName);
         _loadGamePopup.SetActive(false);
@@ -79,8 +84,19 @@ public class MainMenuController : MonoBehaviour
             _load.gameObject.SetActive(false);
         }
 
-        Brokers.Audio.Publish(new MusicEvent(_music, shouldFade: false));
+        Brokers.Audio.Publish(new MusicEvent(_music));
         Brokers.Audio.Publish(new AmbientAudioEvent(null, 0));
+    }
+
+    IEnumerator FadeIn()
+    {
+        _fadeIn.color = new Color(0, 0, 0, 1);
+        for (var a = 1.0f; a > 0; a -= 0.7f * Time.deltaTime)
+        {
+            _fadeIn.color = new Color(0, 0, 0, a);
+            yield return null;
+        }
+        _fadeIn.color = new Color(0, 0, 0, 0);
     }
 
     void Update()

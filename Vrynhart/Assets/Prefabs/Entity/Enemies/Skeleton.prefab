@@ -162,6 +162,7 @@ MonoBehaviour:
   - {fileID: 3812991514640315672}
   - {fileID: 3812991514640315673}
   - {fileID: 3812991514640315673}
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: holy_water
     Damage: 3
@@ -169,6 +170,10 @@ MonoBehaviour:
     Damage: 3
   - ItemId: rusty_dagger
     Damage: 1
+  - ItemId: bullet
+    Damage: 0
+  - ItemId: wood_stake
+    Damage: 0
   _health: 3
   _hit: []
   _hitVolume: 0

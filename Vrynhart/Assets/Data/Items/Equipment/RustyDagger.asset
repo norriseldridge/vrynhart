@@ -23,4 +23,7 @@ MonoBehaviour:
   Description: This dagger is not very effective in combat but it desparate times,
     it will do.
   UseRange: 1
+  ShowUseIndicator: 1
+  CombatSfx: {fileID: 8300000, guid: ca9b8c324f6184480a6f001903a95e49, type: 3}
+  OverrideCountId: 
   ClothingAnimator: {fileID: 0}
