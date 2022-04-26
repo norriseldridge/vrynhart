@@ -21,7 +21,8 @@ MonoBehaviour:
   PurchaseQuantity: 1
   ShortDescription: Effective against <color="#f00">undead monsters</color>.
   Description: This blessed water is best used against the armies of the undead.
-    <i>And perhaps something more...</i>
   UseRange: 2
   ShowUseIndicator: 1
+  CombatSfx: {fileID: 8300000, guid: 9b064442f3bd34609b6101eb88577db0, type: 3}
+  OverrideCountId: 
   ClothingAnimator: {fileID: 0}

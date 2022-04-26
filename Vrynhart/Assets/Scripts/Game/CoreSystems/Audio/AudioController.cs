@@ -191,7 +191,12 @@ public class AudioController : MonoBehaviour
         {
             _musicSource.volume = _musicVolume * _currentMusicVolume;
             _musicSource.clip = e.Clip;
-            _musicSource.Play();
+            _musicSource.time = 0;
+
+            if (e.Clip == null)
+                _musicSource.Stop();
+            else
+                _musicSource.Play();
         }
     }
 
@@ -199,10 +204,11 @@ public class AudioController : MonoBehaviour
     {
         yield return StartCoroutine(FadeVolume(source, 0));
 
+        source.clip = clip;
+        source.time = 0;
+
         if (clip != null)
         {
-            source.clip = clip;
-            source.time = 0;
             source.Play();
 
             while (source.volume < maxVolume * currentVolume)
@@ -210,6 +216,10 @@ public class AudioController : MonoBehaviour
                 source.volume += _fadeSpeed * Time.deltaTime;
                 yield return null;
             }
+        }
+        else
+        {
+            source.Stop();
         }
     }
 

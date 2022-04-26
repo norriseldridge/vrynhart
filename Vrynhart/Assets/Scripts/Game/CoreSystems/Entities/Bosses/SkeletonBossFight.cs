@@ -80,6 +80,10 @@ public class SkeletonBossFight : MonoBehaviour
             // destory the boss
             Destroy(_boss.gameObject);
 
+            // close the eyes
+            foreach (var eye in FindObjectsOfType<DemonicEyeController>())
+                eye.Close();
+
             // destory the spawns
             foreach (var spawn in _spawns)
             {
@@ -190,6 +194,10 @@ public class SkeletonBossFight : MonoBehaviour
         Destroy(_boss);
         _bossDeath.gameObject.SetActive(true);
         _bossDeath.Explode();
+
+        // close the eyes
+        foreach (var eye in FindObjectsOfType<DemonicEyeController>())
+            eye.Close();
 
         // stop music
         Brokers.Audio.Publish(new MusicEvent(null));

@@ -130,3 +130,4 @@ MonoBehaviour:
   _renderer: {fileID: 4104397683007330243}
   _open: {fileID: 4714410783012859700, guid: 7487834b973ea456180bf26fed11b835, type: 3}
   _close: {fileID: -5281422124547630143, guid: 7487834b973ea456180bf26fed11b835, type: 3}
+  _sfx: {fileID: 8300000, guid: f6058a551088a411db250d115ecba7ce, type: 3}

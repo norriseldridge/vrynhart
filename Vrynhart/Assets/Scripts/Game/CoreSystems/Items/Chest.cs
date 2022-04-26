@@ -24,6 +24,9 @@ public class Chest : MonoBehaviour
     [SerializeField]
     Sprite _close;
 
+    [SerializeField]
+    AudioClip _sfx;
+
     bool _wasCollected;
     ChestCollector _collector;
 
@@ -86,6 +89,7 @@ public class Chest : MonoBehaviour
         if (_collector != null && _collector.RequestedCollect)
         {
             GameSaveSystem.CacheGame(_uid);
+            Brokers.Audio.Publish(new AudioEvent(_sfx, 0.5f));
             Brokers.Default.Publish(new ItemPickUpEvent(_itemId, _count));
             Brokers.Default.Publish(new ExitPromptEvent());
             _collector = null;
