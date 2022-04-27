@@ -19,6 +19,16 @@ public class Lever : RequiresPrompt
 
     bool _pulled = false;
 
+    void Start()
+    {
+        var data = GameSaveSystem.GetCachedSaveData();
+        if (data.CompletedFlags.Contains(_leverId))
+        {
+            _pulled = true;
+            Brokers.Default.Publish(new LeverEvent(_leverId, true));
+        }
+    }
+
     void Update()
     {
         if (_pulled)
@@ -30,6 +40,7 @@ public class Lever : RequiresPrompt
             _renderer.sprite = _on;
             Brokers.Audio.Publish(new AudioEvent(_sfx, _volume));
             Brokers.Default.Publish(new LeverEvent(_leverId));
+            GameSaveSystem.CacheGame(_leverId);
         }
     }
 }

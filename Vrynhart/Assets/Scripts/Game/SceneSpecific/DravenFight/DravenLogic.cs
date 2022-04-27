@@ -54,9 +54,6 @@ public class DravenLogic : EnemyLogic
 
             case 4:
                 Attack();
-                break;
-
-            case 5: // wait
                 _state = -1;
                 break;
         }

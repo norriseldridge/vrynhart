@@ -22,8 +22,8 @@ public class LeverResponder : MonoBehaviour
         _leversActive++;
 
         if (_leversActive == _leverIds.Count)
-            OnAllLeversActivated();
+            OnAllLeversActivated(e);
     }
 
-    protected virtual void OnAllLeversActivated() { }
+    protected virtual void OnAllLeversActivated(LeverEvent e) { }
 }

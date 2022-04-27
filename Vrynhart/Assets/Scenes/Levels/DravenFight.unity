@@ -1505,6 +1505,7 @@ MonoBehaviour:
   _view: {fileID: 722581735}
   _logic:
   - {fileID: 91988302}
+  _avoidOtherEnemies: 1
   _killItems:
   - ItemId: bullet
     Damage: 5
@@ -1516,7 +1517,7 @@ MonoBehaviour:
     Damage: 1
   - ItemId: wood_stake
     Damage: 3
-  _health: 30
+  _health: 45
   _hit:
   - {fileID: 8300000, guid: c1a63d8285e3243a4b72d20cdfb64789, type: 3}
   _hitVolume: 0.5

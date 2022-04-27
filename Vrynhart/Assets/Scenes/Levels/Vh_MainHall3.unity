@@ -13130,9 +13130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 53853980}
   _logic: []
+  _avoidOtherEnemies: 1
   _killItems:
-  - ItemId: bullet
-    Damage: 1
   - ItemId: crucifix
     Damage: 1
   _health: 1

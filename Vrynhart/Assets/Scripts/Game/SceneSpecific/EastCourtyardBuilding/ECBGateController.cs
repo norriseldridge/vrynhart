@@ -12,10 +12,14 @@ public class ECBGateController : LeverResponder
     [SerializeField]
     AudioClip _clip;
 
-    protected override void OnAllLeversActivated()
+    protected override void OnAllLeversActivated(LeverEvent e)
     {
         _tile.enabled = true;
-        StartCoroutine(TweenGateOut());
+
+        if (!e.InSaveData) // if we pulled this just now, animate, otherwise just do it because it was in data
+            StartCoroutine(TweenGateOut());
+        else
+            _gate.localPosition += Vector3.down * 2;
     }
 
     IEnumerator TweenGateOut()

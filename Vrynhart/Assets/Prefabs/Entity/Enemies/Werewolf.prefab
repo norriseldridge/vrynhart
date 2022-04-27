@@ -177,8 +177,8 @@ MonoBehaviour:
   _hitVolume: 0
   _hitPitchRange: {x: 0, y: 0}
   _deathSource: {fileID: 8752323734748333651, guid: 65d173641789141c6bd7afac5c9ed5dd, type: 3}
-  _die: {fileID: 0}
-  _dieVolume: 0
+  _die: {fileID: 8300000, guid: e5e82c24159614f708132ab68f8a5bfc, type: 3}
+  _dieVolume: 0.7
 --- !u!114 &6055558315529690605
 MonoBehaviour:
   m_ObjectHideFlags: 0
