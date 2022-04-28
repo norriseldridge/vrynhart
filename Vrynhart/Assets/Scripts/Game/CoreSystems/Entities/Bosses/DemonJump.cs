@@ -121,6 +121,7 @@ public class DemonJump : EnemyLogic
     {
         EnemyController.EnemyView.FaceTowards(target);
         var initialOffset = EnemyController.EnemyView.transform.localPosition;
+        initialOffset.y = 1.25f; // make sure it never floats off
         var offSet = new Vector3(initialOffset.x, initialOffset.y, initialOffset.z);
         var halfWay = _jumpDuration / 2.0f;
 
