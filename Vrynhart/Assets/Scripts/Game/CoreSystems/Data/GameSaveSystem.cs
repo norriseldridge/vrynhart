@@ -70,6 +70,22 @@ public static class GameSaveSystem
         }
     }
 
+    public static void SaveLastPlayed()
+    {
+        if (_cache == null)
+            return;
+
+        // update the total played time
+        var last = _cache.LastPlayed;
+        var now = DateTime.UtcNow;
+        var diff = now.Subtract(last).TotalSeconds;
+        _cache.TotalPlayedTimeSeconds += diff;
+        _cache.LastPlayed = now;
+
+        DataStorage.Save(_cache, GetCurrentSaveFile());
+        _saved = true;
+    }
+
     public static void SaveGame(PlayerController player, string currentScene, Vector3 position)
     {
         _cache.Scene = currentScene;

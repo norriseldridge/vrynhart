@@ -102,6 +102,9 @@ public class PauseController : MonoBehaviour
     public async void OnClickQuit()
     {
         gameObject.SetActive(false);
+
+        GameSaveSystem.SaveLastPlayed();
+
         await TransitionController.TriggerTransitionAsTask();
         _isOpen = false;
         SceneManager.LoadSceneAsync(Constants.Game.MainMenuScene)

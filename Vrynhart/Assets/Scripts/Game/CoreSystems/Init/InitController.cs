@@ -21,4 +21,9 @@ public class InitController : MonoBehaviour
     {
         Cursor.visible = !CustomInput.IsController();
     }
+
+    void OnDestroy()
+    {
+        GameSaveSystem.SaveLastPlayed();
+    }
 }
