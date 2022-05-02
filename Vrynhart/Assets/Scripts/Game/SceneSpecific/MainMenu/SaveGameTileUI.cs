@@ -29,7 +29,7 @@ public class SaveGameTileUI : MonoBehaviour
         _date.text = saveData.LastPlayed.ToLocalTime().ToString("MM/dd/yy H:mm:ss");
 
         var played = TimeSpan.FromSeconds(saveData.TotalPlayedTimeSeconds);
-        _timePlayed.text = $"{played.Hours}:{played.Minutes}:{played.Seconds}";
+        _timePlayed.text = $"{played.Hours}:{played.Minutes:D2}:{played.Seconds:D2}";
 
         _button = GetComponent<Button>();
         _button.onClick.AddListener(() => onClick.Invoke(_saveFile));
